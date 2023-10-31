@@ -9,7 +9,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(TESTING_MODE OFF)
+
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
@@ -39,21 +39,18 @@ set(PROJECT_SOURCES
     jsonconfigparser.h jsonconfigparser.cpp
 )
 
-set(TESTING_MODE ON)
 
-if (TESTING_MODE)
-    add_library(RATATYPE-C ${PROJECT_SOURCES})
-else()
+    add_library(RATATYPE-C_lib ${PROJECT_SOURCES})
     if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         qt_add_executable(RATATYPE-C
             MANUAL_FINALIZATION
             ${PROJECT_SOURCES}
         )
     endif()
-endif()
+
 
 target_link_libraries(RATATYPE-C PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
-
+target_link_libraries(RATATYPE-C_lib PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
   set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.RATATYPE-C)

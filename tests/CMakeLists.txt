@@ -18,4 +18,4 @@ test_jsonfileparser.h
 add_test(NAME ${BINARY} COMMAND ${BINARY})
 
 target_link_libraries(${BINARY} PUBLIC Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql gtest)
-target_link_libraries(${BINARY} PRIVATE RATATYPE-C)
+target_link_libraries(${BINARY} PRIVATE RATATYPE-C_lib)

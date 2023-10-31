@@ -4,18 +4,21 @@ JsonConfigParser::JsonConfigParser(QObject *parent)
     : QObject{parent}
 {
     this->settings = new QSettings("MySoft", "Star Runner");
-
+    this->extractArraysFromJson("course.json");
+    this->setLessonsArray(getCurrentCourseIndex());
+    this->setExercisesArray(this->getCurrentLessonIndex(this->getCurrentCourseName()));
 }
 
-JsonConfigParser::keyboardLayout JsonConfigParser::getCurrentKeyboardLayout(int index, QJsonArray& coursesArray)
+JsonConfigParser::keyboardLayout JsonConfigParser::getCurrentKeyboardLayout()
 {
-    if(coursesArray.isEmpty()) {
+    int index = this->getCurrentCourseIndex();
+    if(this->coursesArray.isEmpty()) {
         throw std::invalid_argument("The coursesArray is empty.");
     }else {
-        if(coursesArray.size() < index){
+        if(this->coursesArray.size() < index){
             throw std::runtime_error("Error out of bounds of array of courses: " + std::to_string(index));
         }else {
-            QJsonObject selectedСourse = coursesArray[index].toObject();
+            QJsonObject selectedСourse = this->coursesArray[index].toObject();
             if(selectedСourse["keyboardLayout"].toString().isEmpty() ||
                selectedСourse["shiftPressKeyboardLayout"].toString().isEmpty()){
                 throw std::runtime_error("Read error, empty string");
@@ -29,32 +32,53 @@ JsonConfigParser::keyboardLayout JsonConfigParser::getCurrentKeyboardLayout(int 
     }
 }
 
-const QString JsonConfigParser::getCurrentMainText(int index, QJsonArray& exercisesArray)
+const QString JsonConfigParser::getCurrentMainText()
 {
-    if(exercisesArray.isEmpty()) {
+    int exercisesIndex = this->getCurrentExercisIndex(this->getCurrentCourseName());
+    if(this->exercisesArray.isEmpty()) {
         throw std::invalid_argument("The exercise array is empty");
     }else {
-        return exercisesArray[index].toString();
+        return this->exercisesArray[exercisesIndex].toString();
     }
+    return "";
 }
 
-QString JsonConfigParser::getCurrentCourseName(int index, QJsonArray &coursesArray)
+QString JsonConfigParser::getCurrentCourseName()
 {
-    if(coursesArray.isEmpty()) {
+    int index = this->getCurrentCourseIndex();
+    if(this->coursesArray.isEmpty()) {
         throw std::invalid_argument("The coursesArray is empty.");
     }else {
-        if(coursesArray.size() < index){
+        if(this->coursesArray.size() < index){
             throw std::runtime_error("Error out of bounds of array of courses: " + std::to_string(index));
         }else {
-            QJsonObject selectedСourse = coursesArray[index].toObject();
-            return selectedСourse["course"].toString();
+            QJsonObject selectedСourse = this->coursesArray[index].toObject();
+            return selectedСourse["course"].toString().replace(" ", "_");
         }
     }
+    return "";
 }
 
 bool JsonConfigParser::get_MainText(){
     return true;
 }
+
+int JsonConfigParser::getCurrentCourseIndex()
+{
+    return this->settings->value("selectedCourseIndex", 0).toInt();
+}
+
+int JsonConfigParser::getCurrentLessonIndex(QString courseName)
+{
+    return this->settings->value(courseName + "LessonIndex", 0).toInt();
+}
+
+int JsonConfigParser::getCurrentExercisIndex(QString courseName)
+{
+    return this->settings->value(courseName + "ExerciseIndex", 0).toInt();
+}
+
+
 void JsonConfigParser::changeCourseIndex(int index)
 {
     if(index < 0){
@@ -104,22 +128,22 @@ void JsonConfigParser::extractArraysFromJson(const QString &filePath)
     }
 }
 
-inline void JsonConfigParser::setLessonsArray(int index)
+inline void JsonConfigParser::setLessonsArray(int courseIndex)
 {
     if(this->coursesArray.isEmpty()) {
         throw std::invalid_argument("The coursesArray array is empty.");
     }else {
-        QJsonObject selectedCourseObject = this->coursesArray[index].toObject();
+        QJsonObject selectedCourseObject = this->coursesArray[courseIndex].toObject();
         this->lessonsArray = selectedCourseObject["lessons"].toArray();
     }
 }
 
-inline void JsonConfigParser::setExercisesArray(int index)
+inline void JsonConfigParser::setExercisesArray(int lessonIndex)
 {
     if(this->lessonsArray.isEmpty()) {
         throw std::invalid_argument("The lessonsArray array is empty.");
     }else {
-        QJsonObject selectedLessonObject = this->lessonsArray[index].toObject();
+        QJsonObject selectedLessonObject = this->lessonsArray[lessonIndex].toObject();
         this->exercisesArray = selectedLessonObject["exercises"].toArray();
     }
 }

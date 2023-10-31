@@ -4,6 +4,7 @@
 #include <QObject>
 #include <stdexcept>
 #include <QSettings>
+#include <QString>
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -22,10 +23,13 @@ public:
     QJsonArray coursesArray;
     QJsonArray lessonsArray;
     QJsonArray exercisesArray;
-    keyboardLayout getCurrentKeyboardLayout(int index, QJsonArray& coursesArray);
-    const QString getCurrentMainText(int index,QJsonArray &exercisesArray);
-    QString getCurrentCourseName(int index, QJsonArray& coursesArray);
+    keyboardLayout getCurrentKeyboardLayout();
+    const QString getCurrentMainText();
+    QString getCurrentCourseName();
     bool get_MainText();
+    int getCurrentCourseIndex();
+    int getCurrentLessonIndex(QString courseName);
+    int getCurrentExercisIndex(QString courseName);
 private slots:
     void changeCourseIndex(int index);
     void saveLessonIndexInSettings(QString& courseName, int value);
@@ -34,8 +38,8 @@ private:
 
     QSettings *settings;
     void extractArraysFromJson(const QString& filePath);
-    inline void setLessonsArray(int index);
-    inline void setExercisesArray(int index);
+    inline void setLessonsArray(int courseIndex);
+    inline void setExercisesArray(int lessonIndex);
 
 signals:
 
