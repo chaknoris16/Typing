@@ -22,9 +22,9 @@ startwindow::~startwindow()
 void startwindow::fillComboBoxes()
 {
 
-    mainWindow->fillLessonsComboBox(mainWindow->selectedCourseIndex, ui->lessons_comboBox, mainWindow->lessonsArray);
+   // mainWindow->fillLessonsComboBox(mainWindow->selectedCourseIndex, ui->lessons_comboBox, mainWindow->lessonsArray);
     ui->lessons_comboBox->setCurrentIndex(mainWindow->selectedLessonIndex);
-    mainWindow->fillExercisesComboBox(mainWindow->selectedLessonIndex, ui->exercisesComboBox, mainWindow->exercisesArray);
+   // mainWindow->fillExercisesComboBox(mainWindow->selectedLessonIndex, ui->exercisesComboBox, mainWindow->exercisesArray);
     ui->exercisesComboBox->setCurrentIndex(mainWindow->selectedExercisesIndex);
 }
 
@@ -37,7 +37,7 @@ void startwindow::connectSignalsAndSlots()
 {
     connect(ui->lessons_comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int newLessonsIndex){
         emit changingValueInComboBox(newLessonsIndex, ui->exercisesComboBox->currentIndex());
-        mainWindow->fillExercisesComboBox(newLessonsIndex, ui->exercisesComboBox, mainWindow->exercisesArray);
+       // mainWindow->fillExercisesComboBox(newLessonsIndex, ui->exercisesComboBox, mainWindow->exercisesArray);
     });
 
     connect(ui->exercisesComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),[=](int newExerciseIndex){

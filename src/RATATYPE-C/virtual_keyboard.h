@@ -8,6 +8,9 @@
 #include <QString>
 #include <QTimer>
 #include <QPushButton>
+#include "ui_mainwindow.h"
+#include <stdexcept>
+#include <jsonconfigparser.h>
 class MainWindow;
 class Virtual_Keyboard : public QWidget
 {
@@ -19,6 +22,7 @@ private:
         QPushButton* button;
         QChar character;
     };
+
 public:
     explicit Virtual_Keyboard(MainWindow* mainWindow ,QWidget *parent = nullptr);
     void changeButtonColorByText(QSet<QChar> *uniqueLetters, QColor color);
@@ -26,13 +30,21 @@ public:
     void flashButtonBackground(const QString &textButton, QColor background, int flashDurationMs);
     void revertButtonTextColorBack(QSet<QChar> *uniqueLetters);
     void deleteBorderButton(QString &QSS_Border);
-    void changeShiftedCharacters(const QVector<ButtonCharPair>& vectorPair);
-    const QVector<ButtonCharPair> &get_vectorShiftedPair() const {
-        return buttonNewCharPair;
+    void changeShiftedCharacters(const QMap<QString, QPushButton *> &symbolAndButton);
+    const QMap<QString, QPushButton*>& getMapShiftedPair() const {
+        if(!this->shift_MapSymbolKeyboardButton.isEmpty())
+        {
+           //throw std::invalid_argument("shift_MapSymbolKeyboardButton array is empty");
+        }
+        return this->shift_MapSymbolKeyboardButton;
     }
 
-    const QVector<ButtonCharPair> &get_vectorDefaultPair() const {
-        return buttonCharPair;
+    const QMap<QString, QPushButton*>& getMapDefaultPair() const {
+        if(!this->def_MapSymbolKeyboardButton.isEmpty())
+        {
+            //throw std::invalid_argument("def_MapSymbolKeyboardButton array is empty");
+        }
+        return this->def_MapSymbolKeyboardButton;
     }
     void clearSyleSheetdPustButton()
     {
@@ -41,9 +53,14 @@ public:
 
 private:
     MainWindow* mainWindow;
+    JsonConfigParser* jsonParser = new JsonConfigParser(this);
+    QVector<QPushButton*> keyboardButtons;
+    void fillVectorKeyboardButtons(Ui::MainWindow *ui);
+    QPushButton* getButton(const QChar& symbol);
     QMap<QPushButton*, QPalette>* originalColors = new QMap<QPushButton*, QPalette>;
-    QMap<QString, QPushButton*>* stringToButtonMap = new QMap<QString, QPushButton*>;
-    void fillMapWhisPair(QMap<QString, QPushButton *> *map);
+    QMap<QString, QPushButton*> def_MapSymbolKeyboardButton;
+    QMap<QString, QPushButton*> shift_MapSymbolKeyboardButton;
+    void fillMapWhisPair(QMap<QString, QPushButton *>& map, QString def_keyboardLayout, QVector<QPushButton*>& keyboardButtons);
     void setColorTextButton(QPushButton *button, const QString &buttonTextColorBlack);
     void saveDefaultColor(QSet<QChar> *uniqueLetters);
     QPushButton* pastButton = new QPushButton;

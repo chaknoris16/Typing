@@ -15,11 +15,11 @@ TEST_F(test_jsonFileParser, checkCourseName) {
 
 
 TEST_F(test_jsonFileParser, checkLessonsIndex) {
-        ASSERT_FALSE(this->jsonParser.getCurrentLessonIndex(this->jsonParser.getCurrentCourseName()) < 0);
+        ASSERT_FALSE(this->jsonParser.getCurrentLessonIndex() < 0);
 }
 
 TEST_F(test_jsonFileParser, checkExerciseIndex) {
-        ASSERT_FALSE(this->jsonParser.getCurrentExercisIndex(this->jsonParser.getCurrentCourseName()) < 0);
+        ASSERT_FALSE(this->jsonParser.getCurrentExercisIndex() < 0);
 }
 TEST_F(test_jsonFileParser, checkLessonsArray) {
         ASSERT_FALSE (this->jsonParser.lessonsArray.isEmpty());

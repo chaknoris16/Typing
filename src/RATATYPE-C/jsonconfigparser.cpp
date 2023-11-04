@@ -6,7 +6,7 @@ JsonConfigParser::JsonConfigParser(QObject *parent)
     this->settings = new QSettings("MySoft", "Star Runner");
     this->extractArraysFromJson("course.json");
     this->setLessonsArray(getCurrentCourseIndex());
-    this->setExercisesArray(this->getCurrentLessonIndex(this->getCurrentCourseName()));
+    this->setExercisesArray(this->getCurrentLessonIndex());
 }
 
 JsonConfigParser::keyboardLayout JsonConfigParser::getCurrentKeyboardLayout()
@@ -34,7 +34,7 @@ JsonConfigParser::keyboardLayout JsonConfigParser::getCurrentKeyboardLayout()
 
 const QString JsonConfigParser::getCurrentMainText()
 {
-    int exercisesIndex = this->getCurrentExercisIndex(this->getCurrentCourseName());
+    int exercisesIndex = this->getCurrentExercisIndex();
     if(this->exercisesArray.isEmpty()) {
         throw std::invalid_argument("The exercise array is empty");
     }else {
@@ -65,16 +65,19 @@ bool JsonConfigParser::get_MainText(){
 
 int JsonConfigParser::getCurrentCourseIndex()
 {
+    qDebug()<<"Course Index :"<<this->settings->value("selectedCourseIndex", 0).toInt();
     return this->settings->value("selectedCourseIndex", 0).toInt();
 }
 
-int JsonConfigParser::getCurrentLessonIndex(QString courseName)
+int JsonConfigParser::getCurrentLessonIndex()
 {
+    QString courseName = this->getCurrentCourseName();
     return this->settings->value(courseName + "LessonIndex", 0).toInt();
 }
 
-int JsonConfigParser::getCurrentExercisIndex(QString courseName)
+int JsonConfigParser::getCurrentExercisIndex()
 {
+    QString courseName = this->getCurrentCourseName();
     return this->settings->value(courseName + "ExerciseIndex", 0).toInt();
 }
 
@@ -88,23 +91,25 @@ void JsonConfigParser::changeCourseIndex(int index)
     }
 }
 
-void JsonConfigParser::saveLessonIndexInSettings(QString &courseName, int value)
+void JsonConfigParser::saveLessonIndexInSettings(int value)
 {
+    QString courseName = this->getCurrentCourseName();
     if(courseName.isEmpty()){
         throw std::invalid_argument("Problem with course name");
     }else if (value < 0) {
-        throw std::invalid_argument("The value must be integral.");
+        throw std::invalid_argument("saveLessonIndexInSettings The value must be integral.");
     }else {
         this->settings->setValue(courseName + "LessonIndex", value);
     }
 }
 
-void JsonConfigParser::saveExercisIndexInSettings(QString &courseName, int value)
+void JsonConfigParser::saveExercisIndexInSettings(int value)
 {
+    QString courseName = this->getCurrentCourseName();
     if(courseName.isEmpty()){
         throw std::invalid_argument("Problem with course name");
     }else if (value < 0) {
-        throw std::invalid_argument("The value must be integral.");
+        throw std::invalid_argument("saveExercisIndexInSettings The value must be integral.");
     }else {
         this->settings->setValue(courseName + "ExerciseIndex", value);
     }
@@ -128,7 +133,7 @@ void JsonConfigParser::extractArraysFromJson(const QString &filePath)
     }
 }
 
-inline void JsonConfigParser::setLessonsArray(int courseIndex)
+void JsonConfigParser::setLessonsArray(int courseIndex)
 {
     if(this->coursesArray.isEmpty()) {
         throw std::invalid_argument("The coursesArray array is empty.");
@@ -138,7 +143,7 @@ inline void JsonConfigParser::setLessonsArray(int courseIndex)
     }
 }
 
-inline void JsonConfigParser::setExercisesArray(int lessonIndex)
+void JsonConfigParser::setExercisesArray(int lessonIndex)
 {
     if(this->lessonsArray.isEmpty()) {
         throw std::invalid_argument("The lessonsArray array is empty.");

@@ -9,8 +9,7 @@ add_executable(${BINARY}
 main.cpp
 test_jsonfileparser.cpp
 test_jsonfileparser.h
-#../src/blindtypingtest.cpp
-#../src/blindtypingtest.h
+test_virtualkeyboard.h test_virtualkeyboard.cpp
 )
 
 

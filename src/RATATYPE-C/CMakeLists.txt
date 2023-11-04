@@ -35,7 +35,6 @@ set(PROJECT_SOURCES
     vector_of_exercises.h
     virtual_keyboard.cpp
     virtual_keyboard.h
-    tst_firsttest.cpp
     jsonconfigparser.h jsonconfigparser.cpp
 )
 

@@ -28,18 +28,19 @@ public:
     QString getCurrentCourseName();
     bool get_MainText();
     int getCurrentCourseIndex();
-    int getCurrentLessonIndex(QString courseName);
-    int getCurrentExercisIndex(QString courseName);
-private slots:
+    int getCurrentLessonIndex();
+    int getCurrentExercisIndex();
+    void extractArraysFromJson(const QString& filePath);
+    void setLessonsArray(int courseIndex);
+    void setExercisesArray(int lessonIndex);
+
+public slots:
     void changeCourseIndex(int index);
-    void saveLessonIndexInSettings(QString& courseName, int value);
-    void saveExercisIndexInSettings(QString& courseName, int value);
+    void saveLessonIndexInSettings(int value);
+    void saveExercisIndexInSettings(int value);
 private:
 
     QSettings *settings;
-    void extractArraysFromJson(const QString& filePath);
-    inline void setLessonsArray(int courseIndex);
-    inline void setExercisesArray(int lessonIndex);
 
 signals:
 

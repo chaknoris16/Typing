@@ -29,6 +29,7 @@
 #include <iterator>
 #include "blindtypingtest.h"
 #include "startwindow.h"
+#include "jsonconfigparser.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -52,6 +53,7 @@ public:
 protected:
    void showStartWindow(bool showWindow);
 private:
+    JsonConfigParser* jsonParser = new JsonConfigParser(this);
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
     void processing_keyPressEvent(QKeyEvent *event,QLabel *textlabel);
@@ -87,7 +89,7 @@ public:
     int selectedCourseIndex;
     int selectedLessonIndex;
     int selectedExercisesIndex;
-    void setCurrentIndexInComboBox(int& courseIndex, int& lessonsIndex, int& exercisesIndex, QComboBox *ComboBox_Courses, QComboBox *ComboBox_Lessons, QComboBox *ComboBox_Exercises);
+    void setCurrentIndexInComboBox(int courseIndex, int lessonsIndex, int exercisesIndex, QComboBox *ComboBox_Courses, QComboBox *ComboBox_Lessons, QComboBox *ComboBox_Exercises);
     void transitionToNextElement(QJsonArray &exercisesArray);
     QTextCursor cursor;
     QVector<QPushButton *> buttons;
@@ -99,11 +101,11 @@ public:
     void changeColorTextInSelectButton(const QString& str, bool set_or_remove);
     QSettings copysettins;
     QString selectingFirstWordFromLine(const QString &str, int courseIndex);
-    void populateComboBoxesFromJsonFile(const QString &filePath);
+    void populateComboBoxesFromJsonFile();
     inline void blockSignalsComboBoxes(bool state);
     inline void fillCourseComboBox(QComboBox *comboBox, QJsonArray& coursesArray);
-    void fillLessonsComboBox(int index, QComboBox *comboBox, QJsonArray &lessonsArray);
-    void fillExercisesComboBox(int index, QComboBox *comboBox, QJsonArray &exercisesArray);
+    void fillLessonsComboBox(QComboBox *comboBox, QJsonArray &lessonsArray);
+    void fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercisesArray);
     void updateIndexEndComboBoxs(int& courseIndex, int& lessonsIndex, int& exercisesIndex);
     QJsonArray coursesArray;
     QJsonArray lessonsArray;
