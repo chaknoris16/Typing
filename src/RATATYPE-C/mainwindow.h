@@ -50,10 +50,11 @@ public:
     QInputMethod* inputMethod;
     int calculationTypingSpeed(QTime &startTime, int correctElements);
     bool get_echo();
+    JsonConfigParser* jsonParser = new JsonConfigParser(this);
 protected:
    void showStartWindow(bool showWindow);
 private:
-    JsonConfigParser* jsonParser = new JsonConfigParser(this);
+
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
     void processing_keyPressEvent(QKeyEvent *event,QLabel *textlabel);
@@ -90,7 +91,7 @@ public:
     int selectedLessonIndex;
     int selectedExercisesIndex;
     void setCurrentIndexInComboBox(int courseIndex, int lessonsIndex, int exercisesIndex, QComboBox *ComboBox_Courses, QComboBox *ComboBox_Lessons, QComboBox *ComboBox_Exercises);
-    void transitionToNextElement(QJsonArray &exercisesArray);
+    void transitionToNextElement(int exerciseIndex, int lessonIndex, QJsonArray &exercisesArray);
     QTextCursor cursor;
     QVector<QPushButton *> buttons;
     void removeTextColor(QPushButton *button, const QString& color);
@@ -106,7 +107,7 @@ public:
     inline void fillCourseComboBox(QComboBox *comboBox, QJsonArray& coursesArray);
     void fillLessonsComboBox(QComboBox *comboBox, QJsonArray &lessonsArray);
     void fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercisesArray);
-    void updateIndexEndComboBoxs(int& courseIndex, int& lessonsIndex, int& exercisesIndex);
+
     QJsonArray coursesArray;
     QJsonArray lessonsArray;
     QJsonArray exercisesArray;

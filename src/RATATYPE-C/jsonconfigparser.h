@@ -33,11 +33,11 @@ public:
     void extractArraysFromJson(const QString& filePath);
     void setLessonsArray(int courseIndex);
     void setExercisesArray(int lessonIndex);
-
 public slots:
     void changeCourseIndex(int index);
-    void saveLessonIndexInSettings(int value);
-    void saveExercisIndexInSettings(int value);
+    void changeLessonIndex(int value);
+    void changeExerciseIndex(int value);
+    void moveToNextExercise(QJsonArray& exercisesArray, int exercisesIndex, int lessonsIndex);
 private:
 
     QSettings *settings;

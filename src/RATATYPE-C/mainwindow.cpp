@@ -43,15 +43,12 @@ MainWindow::MainWindow(QWidget *parent)
     this->showWindow = settings->value("showWindow").toBool();
     ui->checkBox->setChecked(showWindow);
     qDebug()<< "selectedCourseIndex" << settings->value("selectedCourseIndex", 0).toInt();
-    this->selectedCourseIndex = settings->value("selectedCourseIndex", 0).toInt();
-    this->selectedLessonIndex = settings->value("selectedLessonIndex", 0).toInt();
-    this->selectedExercisesIndex = settings->value("selectedExercisesIndex", 0).toInt();
     virtualKeybord = new Virtual_Keyboard(this);
 
     ui->keyFieldInside_2->setText(jsonParser->getCurrentMainText());
     virtualKeybord->changeBorderButton(jsonParser->getCurrentMainText().at(0), whiteBorderForButton);
     virtualKeybord->changeButtonColorByText(extractUniqueLetters(jsonParser->getCurrentMainText()), Qt::black);
-
+    virtualKeybord->changeShiftedCharacters(virtualKeybord->getMapDefaultPair());
     this->inputMethod = QGuiApplication::inputMethod();
     this->populateComboBoxesFromJsonFile();
     this->showStartWindow(showWindow);
@@ -167,8 +164,8 @@ void MainWindow::restart()
     qDebug()<<"restart - is start";
     virtualKeybord->revertButtonTextColorBack(extractUniqueLetters(jsonParser->getCurrentMainText()));
     virtualKeybord->deleteBorderButton(whiteBorderForButton);
-    this->updateIndexEndComboBoxs(this->selectedCourseIndex, this->selectedLessonIndex, this->selectedExercisesIndex);
     ui->keyFieldInside_2->setText(jsonParser->getCurrentMainText());
+    this->setCurrentIndexInComboBox(jsonParser->getCurrentCourseIndex(),jsonParser->getCurrentLessonIndex(),jsonParser->getCurrentExercisIndex(),ui->comboBox_Course,ui->comboBox_Lessons,ui->comboBox_Exercises);
     this->resetCounters();
     this->resetLabelValues();
     isTypingStarted = false;
@@ -194,20 +191,17 @@ void MainWindow::showStartWindow(bool showWindow) //QShowEvent *event
         connect(startWindow, &startwindow::changingValueInComboBox, this, [this](int newLessonsIndex, int newExercisesIndex){
             this->settings->setValue("selectedLessonIndex", newLessonsIndex);
             this->settings->setValue("selectedExercisesIndex", newExercisesIndex);
-            this->updateIndexEndComboBoxs(this->selectedCourseIndex, newLessonsIndex, newExercisesIndex);
+           // this->updateIndexEndComboBoxs(this->selectedCourseIndex, newLessonsIndex, newExercisesIndex);
         });
         startWindow->show();
     }
 }
 
 void MainWindow::moveOnNextExercise(){
-    transitionToNextElement(this->exercisesArray);
+        jsonParser->moveToNextExercise(jsonParser->exercisesArray, jsonParser->getCurrentExercisIndex(), jsonParser->getCurrentLessonIndex());
     restart();
 }
-//void MainWindow::recordSelectedIndex(){
-//    transitionToNextElement(this->exercisesArray);
-//    restart();
-//}
+
 
 QSet<QChar> *MainWindow::extractUniqueLetters(QString text)
 {
@@ -291,23 +285,8 @@ void MainWindow::populateComboBoxesFromJsonFile(){
         this->fillCourseComboBox(ui->comboBox_Course, jsonParser->coursesArray);
         //Courses
         this->fillLessonsComboBox(ui->comboBox_Lessons, jsonParser->lessonsArray);
-        connect(ui->comboBox_Course, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [=](int index) {
-            qDebug()<<"Course Index"<<index;
-            jsonParser->changeCourseIndex(index);
-            jsonParser->extractArraysFromJson("course.json");
-            jsonParser->setLessonsArray(index);
-            this->fillLessonsComboBox(ui->comboBox_Lessons, jsonParser->lessonsArray);
-            qDebug()<<"Course Index"<<index;
-        });
         //Lessons
         this->fillExercisesComboBox(ui->comboBox_Exercises, jsonParser->exercisesArray);
-        connect(ui->comboBox_Lessons, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int index){
-            qDebug()<<"Lessons Index"<<index;
-            jsonParser->saveLessonIndexInSettings(index);
-            //jsonParser->saveExercisIndexInSettings(index);
-            this->fillExercisesComboBox(ui->comboBox_Exercises, jsonParser->exercisesArray);
-            //ui->comboBox_Exercises->setCurrentIndex(0);
-        });
         this->setCurrentIndexInComboBox(jsonParser->getCurrentCourseIndex(), jsonParser->getCurrentLessonIndex(), jsonParser->getCurrentExercisIndex(), ui->comboBox_Course, ui->comboBox_Lessons, ui->comboBox_Exercises);
     this->blockSignalsComboBoxes(false);
 }
@@ -327,7 +306,9 @@ inline void MainWindow::fillCourseComboBox(QComboBox* comboBox, QJsonArray &cour
 }
 void MainWindow::fillLessonsComboBox(QComboBox *comboBox, QJsonArray &lessonsArray)
 {
+    ui->comboBox_Lessons->blockSignals(true);
     comboBox->clear();
+    ui->comboBox_Lessons->blockSignals(false);
     for(const QJsonValue &lessonValue : lessonsArray) {
         QJsonObject lessonObject = lessonValue.toObject();
         QString lessonName = lessonObject["name"].toString();
@@ -337,7 +318,9 @@ void MainWindow::fillLessonsComboBox(QComboBox *comboBox, QJsonArray &lessonsArr
 
 void MainWindow::fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercisesArray)
 {
+    ui->comboBox_Exercises->blockSignals(true);
     comboBox->clear();
+    ui->comboBox_Exercises->blockSignals(false);
     for(const QJsonValue &exercisesValue : exercisesArray) {
         QString exerciseName = selectingFirstWordFromLine(exercisesValue.toString(), selectedCourseIndex);
         comboBox->addItem(exerciseName);
@@ -350,8 +333,8 @@ void MainWindow::setCurrentIndexInComboBox(int courseIndex, int lessonsIndex, in
     ComboBox_Exercises->setCurrentIndex(exercisesIndex);
 }
 
-void MainWindow::transitionToNextElement(QJsonArray &exercisesArray){
-    if(this->selectedExercisesIndex + 2 <= exercisesArray.size()){
+void MainWindow::transitionToNextElement(int exerciseIndex, int lessonIndex, QJsonArray &exercisesArray){
+    if(exerciseIndex + 2 <= exercisesArray.size()){
         this->settings->setValue("selectedExercisesIndex",this->selectedExercisesIndex + 1);
         qDebug()<<"Next exercises"<<this->selectedExercisesIndex + 1;
     }else {
@@ -359,15 +342,6 @@ void MainWindow::transitionToNextElement(QJsonArray &exercisesArray){
             qDebug() << "Next lesson" << this->selectedLessonIndex + 1;
     }
 }
-
-void MainWindow::updateIndexEndComboBoxs(int& courseIndex, int& lessonsIndex, int& exercisesIndex) {
-    courseIndex = settings->value("selectedCourseIndex", 0).toInt();
-    lessonsIndex = settings->value("selectedLessonIndex", 0).toInt();
-    exercisesIndex = settings->value("selectedExercisesIndex", 0).toInt();
-
-    this->setCurrentIndexInComboBox(courseIndex, lessonsIndex, exercisesIndex, ui->comboBox_Course, ui->comboBox_Lessons, ui->comboBox_Exercises);
-}
-
 
 QString MainWindow::get_currentMainText(const QString &fileName)
 {
@@ -429,8 +403,26 @@ void MainWindow::signalAndSlots()
         settings->setValue("showWindow", checked);
          qDebug()<< checked;
     });
-   // connect(ui->comboBox_Course, QOverload<int>::of(&QComboBox::currentIndexChanged), jsonParser, &JsonConfigParser::changeCourseIndex);
-   // connect(ui->comboBox_Lessons, QOverload<int>::of(&QComboBox::currentIndexChanged), jsonParser, &JsonConfigParser::saveLessonIndexInSettings);
-   // connect(ui->comboBox_Exercises, QOverload<int>::of(&QComboBox::currentIndexChanged), jsonParser, &JsonConfigParser::saveExercisIndexInSettings);
+    connect(ui->comboBox_Course, QOverload<int>::of(&QComboBox::currentIndexChanged), this,[this](int index){
+        qDebug()<<"Course Index(1)"<<index;
+        jsonParser->changeCourseIndex(index);
+        qDebug()<<"Course Index(2)"<<index;
+        jsonParser->setLessonsArray(index);
+        qDebug()<<"Course Index(3)"<<index;
+        this->fillLessonsComboBox(ui->comboBox_Lessons, jsonParser->lessonsArray);
+        qDebug()<<"Course Index(4)"<<index;
+    });
+    connect(ui->comboBox_Lessons, QOverload<int>::of(&QComboBox::currentIndexChanged), this,[this](int index){
+
+        qDebug()<<"Lesson Index(1)"<<index;
+        jsonParser->changeLessonIndex(index);
+        qDebug()<<"Lesson Index(2)"<<index;
+        jsonParser->setExercisesArray(index);
+        qDebug()<<"Lesson Index(3)"<<index;
+        this->fillExercisesComboBox(ui->comboBox_Exercises, jsonParser->exercisesArray);
+        qDebug()<<"Lesson Index(4)"<<index;
+
+    });
+    connect(ui->comboBox_Exercises, QOverload<int>::of(&QComboBox::currentIndexChanged), jsonParser, &JsonConfigParser::changeExerciseIndex);
 
 }

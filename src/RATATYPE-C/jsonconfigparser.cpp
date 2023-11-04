@@ -91,7 +91,7 @@ void JsonConfigParser::changeCourseIndex(int index)
     }
 }
 
-void JsonConfigParser::saveLessonIndexInSettings(int value)
+void JsonConfigParser::changeLessonIndex(int value)
 {
     QString courseName = this->getCurrentCourseName();
     if(courseName.isEmpty()){
@@ -103,8 +103,9 @@ void JsonConfigParser::saveLessonIndexInSettings(int value)
     }
 }
 
-void JsonConfigParser::saveExercisIndexInSettings(int value)
+void JsonConfigParser::changeExerciseIndex(int value)
 {
+
     QString courseName = this->getCurrentCourseName();
     if(courseName.isEmpty()){
         throw std::invalid_argument("Problem with course name");
@@ -112,6 +113,16 @@ void JsonConfigParser::saveExercisIndexInSettings(int value)
         throw std::invalid_argument("saveExercisIndexInSettings The value must be integral.");
     }else {
         this->settings->setValue(courseName + "ExerciseIndex", value);
+    }
+
+}
+
+void JsonConfigParser::moveToNextExercise(QJsonArray &exercisesArray, int exercisesIndex, int lessonsIndex)
+{
+    if(exercisesIndex + 1 <= exercisesArray.size()) {
+        this->changeExerciseIndex(exercisesIndex + 1);
+    }else {
+        this->changeLessonIndex(lessonsIndex + 1);
     }
 }
 

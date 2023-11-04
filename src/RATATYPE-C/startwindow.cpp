@@ -22,10 +22,10 @@ startwindow::~startwindow()
 void startwindow::fillComboBoxes()
 {
 
-   // mainWindow->fillLessonsComboBox(mainWindow->selectedCourseIndex, ui->lessons_comboBox, mainWindow->lessonsArray);
-    ui->lessons_comboBox->setCurrentIndex(mainWindow->selectedLessonIndex);
-   // mainWindow->fillExercisesComboBox(mainWindow->selectedLessonIndex, ui->exercisesComboBox, mainWindow->exercisesArray);
-    ui->exercisesComboBox->setCurrentIndex(mainWindow->selectedExercisesIndex);
+    mainWindow->fillLessonsComboBox(ui->lessons_comboBox, mainWindow->jsonParser->lessonsArray);
+    ui->lessons_comboBox->setCurrentIndex(mainWindow->jsonParser->getCurrentLessonIndex());
+    mainWindow->fillExercisesComboBox(ui->exercisesComboBox, mainWindow->jsonParser->exercisesArray);
+    ui->exercisesComboBox->setCurrentIndex(mainWindow->jsonParser->getCurrentExercisIndex());
 }
 
 void startwindow::setNumbEntranceInLabel(){
