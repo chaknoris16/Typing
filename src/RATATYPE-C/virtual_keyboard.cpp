@@ -4,6 +4,7 @@
 #include <iterator>
 #include "mainwindow.h"
 class MainWindow;
+
 Virtual_Keyboard::Virtual_Keyboard(MainWindow* mainWindow, QWidget *parent):
     QWidget(parent),
     mainWindow(mainWindow)
@@ -12,9 +13,18 @@ Virtual_Keyboard::Virtual_Keyboard(MainWindow* mainWindow, QWidget *parent):
     this->fillMapWhisPair(this->def_MapSymbolKeyboardButton, this->jsonParser->getCurrentKeyboardLayout().keyboardSymbols, this->keyboardButtons);
     this->fillMapWhisPair(this->shift_MapSymbolKeyboardButton, this->jsonParser->getCurrentKeyboardLayout().shiftKeyboardSymbols, this->keyboardButtons);
 }
+void Virtual_Keyboard::setMapKeyboardLauout(const QString& keyboardSymbols, const QString& shiftKeyboardSymbols)
+{
+    qDebug()<<"set keyboard lauout Map";
+    this->fillMapWhisPair(this->def_MapSymbolKeyboardButton, keyboardSymbols, this->keyboardButtons);
+    this->fillMapWhisPair(this->shift_MapSymbolKeyboardButton, shiftKeyboardSymbols, this->keyboardButtons);
+    this->setKeyboardCharacters(this->def_MapSymbolKeyboardButton);
+}
+
 void Virtual_Keyboard::fillMapWhisPair(QMap<QString, QPushButton *> &map, QString def_keyboardLayout, QVector<QPushButton *> &keyboardButtons)
 {
     if(!def_keyboardLayout.size() == keyboardButtons.size()) throw std::invalid_argument("The dimensions of the containers do not match.");
+    map.clear();
     int buttonIndex = 0;
     for (const QString& symbol: def_keyboardLayout) {
         if (buttonIndex < keyboardButtons.size()) {
@@ -131,7 +141,7 @@ void Virtual_Keyboard::FillVector_ButtonCharPair(QVector<ButtonCharPair>& vector
     qDebug()<< "buttonCharPair creeted normali";
 }
 
-void Virtual_Keyboard::changeShiftedCharacters(const QMap<QString, QPushButton*>& symbolAndButton) {
+void Virtual_Keyboard::setKeyboardCharacters(const QMap<QString, QPushButton*>& symbolAndButton) {
     QMap<QString, QPushButton*>::const_iterator it;
     for (it = symbolAndButton.constBegin(); it != symbolAndButton.constEnd(); ++it) {
         it.value()->setText(it.key());

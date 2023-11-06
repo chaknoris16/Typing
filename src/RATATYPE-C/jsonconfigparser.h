@@ -27,19 +27,22 @@ public:
     const QString getCurrentMainText();
     QString getCurrentCourseName();
     bool get_MainText();
-    int getCurrentCourseIndex();
-    int getCurrentLessonIndex();
-    int getCurrentExercisIndex();
+    ~JsonConfigParser();
     void extractArraysFromJson(const QString& filePath);
     void setLessonsArray(int courseIndex);
     void setExercisesArray(int lessonIndex);
 public slots:
-    void changeCourseIndex(int index);
-    void changeLessonIndex(int value);
-    void changeExerciseIndex(int value);
+    void setCourseIndex(int courseIndex);
+    void setLessonIndex(int lessonIndex);
+    void setExerciseIndex(int exerciseIndex);
+    int getCurrentCourseIndex();
+    int getCurrentLessonIndex();
+    int getCurrentExercisIndex();
     void moveToNextExercise(QJsonArray& exercisesArray, int exercisesIndex, int lessonsIndex);
 private:
-
+    int courseIndex;
+    int lessonIndex;
+    int exerciseIdex;
     QSettings *settings;
 
 signals:

@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "mainwindow.h"
+#include "jsonconfigparser.h"
 class MainWindow;
 namespace Ui {
 class startwindow;
@@ -26,6 +27,7 @@ private:
     void setNumbEntranceInLabel();
     MainWindow* mainWindow;
     void nextLessons();
+    JsonConfigParser* jsonParser = new JsonConfigParser(this);
 
 };
 

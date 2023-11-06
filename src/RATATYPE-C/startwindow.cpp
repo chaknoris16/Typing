@@ -21,15 +21,17 @@ startwindow::~startwindow()
 }
 void startwindow::fillComboBoxes()
 {
-
-    mainWindow->fillLessonsComboBox(ui->lessons_comboBox, mainWindow->jsonParser->lessonsArray);
-    ui->lessons_comboBox->setCurrentIndex(mainWindow->jsonParser->getCurrentLessonIndex());
-    mainWindow->fillExercisesComboBox(ui->exercisesComboBox, mainWindow->jsonParser->exercisesArray);
-    ui->exercisesComboBox->setCurrentIndex(mainWindow->jsonParser->getCurrentExercisIndex());
+    blockSignalsInComboBoxes();
+    mainWindow->fillLessonsComboBox(ui->lessons_comboBox, jsonParser->lessonsArray);
+    ui->lessons_comboBox->setCurrentIndex(jsonParser->getCurrentLessonIndex());
+    mainWindow->fillExercisesComboBox(ui->exercisesComboBox,jsonParser->exercisesArray);
+    ui->exercisesComboBox->setCurrentIndex(jsonParser->getCurrentExercisIndex());
+    //qDebug()<<"currentIndex"<<mainWindow->ui->comboBox_Exercises->currentIndex();
+    unBlockSignalsInComboBoxes();
 }
 
 void startwindow::setNumbEntranceInLabel(){
-    QString labeltext = "Вправа " + QString::number(ui->exercisesComboBox->currentIndex()+1) + " з " + QString::number(mainWindow->exercisesArray.size());
+    QString labeltext = "Вправа " + QString::number(ui->exercisesComboBox->currentIndex()+1) + " з " + QString::number(mainWindow->jsonParser->exercisesArray.size());
     ui->exercise_label->setText(labeltext);
 }
 

@@ -22,7 +22,8 @@ private:
         QPushButton* button;
         QChar character;
     };
-
+public slots:
+    void setMapKeyboardLauout(const QString& keyboardSymbols, const QString& shiftKeyboardSymbols);
 public:
     explicit Virtual_Keyboard(MainWindow* mainWindow ,QWidget *parent = nullptr);
     void changeButtonColorByText(QSet<QChar> *uniqueLetters, QColor color);
@@ -30,7 +31,8 @@ public:
     void flashButtonBackground(const QString &textButton, QColor background, int flashDurationMs);
     void revertButtonTextColorBack(QSet<QChar> *uniqueLetters);
     void deleteBorderButton(QString &QSS_Border);
-    void changeShiftedCharacters(const QMap<QString, QPushButton *> &symbolAndButton);
+    void setKeyboardCharacters(const QMap<QString, QPushButton *> &symbolAndButton);
+    QPushButton* getButton(const QChar& symbol);
     const QMap<QString, QPushButton*>& getMapShiftedPair() const {
         if(!this->shift_MapSymbolKeyboardButton.isEmpty())
         {
@@ -56,7 +58,6 @@ private:
     JsonConfigParser* jsonParser = new JsonConfigParser(this);
     QVector<QPushButton*> keyboardButtons;
     void fillVectorKeyboardButtons(Ui::MainWindow *ui);
-    QPushButton* getButton(const QChar& symbol);
     QMap<QPushButton*, QPalette>* originalColors = new QMap<QPushButton*, QPalette>;
     QMap<QString, QPushButton*> def_MapSymbolKeyboardButton;
     QMap<QString, QPushButton*> shift_MapSymbolKeyboardButton;

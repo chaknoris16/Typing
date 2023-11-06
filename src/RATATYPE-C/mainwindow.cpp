@@ -28,29 +28,25 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
-    //text_for_print_json* text = new text_for_print_json(this);
-    //text->setJsonFile();
-
     ui->setupUi(this);
     ui->pushButton_reset->setFocusPolicy(Qt::NoFocus);
     ui->widget_whis_settings->setVisible(false);
     virtualKeybord = new Virtual_Keyboard(this);
     this->createDb();
-    this->signalAndSlots();
+
     this->isTypingStarted = false;
     this->settings = new QSettings("MySoft", "Star Runner");
     this->showWindow = settings->value("showWindow").toBool();
     ui->checkBox->setChecked(showWindow);
-    qDebug()<< "selectedCourseIndex" << settings->value("selectedCourseIndex", 0).toInt();
     virtualKeybord = new Virtual_Keyboard(this);
-
-    ui->keyFieldInside_2->setText(jsonParser->getCurrentMainText());
+    this->mainText = jsonParser->getCurrentMainText();
+    ui->keyFieldInside_2->setText(this->mainText);
     virtualKeybord->changeBorderButton(jsonParser->getCurrentMainText().at(0), whiteBorderForButton);
     virtualKeybord->changeButtonColorByText(extractUniqueLetters(jsonParser->getCurrentMainText()), Qt::black);
-    virtualKeybord->changeShiftedCharacters(virtualKeybord->getMapDefaultPair());
+    virtualKeybord->setKeyboardCharacters(virtualKeybord->getMapDefaultPair());
     this->inputMethod = QGuiApplication::inputMethod();
     this->populateComboBoxesFromJsonFile();
+    this->signalAndSlots();
     this->showStartWindow(showWindow);
 
 }
@@ -67,7 +63,7 @@ bool MainWindow::get_echo()
 void MainWindow::keyReleaseEvent(QKeyEvent *event){
     if (event->key() == Qt::Key_Shift ) {
         qDebug()<<"Shift_Release";
-        virtualKeybord->changeShiftedCharacters(virtualKeybord->getMapDefaultPair());
+        virtualKeybord->setKeyboardCharacters(virtualKeybord->getMapDefaultPair());
     }
 }
 
@@ -75,7 +71,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Shift ) {
         qDebug()<<"Shift_Press";
-        virtualKeybord->changeShiftedCharacters(virtualKeybord->getMapShiftedPair());
+        virtualKeybord->setKeyboardCharacters(virtualKeybord->getMapShiftedPair());
     }
     if(ui->widget_2->isVisible()){
         processing_keyPressEvent(event,ui->keyFieldInside_2);
@@ -162,15 +158,17 @@ int MainWindow::calculationTypingSpeed(QTime& startTime, int correctElements)
 void MainWindow::restart()
 {
     qDebug()<<"restart - is start";
-    virtualKeybord->revertButtonTextColorBack(extractUniqueLetters(jsonParser->getCurrentMainText()));
+    virtualKeybord->revertButtonTextColorBack(extractUniqueLetters(this->mainText));
     virtualKeybord->deleteBorderButton(whiteBorderForButton);
-    ui->keyFieldInside_2->setText(jsonParser->getCurrentMainText());
+    this->mainText = jsonParser->getCurrentMainText();
+    ui->keyFieldInside_2->setText(this->mainText);
     this->setCurrentIndexInComboBox(jsonParser->getCurrentCourseIndex(),jsonParser->getCurrentLessonIndex(),jsonParser->getCurrentExercisIndex(),ui->comboBox_Course,ui->comboBox_Lessons,ui->comboBox_Exercises);
     this->resetCounters();
     this->resetLabelValues();
     isTypingStarted = false;
-    virtualKeybord->changeBorderButton(jsonParser->getCurrentMainText().at(0), whiteBorderForButton);
-    virtualKeybord->changeButtonColorByText(extractUniqueLetters(jsonParser->getCurrentMainText()), Qt::black);
+    virtualKeybord->setMapKeyboardLauout(jsonParser->getCurrentKeyboardLayout().keyboardSymbols, jsonParser->getCurrentKeyboardLayout().shiftKeyboardSymbols);
+    virtualKeybord->changeBorderButton(this->mainText.at(0), whiteBorderForButton);
+    virtualKeybord->changeButtonColorByText(this->extractUniqueLetters(this->mainText), Qt::black);
 }
 inline void MainWindow::resetCounters()
 {
@@ -189,16 +187,14 @@ void MainWindow::showStartWindow(bool showWindow) //QShowEvent *event
         startWindow->setWindowModality(Qt::ApplicationModal);
         ui->pushButton_reset->setFocusPolicy(Qt::NoFocus);
         connect(startWindow, &startwindow::changingValueInComboBox, this, [this](int newLessonsIndex, int newExercisesIndex){
-            this->settings->setValue("selectedLessonIndex", newLessonsIndex);
-            this->settings->setValue("selectedExercisesIndex", newExercisesIndex);
-           // this->updateIndexEndComboBoxs(this->selectedCourseIndex, newLessonsIndex, newExercisesIndex);
+            this->setCurrentIndexInComboBox(jsonParser->getCurrentCourseIndex(), newLessonsIndex, newExercisesIndex, ui->comboBox_Course, ui->comboBox_Lessons, ui->comboBox_Exercises);
         });
         startWindow->show();
     }
 }
 
 void MainWindow::moveOnNextExercise(){
-        jsonParser->moveToNextExercise(jsonParser->exercisesArray, jsonParser->getCurrentExercisIndex(), jsonParser->getCurrentLessonIndex());
+    jsonParser->moveToNextExercise(jsonParser->exercisesArray, jsonParser->getCurrentExercisIndex(), jsonParser->getCurrentLessonIndex());
     restart();
 }
 
@@ -401,28 +397,22 @@ void MainWindow::signalAndSlots()
         });
     connect(ui->checkBox, &QCheckBox::toggled, this, [this](bool checked) {
         settings->setValue("showWindow", checked);
-         qDebug()<< checked;
+        qDebug()<< checked;
     });
     connect(ui->comboBox_Course, QOverload<int>::of(&QComboBox::currentIndexChanged), this,[this](int index){
-        qDebug()<<"Course Index(1)"<<index;
-        jsonParser->changeCourseIndex(index);
-        qDebug()<<"Course Index(2)"<<index;
+        jsonParser->setCourseIndex(index);
         jsonParser->setLessonsArray(index);
-        qDebug()<<"Course Index(3)"<<index;
+
+        qDebug()<<jsonParser->getCurrentKeyboardLayout().keyboardSymbols;
         this->fillLessonsComboBox(ui->comboBox_Lessons, jsonParser->lessonsArray);
-        qDebug()<<"Course Index(4)"<<index;
+
     });
     connect(ui->comboBox_Lessons, QOverload<int>::of(&QComboBox::currentIndexChanged), this,[this](int index){
-
-        qDebug()<<"Lesson Index(1)"<<index;
-        jsonParser->changeLessonIndex(index);
-        qDebug()<<"Lesson Index(2)"<<index;
+        jsonParser->setLessonIndex(index);
         jsonParser->setExercisesArray(index);
-        qDebug()<<"Lesson Index(3)"<<index;
         this->fillExercisesComboBox(ui->comboBox_Exercises, jsonParser->exercisesArray);
-        qDebug()<<"Lesson Index(4)"<<index;
-
     });
-    connect(ui->comboBox_Exercises, QOverload<int>::of(&QComboBox::currentIndexChanged), jsonParser, &JsonConfigParser::changeExerciseIndex);
-
+    connect(ui->comboBox_Exercises, QOverload<int>::of(&QComboBox::currentIndexChanged), jsonParser, &JsonConfigParser::setExerciseIndex);
+    connect(ui->comboBox_Exercises, &QComboBox::currentIndexChanged, this, &MainWindow::restart);
+    //connect(ui->comboBox_Course, &QComboBox::currentIndexChanged, virtualKeybord, &Virtual_Keyboard::setMapKeyboardLauout);
 }

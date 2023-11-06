@@ -54,7 +54,6 @@ public:
 protected:
    void showStartWindow(bool showWindow);
 private:
-
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
     void processing_keyPressEvent(QKeyEvent *event,QLabel *textlabel);
@@ -82,6 +81,7 @@ public:
     void set_errorCounter(int value_errorCounter) {
         error_counter = value_errorCounter;
     }
+    QString mainText;
     QString get_currentMainText(const QString &fileName);
     QSettings *settings;
     QSqlDatabase& getDatabase() {
@@ -107,10 +107,6 @@ public:
     inline void fillCourseComboBox(QComboBox *comboBox, QJsonArray& coursesArray);
     void fillLessonsComboBox(QComboBox *comboBox, QJsonArray &lessonsArray);
     void fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercisesArray);
-
-    QJsonArray coursesArray;
-    QJsonArray lessonsArray;
-    QJsonArray exercisesArray;
     QSet<QChar> *extractUniqueLetters(QString text);
     const QString &TYPING_QUERY_NAME = "typing_results";
     const QString &TESTING_QUERY_NAME = "testing_results";

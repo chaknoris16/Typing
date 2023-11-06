@@ -9,7 +9,7 @@ protected:
     }
 public:
     Virtual_Keyboard virtualKeyboard;
-    test_virtualKeyboard();
+    //test_virtualKeyboard();
 };
 
 #endif // TEST_VIRTUALKEYBOARD_H
