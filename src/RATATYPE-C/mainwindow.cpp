@@ -4,7 +4,7 @@
 #include "resultwindow.h"
 #include "vector_of_exercises.h"
 #include "text_for_print_json.h"
-#include "virtual_keyboard.h"
+
 #include <QKeyEvent>
 #include <QTimer>
 #include <QTime>
@@ -23,7 +23,7 @@
 #include <QShortcut>
 #include <QSqlError>
 #include "jsonconfigparser.h"
-Virtual_Keyboard* virtualKeybord;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->inputMethod = QGuiApplication::inputMethod();
     this->populateComboBoxesFromJsonFile();
     this->signalAndSlots();
+    this->currentLocaleLanguage = this->determineLocale(jsonParser->getCurrentCourseName());
     this->showStartWindow(showWindow);
 
 }
@@ -82,7 +83,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::processing_keyPressEvent(QKeyEvent *event, QLabel *textlabel){
     if (!event->text().isEmpty()){
-        //if(inputMethod->locale() == QLocale::English){
+        if(inputMethod->locale() == this->currentLocaleLanguage){
             labelText = textlabel->text();
             if (!labelText.isEmpty()) {
                 firstChar = labelText.at(0);
@@ -93,15 +94,15 @@ void MainWindow::processing_keyPressEvent(QKeyEvent *event, QLabel *textlabel){
                    this->removeLetterFromLabel();
                 } else if(event->text().at(0).isLetterOrNumber())this->processingIncorrectLetter(event->text().at(0), 100);
             } else qDebug() << "labelText is empty" ;
-       // }//else //this->setIncorectKeyboardLauoutMessage();
+        }else this->setIncorectKeyboardLauoutMessage(this->currentLocaleLanguage);
     }
 }
 
-inline void MainWindow::setIncorectKeyboardLauoutMessage()
+inline void MainWindow::setIncorectKeyboardLauoutMessage(QLocale locale)
 {
     QMessageBox incorrectkeyboardlayout;
     incorrectkeyboardlayout.setText("Incorrect keyboard layout");
-    incorrectkeyboardlayout.setInformativeText("Please change the keyboard layout to English layout.");
+    incorrectkeyboardlayout.setInformativeText("Please change the keyboard layout to " + QLocale::languageToString(locale.language()) +" layout.");
     incorrectkeyboardlayout.exec();
 }
 void MainWindow::processingIncorrectLetter(const QString& str, int flashDurationMs) {
@@ -166,6 +167,7 @@ void MainWindow::restart()
     this->resetCounters();
     this->resetLabelValues();
     isTypingStarted = false;
+    this->currentLocaleLanguage = this->determineLocale(jsonParser->getCurrentCourseName());
     virtualKeybord->setMapKeyboardLauout(jsonParser->getCurrentKeyboardLayout().keyboardSymbols, jsonParser->getCurrentKeyboardLayout().shiftKeyboardSymbols);
     virtualKeybord->changeBorderButton(this->mainText.at(0), whiteBorderForButton);
     virtualKeybord->changeButtonColorByText(this->extractUniqueLetters(this->mainText), Qt::black);
@@ -208,6 +210,17 @@ QSet<QChar> *MainWindow::extractUniqueLetters(QString text)
         }
     }
     return uniqueLetters;
+}
+
+QLocale MainWindow::determineLocale(const QString &language)
+{
+    if (language.toLower().contains("english")) {
+        return QLocale(QLocale::English);
+    } else if (language.toLower().contains("ukrainian")) {
+        return QLocale(QLocale::Ukrainian);
+    } else {
+        return QLocale::system();
+    }
 }
 
 void MainWindow::createDb(){
@@ -302,9 +315,9 @@ inline void MainWindow::fillCourseComboBox(QComboBox* comboBox, QJsonArray &cour
 }
 void MainWindow::fillLessonsComboBox(QComboBox *comboBox, QJsonArray &lessonsArray)
 {
-    ui->comboBox_Lessons->blockSignals(true);
+    comboBox->blockSignals(true);
     comboBox->clear();
-    ui->comboBox_Lessons->blockSignals(false);
+    comboBox->blockSignals(false);
     for(const QJsonValue &lessonValue : lessonsArray) {
         QJsonObject lessonObject = lessonValue.toObject();
         QString lessonName = lessonObject["name"].toString();
@@ -314,9 +327,9 @@ void MainWindow::fillLessonsComboBox(QComboBox *comboBox, QJsonArray &lessonsArr
 
 void MainWindow::fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercisesArray)
 {
-    ui->comboBox_Exercises->blockSignals(true);
+    comboBox->blockSignals(true);
     comboBox->clear();
-    ui->comboBox_Exercises->blockSignals(false);
+    comboBox->blockSignals(false);
     for(const QJsonValue &exercisesValue : exercisesArray) {
         QString exerciseName = selectingFirstWordFromLine(exercisesValue.toString(), selectedCourseIndex);
         comboBox->addItem(exerciseName);

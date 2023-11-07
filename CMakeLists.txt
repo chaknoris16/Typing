@@ -1,10 +1,14 @@
-cmake_minimum_required(VERSION 3.14)
-project(Typing)
 
+cmake_minimum_required(VERSION 3.21)
+project(Typing)
+set(BUILD_TEST_LIBRARY OFF)
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(src/RATATYPE-C)
 
 add_subdirectory(src/RATATYPE-C)
-add_subdirectory(tests)
-add_subdirectory(lib/googletest)
+
+if (BUILD_TEST_LIBRARY)
+ add_subdirectory(tests)
+ add_subdirectory(lib/googletest)
+endif ()

@@ -38,14 +38,13 @@ void startwindow::setNumbEntranceInLabel(){
 void startwindow::connectSignalsAndSlots()
 {
     connect(ui->lessons_comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int newLessonsIndex){
-        emit changingValueInComboBox(newLessonsIndex, ui->exercisesComboBox->currentIndex());
-       // mainWindow->fillExercisesComboBox(newLessonsIndex, ui->exercisesComboBox, mainWindow->exercisesArray);
+        jsonParser->setLessonIndex(newLessonsIndex);
+        jsonParser->setExercisesArray(newLessonsIndex);
+        mainWindow->fillExercisesComboBox(ui->exercisesComboBox, jsonParser->exercisesArray);
     });
 
-    connect(ui->exercisesComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),[=](int newExerciseIndex){
-        emit changingValueInComboBox(ui->lessons_comboBox->currentIndex(), newExerciseIndex);
-    });
-
+    connect(ui->exercisesComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), jsonParser, &JsonConfigParser::setExerciseIndex);
+    //connect(ui->exercisesComboBox, &QComboBox::currentIndexChanged, mainWindow, &MainWindow::restart);
     connect(ui->begin_button, &QPushButton::clicked, this, [=](){
         mainWindow->restart();
         this->close();

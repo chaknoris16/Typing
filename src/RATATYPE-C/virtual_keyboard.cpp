@@ -91,55 +91,6 @@ void Virtual_Keyboard::deleteBorderButton(QString& QSS_Border)
         pastButton->setStyleSheet(pastButton->styleSheet().remove(QSS_Border));
     }
 }
-void Virtual_Keyboard::FillVector_ButtonNewCharPair(QVector<ButtonCharPair>& vectorPair) {
-    vectorPair.push_back({mainWindow->ui->apostropheButton_2,'~'});
-    vectorPair.push_back({mainWindow->ui->oneButton_2,'!'});
-    vectorPair.push_back({mainWindow->ui->twoButton_2,'@'});
-    vectorPair.push_back({mainWindow->ui->threeButton_2,'#'});
-    vectorPair.push_back({mainWindow->ui->fourButton_2,'$'});
-    vectorPair.push_back({mainWindow->ui->fiveButton_2,'%'});
-    vectorPair.push_back({mainWindow->ui->sixButton_2,'^'});
-    vectorPair.push_back({mainWindow->ui->sevenButton_2,'&'});
-    vectorPair.push_back({mainWindow->ui->eightButton_2,'*'});
-    vectorPair.push_back({mainWindow->ui->nineButton_2,'('});
-    vectorPair.push_back({mainWindow->ui->zeroButton_2,')'});
-    vectorPair.push_back({mainWindow->ui->minus_underlineButton_2,'_'});
-    vectorPair.push_back({mainWindow->ui->equal_plusButton_2,'+'});
-    vectorPair.push_back({mainWindow->ui->square_bracketButton_2,'{'});
-    vectorPair.push_back({mainWindow->ui->square_bracket1Button_2,'}'});
-    vectorPair.push_back({mainWindow->ui->semicolonButton_2,':'});
-    vectorPair.push_back({mainWindow->ui->quotation_marksButton_2,'"'});
-    vectorPair.push_back({mainWindow->ui->comaButton_2,'<'});
-    vectorPair.push_back({mainWindow->ui->pointButton_2,'>'});
-    vectorPair.push_back({mainWindow->ui->slashButton_2,'?'});
-
-    qDebug()<< "buttonNewCharPair creeted normali";
-}
-
-void Virtual_Keyboard::FillVector_ButtonCharPair(QVector<ButtonCharPair>& vectorPair) {
-    vectorPair.push_back({mainWindow->ui->apostropheButton_2,'`'});
-    vectorPair.push_back({mainWindow->ui->oneButton_2,'1'});
-    vectorPair.push_back({mainWindow->ui->twoButton_2,'2'});
-    vectorPair.push_back({mainWindow->ui->threeButton_2,'3'});
-    vectorPair.push_back({mainWindow->ui->fourButton_2,'4'});
-    vectorPair.push_back({mainWindow->ui->fiveButton_2,'5'});
-    vectorPair.push_back({mainWindow->ui->sixButton_2,'6'});
-    vectorPair.push_back({mainWindow->ui->sevenButton_2,'7'});
-    vectorPair.push_back({mainWindow->ui->eightButton_2,'8'});
-    vectorPair.push_back({mainWindow->ui->nineButton_2,'9'});
-    vectorPair.push_back({mainWindow->ui->zeroButton_2,'0'});
-    vectorPair.push_back({mainWindow->ui->minus_underlineButton_2,'-'});
-    vectorPair.push_back({mainWindow->ui->equal_plusButton_2,'='});
-    vectorPair.push_back({mainWindow->ui->square_bracketButton_2,'['});
-    vectorPair.push_back({mainWindow->ui->square_bracket1Button_2,']'});
-    vectorPair.push_back({mainWindow->ui->semicolonButton_2,';'});
-    vectorPair.push_back({mainWindow->ui->quotation_marksButton_2,'"'});
-    vectorPair.push_back({mainWindow->ui->comaButton_2,','});
-    vectorPair.push_back({mainWindow->ui->pointButton_2,'.'});
-    vectorPair.push_back({mainWindow->ui->slashButton_2,'/'});
-
-    qDebug()<< "buttonCharPair creeted normali";
-}
 
 void Virtual_Keyboard::setKeyboardCharacters(const QMap<QString, QPushButton*>& symbolAndButton) {
     QMap<QString, QPushButton*>::const_iterator it;

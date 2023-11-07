@@ -9,8 +9,6 @@
 #include <QTimer>
 #include <QTime>
 #include <QElapsedTimer>
-#include "resultwindow.h"
-#include "startwindow.h"
 #include <QPalette>
 #include <QTextCharFormat>
 #include <QTextCursor>
@@ -26,10 +24,14 @@
 #include <QJsonArray>
 #include <QComboBox>
 #include <QColor>
+#include <QLocale>
 #include <iterator>
+#include "resultwindow.h"
+#include "startwindow.h"
 #include "blindtypingtest.h"
 #include "startwindow.h"
 #include "jsonconfigparser.h"
+#include "virtual_keyboard.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -54,6 +56,7 @@ public:
 protected:
    void showStartWindow(bool showWindow);
 private:
+    Virtual_Keyboard* virtualKeybord;
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
     void processing_keyPressEvent(QKeyEvent *event,QLabel *textlabel);
@@ -110,6 +113,7 @@ public:
     QSet<QChar> *extractUniqueLetters(QString text);
     const QString &TYPING_QUERY_NAME = "typing_results";
     const QString &TESTING_QUERY_NAME = "testing_results";
+    QLocale determineLocale(const QString &language);
 private:
     void signalAndSlots();
     void removeLetterFromLabel();
@@ -127,7 +131,8 @@ private:
     int temp;
     int var;
 
-    inline void setIncorectKeyboardLauoutMessage();
+    inline void setIncorectKeyboardLauoutMessage(QLocale locale);
+    QLocale currentLocaleLanguage;
     inline void setQueryTyping(const QString& queryName);
     inline void setQueryTesting(const QString& queryName);
 };
