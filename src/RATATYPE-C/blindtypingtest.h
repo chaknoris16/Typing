@@ -1,7 +1,7 @@
 #ifndef BLINDTYPINGTEST_H
 #define BLINDTYPINGTEST_H
 
-#include <QWidget>
+#include <QObject>
 #include <QInputMethod>
 #include <QTime>
 #include <QTimer>
@@ -14,12 +14,12 @@
 #include <QTextCursor>
 #include "ui_mainwindow.h"
 class MainWindow;
-class blindTypingTest : public QWidget
+class blindTypingTest : public QObject
 {
     Q_OBJECT 
 public:
 
-    explicit blindTypingTest(MainWindow* mainWindow, QWidget *parent = nullptr);
+    explicit blindTypingTest(MainWindow* mainWindow, QObject *parent = nullptr);
     void keyEvent(QKeyEvent *event);
     QTime startTime;
 private:

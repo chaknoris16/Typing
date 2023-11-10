@@ -1,18 +1,15 @@
-#include "mainwindow.h"
+
 #include "blindtypingtest.h"
 #include "ui_mainwindow.h"
+#include "mainwindow.h"
 #include "vector_of_exercises.h"
 #include "resultwindow.h"
 class MainWindow;
-blindTypingTest::blindTypingTest(MainWindow* mainWindow, QWidget *parent) :
-    QWidget(parent),
+blindTypingTest::blindTypingTest(MainWindow* mainWindow, QObject *parent) :
+    QObject(parent),
     mainWindow(mainWindow)
 {
-    signalsAndSlots();
 
-}
-void blindTypingTest::signalsAndSlots()
-{
 }
 
 void blindTypingTest::colorizeCurrentCharacter(QTextCursor& cursor, QColor color)

@@ -4,7 +4,6 @@
 #include "resultwindow.h"
 #include "vector_of_exercises.h"
 #include "text_for_print_json.h"
-
 #include <QKeyEvent>
 #include <QTimer>
 #include <QTime>
@@ -188,9 +187,6 @@ void MainWindow::showStartWindow(bool showWindow) //QShowEvent *event
         startwindow* startWindow = new startwindow(this);
         startWindow->setWindowModality(Qt::ApplicationModal);
         ui->pushButton_reset->setFocusPolicy(Qt::NoFocus);
-        connect(startWindow, &startwindow::changingValueInComboBox, this, [this](int newLessonsIndex, int newExercisesIndex){
-            this->setCurrentIndexInComboBox(jsonParser->getCurrentCourseIndex(), newLessonsIndex, newExercisesIndex, ui->comboBox_Course, ui->comboBox_Lessons, ui->comboBox_Exercises);
-        });
         startWindow->show();
     }
 }
@@ -377,6 +373,13 @@ void MainWindow::signalAndSlots()
     connect(ui->coursesButton, &QPushButton::clicked, this, [this]() {
         ui->widget_whis_settings->setVisible(!ui->widget_whis_settings->isVisible());
     });
+    connect(ui->stackedWidget, QOverload<int>::of(&QStackedWidget::currentChanged), this, [this](int index){
+        bool state = index == 1;
+        ui->comboBox_Course->setEnabled(!state);
+        ui->comboBox_Lessons->setEnabled(!state);
+        ui->comboBox_Exercises->setEnabled(!state);
+        ui->on_or_offVirtKeybordButton->setEnabled(!state);
+    });
     connect(ui->on_or_offVirtKeybordButton, &QCheckBox::toggled, this, [this]() {
         ui->widget_whis_keybord->setVisible(!ui->widget_whis_keybord->isVisible());
     });
@@ -407,6 +410,7 @@ void MainWindow::signalAndSlots()
         for (int col = 0; col < columnCount; ++col) {
             ui->tableView_whis_result->horizontalHeader()->setSectionResizeMode(col, QHeaderView::Stretch);
             }
+
         });
     connect(ui->checkBox, &QCheckBox::toggled, this, [this](bool checked) {
         settings->setValue("showWindow", checked);

@@ -6,6 +6,7 @@
 #include <QSettings>
 #include <QString>
 #include <QFile>
+#include <QPair>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -28,7 +29,8 @@ public:
     QString getCurrentCourseName();
     bool get_MainText();
     ~JsonConfigParser();
-    void extractArraysFromJson(const QString& filePath);
+    static QJsonArray extractArraysFromJson(const QString& filePath, const QString &keyName);
+    static QPair<QJsonArray, QString> extractValuesFromJsonArray(QJsonArray &lyricsArray);
     void setLessonsArray(int courseIndex);
     void setExercisesArray(int lessonIndex);
 public slots:

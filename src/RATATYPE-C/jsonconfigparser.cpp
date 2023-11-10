@@ -5,7 +5,7 @@ JsonConfigParser::JsonConfigParser(QObject *parent)
 {
     this->settings = new QSettings("MySoft", "Star Runner");
     this->courseIndex = settings->value("selectedCourseIndex").toInt();
-    this->extractArraysFromJson("course.json");
+    this->coursesArray = this->extractArraysFromJson("course.json", "courses");
     this->lessonIndex = settings->value(this->getCurrentCourseName() + "LessonIndex").toInt();
     this->exerciseIdex = settings->value(this->getCurrentCourseName() + "ExerciseIndex").toInt();
     this->setLessonsArray(courseIndex);
@@ -131,9 +131,9 @@ void JsonConfigParser::moveToNextExercise(QJsonArray &exercisesArray, int exerci
     }
 }
 
-void JsonConfigParser::extractArraysFromJson(const QString &filePath)
+QJsonArray JsonConfigParser::extractArraysFromJson(const QString &filePath, const QString& keyName)
 {
-    if(filePath.isEmpty()) {
+    if(filePath.isEmpty()){
         throw std::invalid_argument("The path to the JSON file is empty.");
     }else {
         QFile jsonFile(filePath);
@@ -144,13 +144,12 @@ void JsonConfigParser::extractArraysFromJson(const QString &filePath)
             jsonFile.close();
             QJsonDocument jsonDocument = QJsonDocument::fromJson(jsonData);
             QJsonObject rootObject = jsonDocument.object();
-            this->coursesArray = rootObject["courses"].toArray();
-            if(this->coursesArray.isEmpty()){
-                qDebug()<<"courses Array is not full";
-            }
+            return rootObject["keyName"].toArray();
         }
     }
 }
+
+
 
 void JsonConfigParser::setLessonsArray(int courseIndex)
 {
@@ -170,4 +169,20 @@ void JsonConfigParser::setExercisesArray(int lessonIndex)
         QJsonObject selectedLessonObject = this->lessonsArray[lessonIndex].toObject();
         this->exercisesArray = selectedLessonObject["exercises"].toArray();
     }
+}
+
+QPair<QJsonArray, QString> JsonConfigParser::extractValuesFromJsonArray(QJsonArray& lyricsArray)
+{
+    if(lyricsArray.isEmpty()) {
+        throw std::invalid_argument("The lyricsArray array is empty.[extractValuesFromJsonArray]");
+    }else {
+        for(const QJsonValue &courseValue: lyricsArray){
+            QJsonObject courseObject = courseValue.toObject();
+            QJsonArray lessonsArray = courseObject["lessons"].toArray();
+            QString courseName = courseObject["course"].toString();
+
+            return QPair<QJsonArray, QString>(lessonsArray, courseName);
+        }
+    }
+    return QPair<QJsonArray, QString>();
 }

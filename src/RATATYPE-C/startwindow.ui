@@ -190,7 +190,7 @@ border: 3px solid rgb(170, 255, 255);
        <string notr="true">color: rgb(0, 141, 211);</string>
       </property>
       <property name="text">
-       <string>Після кожного натискання повертай пальці до основної позиції ASDF – JKL;</string>
+       <string>After each press, return the fingers to the main position of ASDF - JKL;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
