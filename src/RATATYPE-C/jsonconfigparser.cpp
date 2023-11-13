@@ -57,7 +57,7 @@ QString JsonConfigParser::getCurrentCourseName()
 {
     int index = this->courseIndex;
     if(this->coursesArray.isEmpty()) {
-        throw std::invalid_argument("The coursesArray is empty.");
+        throw std::invalid_argument("The coursesArray is empty.[getCurrentCourseName]");
     }else {
         if(this->coursesArray.size() < index){
             throw std::runtime_error("Error out of bounds of array of courses: " + std::to_string(index));
@@ -144,7 +144,7 @@ QJsonArray JsonConfigParser::extractArraysFromJson(const QString &filePath, cons
             jsonFile.close();
             QJsonDocument jsonDocument = QJsonDocument::fromJson(jsonData);
             QJsonObject rootObject = jsonDocument.object();
-            return rootObject["keyName"].toArray();
+            return rootObject[keyName].toArray();
         }
     }
 }
@@ -171,18 +171,16 @@ void JsonConfigParser::setExercisesArray(int lessonIndex)
     }
 }
 
-QPair<QJsonArray, QString> JsonConfigParser::extractValuesFromJsonArray(QJsonArray& lyricsArray)
+QPair<QJsonArray, QString> JsonConfigParser::extractValuesFromJsonArray(QJsonArray& lyricsArray, int index)
 {
     if(lyricsArray.isEmpty()) {
         throw std::invalid_argument("The lyricsArray array is empty.[extractValuesFromJsonArray]");
     }else {
-        for(const QJsonValue &courseValue: lyricsArray){
-            QJsonObject courseObject = courseValue.toObject();
-            QJsonArray lessonsArray = courseObject["lessons"].toArray();
-            QString courseName = courseObject["course"].toString();
+        QJsonObject courseObject = lyricsArray[index].toObject();
+        QJsonArray lessonsArray = courseObject["lessons"].toArray();
+        QString courseName = courseObject["course"].toString();
 
-            return QPair<QJsonArray, QString>(lessonsArray, courseName);
-        }
+        return QPair<QJsonArray, QString>(lessonsArray, courseName);
     }
     return QPair<QJsonArray, QString>();
 }

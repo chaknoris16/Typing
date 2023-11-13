@@ -30,7 +30,7 @@ public:
     bool get_MainText();
     ~JsonConfigParser();
     static QJsonArray extractArraysFromJson(const QString& filePath, const QString &keyName);
-    static QPair<QJsonArray, QString> extractValuesFromJsonArray(QJsonArray &lyricsArray);
+    static QPair<QJsonArray, QString> extractValuesFromJsonArray(QJsonArray &lyricsArray, int index);
     void setLessonsArray(int courseIndex);
     void setExercisesArray(int lessonIndex);
 public slots:

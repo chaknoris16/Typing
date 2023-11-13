@@ -12,7 +12,11 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QTextCursor>
-#include "ui_mainwindow.h"
+#include <jsonconfigparser.h>
+#include <QRandomGenerator>
+#include <QList>
+#include <QSettings>
+#include <QJsonArray>
 class MainWindow;
 class blindTypingTest : public QObject
 {
@@ -22,9 +26,15 @@ public:
     explicit blindTypingTest(MainWindow* mainWindow, QObject *parent = nullptr);
     void keyEvent(QKeyEvent *event);
     QTime startTime;
+    QString mainText;
 private:
     MainWindow* mainWindow;
     QTimer* timer = new QTimer(this);
+    QJsonArray lyricsArrayTypingTest;
+    QSettings* setting;
+
+
+    QJsonArray currentLessonArry(QJsonArray lyricsArry, int index);
     struct TestingState{
     private:
         int typingSpeed = 0;
@@ -81,8 +91,36 @@ public:
     inline void incorrectkeyboardlayout();
     void callResultWindow();
     void storageResultsInDatabase(QSqlDatabase &db, TestingState &Values, const QString queryName);
+
+    class RandomElementPicker {
+    public:
+        RandomElementPicker() {}
+        RandomElementPicker(const QJsonArray& array) : array_(array) {}
+
+        QJsonValue pickRandomElement()
+        {
+            if(array_.isEmpty()) {
+                qDebug() << "Array is empty.";
+                return QJsonValue();
+            }
+            int randomIndex = QRandomGenerator::global()->bounded(array_.size());
+            QJsonValue randomElement = array_.at(randomIndex);
+            array_.removeAt(randomIndex);
+
+            return randomElement;
+        }
+        void setArray(const QJsonArray& array) {
+            array_ = array;
+        }
+    private:
+        QJsonArray array_;
+    };
+private:
+    QString getTextForTypingTest(QJsonArray array, RandomElementPicker& randElementPick);
+    RandomElementPicker randElementPick;
 public slots:
     void setupTestingTable(const QString &databaseName);
+    void fillComboBoxTypingTest();
 };
 
 #endif // BLINDTYPINGTEST_H

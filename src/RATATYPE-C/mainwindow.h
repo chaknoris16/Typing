@@ -45,10 +45,12 @@ public:
 public slots:
     void restart();
     void moveOnNextExercise();
-   // void recordSelectedIndex();
 public:
     Ui::MainWindow *ui;
     blindTypingTest* typingTesting = new blindTypingTest(this);
+    void setTypingTestText(const QString& text){
+        ui->testingTextEdit_tg->setPlainText(text);
+    }
     QInputMethod* inputMethod;
     int calculationTypingSpeed(QTime &startTime, int correctElements);
     bool get_echo();
@@ -135,6 +137,8 @@ private:
     QLocale currentLocaleLanguage;
     inline void setQueryTyping(const QString& queryName);
     inline void setQueryTesting(const QString& queryName);
+signals:
+    typingTestSet();
 };
 
 #endif // MAINWINDOW_H

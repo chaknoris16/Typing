@@ -188,6 +188,7 @@ void MainWindow::showStartWindow(bool showWindow) //QShowEvent *event
         startWindow->setWindowModality(Qt::ApplicationModal);
         ui->pushButton_reset->setFocusPolicy(Qt::NoFocus);
         startWindow->show();
+        startWindow->deleteLater();
     }
 }
 
@@ -379,6 +380,7 @@ void MainWindow::signalAndSlots()
         ui->comboBox_Lessons->setEnabled(!state);
         ui->comboBox_Exercises->setEnabled(!state);
         ui->on_or_offVirtKeybordButton->setEnabled(!state);
+        if(state) emit typingTestSet();
     });
     connect(ui->on_or_offVirtKeybordButton, &QCheckBox::toggled, this, [this]() {
         ui->widget_whis_keybord->setVisible(!ui->widget_whis_keybord->isVisible());
@@ -388,8 +390,8 @@ void MainWindow::signalAndSlots()
     });
     connect(ui->testingButton, &QPushButton::clicked, this, [this]()
             {
+                this->setTypingTestText(typingTesting->mainText);
                 ui->stackedWidget->setCurrentIndex(1);
-                ui->testingTextEdit_tg->setPlainText(tempTextForTesting);
                 ui->testingTextEdit_tg->setReadOnly(true);
                 ui->testingTextEdit_tg->setTextInteractionFlags(Qt::TextSelectableByMouse);
                 cursor = ui->testingTextEdit_tg->textCursor();

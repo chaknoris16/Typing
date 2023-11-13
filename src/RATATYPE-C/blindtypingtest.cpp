@@ -9,7 +9,18 @@ blindTypingTest::blindTypingTest(MainWindow* mainWindow, QObject *parent) :
     QObject(parent),
     mainWindow(mainWindow)
 {
-
+    this->setting = new QSettings("MySoft", "Star Runner");
+    this->lyricsArrayTypingTest = JsonConfigParser::extractArraysFromJson("lyrics.json", "lyrics");
+    //this->setting->value("languageIndex", 1);
+    this->mainText = this->getTextForTypingTest(this->currentLessonArry(this->lyricsArrayTypingTest,
+                                  this->setting->value("languageIndex", 0).toInt()), this->randElementPick);
+    //mainWindow->setTypingTestText(this->mainText);
+    connect(mainWindow, &MainWindow::typingTestSet, this, &blindTypingTest::fillComboBoxTypingTest);
+    connect(mainWindow->ui->typingTestComboBox,QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this](int index){
+        this->setting->setValue("languageIndex", index);
+        mainText = this->getTextForTypingTest(this->currentLessonArry(this->lyricsArrayTypingTest,
+                                                                      this->setting->value("languageIndex", 0).toInt()), this->randElementPick);
+    });
 }
 
 void blindTypingTest::colorizeCurrentCharacter(QTextCursor& cursor, QColor color)
@@ -45,24 +56,26 @@ void blindTypingTest::keyEvent(QKeyEvent *event)
 {
     if (!event->text().isEmpty())
     {
-        if(mainWindow->inputMethod->locale() == QLocale::English)
-        {
-            if(event->text().at(0) == tempTextForTesting.at(correctElements))
+       // if(mainWindow->inputMethod->locale() == QLocale::English)
+        //{
+            if(event->text().at(0) == this->mainText.at(correctElements))
             {
-                this->validCharacterHandler(tempTextForTesting, 2000);
+                this->validCharacterHandler(this->mainText, 2000);
             }else
             {
                 this->colorizeIncorrectCharacter(mainWindow->cursor,QColor(255, 0, 0));
                 this->Result.incrementErrorCounter();
-                Result.set_accuracy(accuracyСalculation(Result.get_errorCounter(), tempTextForTesting));
+                Result.set_accuracy(accuracyСalculation(Result.get_errorCounter(), this->mainText));
                 mainWindow->ui->procentLabel->setText(QString::number(Result.get_accuracy()));
             }
-        }else
-        {
-            this->incorrectkeyboardlayout();
-        }
+       //}else
+       // {
+        //    this->incorrectkeyboardlayout();
+       // }
     }else qDebug()<<event->text()<<"Error";
 }
+
+
 
 void blindTypingTest::validCharacterHandler(const QString &textForTyping, int flashDurationMs)
 {
@@ -138,6 +151,8 @@ void blindTypingTest::storageResultsInDatabase(QSqlDatabase& db, TestingState& V
     }
 }
 
+
+
 void blindTypingTest::setupTestingTable(const QString &databaseName)
 {
     qDebug()<<"setUPTable";
@@ -154,3 +169,20 @@ void blindTypingTest::setupTestingTable(const QString &databaseName)
     }
 }
 
+void blindTypingTest::fillComboBoxTypingTest()
+{
+
+    for(int i = 0; i < lyricsArrayTypingTest.size(); i++) {
+        mainWindow->ui->typingTestComboBox->addItem(JsonConfigParser::extractValuesFromJsonArray(lyricsArrayTypingTest, i).second);
+    }
+}
+QString blindTypingTest::getTextForTypingTest(QJsonArray array, RandomElementPicker &randElementPick)
+{
+    randElementPick.setArray(array);
+    return randElementPick.pickRandomElement().toString();
+}
+
+QJsonArray blindTypingTest::currentLessonArry(QJsonArray lyricsArry, int index)
+{
+    return JsonConfigParser::extractValuesFromJsonArray(lyricsArry, index).first;
+}
