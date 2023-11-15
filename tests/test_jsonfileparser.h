@@ -18,7 +18,7 @@ public:
             exercisesArray.append(value);
         }
     }
-
+    JsonTextParser* textParser = new JsonTextParser("lyrics.json");
 };
 
 #endif // TEST_JSONFILEPARSER_H

@@ -50,3 +50,13 @@ TEST_F(test_jsonFileParser, moveToNextExercise) {
         jsonParser.moveToNextExercise(exercisesArray, 14, 0);
             ASSERT_TRUE(jsonParser.getCurrentLessonIndex() == 1);
 }
+
+TEST_F(test_jsonFileParser, jsonTextParser) {
+    for(int i = 0; i < textParser->getLuricsArray().size(); i++){
+        this->textParser->updateFields(i);
+        ASSERT_FALSE(textParser->getLanguage().isEmpty());
+        ASSERT_FALSE(textParser->getTextsArray().isEmpty());
+    }
+
+
+}

@@ -22,19 +22,17 @@ class blindTypingTest : public QObject
 {
     Q_OBJECT 
 public:
-
     explicit blindTypingTest(MainWindow* mainWindow, QObject *parent = nullptr);
     void keyEvent(QKeyEvent *event);
     QTime startTime;
     QString mainText;
+    JsonTextParser* textParser = new JsonTextParser("lyrics.json");
 private:
     MainWindow* mainWindow;
     QTimer* timer = new QTimer(this);
-    QJsonArray lyricsArrayTypingTest;
     QSettings* setting;
 
 
-    QJsonArray currentLessonArry(QJsonArray lyricsArry, int index);
     struct TestingState{
     private:
         int typingSpeed = 0;
@@ -83,7 +81,7 @@ public:
     int Pos = 0;
     int correctElements = 0;
     void signalsAndSlots();
-    void validCharacterHandler(const QString& textForTyping, int flashDurationMs);
+    void validCharacterHandler(const QString& textForTyping);
     void colorizeCurrentCharacter(QTextCursor& cursor, QColor color);
     void colorizeIncorrectCharacter(QTextCursor &cursor, QColor color);
     inline int accuracyСalculation(int errorCounter, QString &text);
@@ -120,7 +118,7 @@ private:
     RandomElementPicker randElementPick;
 public slots:
     void setupTestingTable(const QString &databaseName);
-    void fillComboBoxTypingTest();
+    void languageChange(int index);
 };
 
 #endif // BLINDTYPINGTEST_H

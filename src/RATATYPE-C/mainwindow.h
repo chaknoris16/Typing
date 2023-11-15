@@ -110,7 +110,8 @@ public:
     void populateComboBoxesFromJsonFile();
     inline void blockSignalsComboBoxes(bool state);
     inline void fillCourseComboBox(QComboBox *comboBox, QJsonArray& coursesArray);
-    void fillLessonsComboBox(QComboBox *comboBox, QJsonArray &lessonsArray);
+    template <typename T>
+    void fillLessonsComboBox(QComboBox *comboBox, T &lessonsArray);
     void fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercisesArray);
     QSet<QChar> *extractUniqueLetters(QString text);
     const QString &TYPING_QUERY_NAME = "typing_results";

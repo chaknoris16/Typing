@@ -21,6 +21,7 @@ private:
     };
 public:
     explicit JsonConfigParser(QObject *parent = nullptr);
+
     QJsonArray coursesArray;
     QJsonArray lessonsArray;
     QJsonArray exercisesArray;
@@ -29,10 +30,10 @@ public:
     QString getCurrentCourseName();
     bool get_MainText();
     ~JsonConfigParser();
-    static QJsonArray extractArraysFromJson(const QString& filePath, const QString &keyName);
-    static QPair<QJsonArray, QString> extractValuesFromJsonArray(QJsonArray &lyricsArray, int index);
+    QJsonArray extractArraysFromJson(const QString& filePath, const QString &keyName);
+    QPair<QJsonArray, QString> extractValuesFromJsonArray(QJsonArray &lyricsArray, int index);
     void setLessonsArray(int courseIndex);
-    void setExercisesArray(int lessonIndex);
+    virtual void setExercisesArray(int lessonIndex);
 public slots:
     void setCourseIndex(int courseIndex);
     void setLessonIndex(int lessonIndex);
@@ -50,5 +51,44 @@ private:
 signals:
 
 };
+class JsonTextParser :public JsonConfigParser
+{
+    Q_OBJECT
+private:
+     QString filePath;
+public slots:
+    void updateFields(int languageIndex)
+    {
+        this->setExercisesArray(languageIndex);
+    }
+public:
+    JsonTextParser(const QString& filePath);
 
+
+    const QJsonArray& getLuricsArray() const{
+        return this->lyricsArray;
+    }
+    QString getLanguage() const{
+        return this->language;
+    }
+
+    QJsonArray getTextsArray() const{
+        return this->textsArray;
+    }
+
+private:
+    QString language;
+    QJsonArray lyricsArray;
+    QJsonArray textsArray;
+    void setExercisesArray(int lessonIndex) override
+    {
+        if(this->lyricsArray.isEmpty()) {
+            throw std::invalid_argument("The lyricsArray array is empty.[]");
+        }else {
+            QJsonObject courseObject = lyricsArray[lessonIndex].toObject();
+            this->textsArray = courseObject["lessons"].toArray();
+            this->language = courseObject["name"].toString();
+        }
+    }
+};
 #endif // JSONCONFIGPARSER_H

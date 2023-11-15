@@ -184,3 +184,10 @@ QPair<QJsonArray, QString> JsonConfigParser::extractValuesFromJsonArray(QJsonArr
     }
     return QPair<QJsonArray, QString>();
 }
+
+JsonTextParser::JsonTextParser(const QString& filePath) : filePath(filePath)
+{
+    this->lyricsArray = extractArraysFromJson(this->filePath, "lyrics");
+}
+
+

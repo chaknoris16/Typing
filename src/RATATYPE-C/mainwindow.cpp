@@ -310,16 +310,17 @@ inline void MainWindow::fillCourseComboBox(QComboBox* comboBox, QJsonArray &cour
         comboBox->addItem(courseName);
     }
 }
-void MainWindow::fillLessonsComboBox(QComboBox *comboBox, QJsonArray &lessonsArray)
+template <typename T>
+void MainWindow::fillLessonsComboBox(QComboBox *comboBox, T &lessonsArray)
 {
     comboBox->blockSignals(true);
     comboBox->clear();
-    comboBox->blockSignals(false);
-    for(const QJsonValue &lessonValue : lessonsArray) {
-        QJsonObject lessonObject = lessonValue.toObject();
+    for(const auto& lessonValue : lessonsArray) {
+        auto lessonObject = lessonValue.toObject();
         QString lessonName = lessonObject["name"].toString();
         comboBox->addItem(lessonName);
     }
+    comboBox->blockSignals(false);
 }
 
 void MainWindow::fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercisesArray)
@@ -389,16 +390,16 @@ void MainWindow::signalAndSlots()
         ui->stackedWidget->setCurrentIndex(0);
     });
     connect(ui->testingButton, &QPushButton::clicked, this, [this]()
-            {
-                this->setTypingTestText(typingTesting->mainText);
-                ui->stackedWidget->setCurrentIndex(1);
-                ui->testingTextEdit_tg->setReadOnly(true);
-                ui->testingTextEdit_tg->setTextInteractionFlags(Qt::TextSelectableByMouse);
-                cursor = ui->testingTextEdit_tg->textCursor();
-                typingTesting->colorizeCurrentCharacter(cursor, QColor(0, 255, 0));
-                qDebug()<<"Testing is on";
-            });
-
+    {
+        fillLessonsComboBox(ui->typingTestComboBox, typingTesting->textParser->getLuricsArray());
+        this->setTypingTestText(typingTesting->mainText);
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->testingTextEdit_tg->setReadOnly(true);
+        ui->testingTextEdit_tg->setTextInteractionFlags(Qt::TextSelectableByMouse);
+        cursor = ui->testingTextEdit_tg->textCursor();
+        typingTesting->colorizeCurrentCharacter(cursor, QColor(0, 255, 0));
+        qDebug()<<"Testing is on";
+    });
     connect(ui->resultsButton,&QPushButton::clicked,this,[this](){
         ui->stackedWidget->setCurrentIndex(3);
         typingTesting->setupTestingTable("testing_results");
@@ -431,6 +432,7 @@ void MainWindow::signalAndSlots()
         jsonParser->setExercisesArray(index);
         this->fillExercisesComboBox(ui->comboBox_Exercises, jsonParser->exercisesArray);
     });
+    connect(ui->typingTestComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), typingTesting, &blindTypingTest::languageChange);
     connect(ui->comboBox_Exercises, QOverload<int>::of(&QComboBox::currentIndexChanged), jsonParser, &JsonConfigParser::setExerciseIndex);
     connect(ui->comboBox_Exercises, &QComboBox::currentIndexChanged, this, &MainWindow::restart);
     //connect(ui->comboBox_Course, &QComboBox::currentIndexChanged, virtualKeybord, &Virtual_Keyboard::setMapKeyboardLauout);
