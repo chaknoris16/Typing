@@ -32,6 +32,10 @@
 #include "startwindow.h"
 #include "jsonconfigparser.h"
 #include "virtual_keyboard.h"
+#include "IDBManager.h"
+#include "DBTreningQuery.h"
+#include "tableoutput.h"
+#include "typingtestingpage.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -45,19 +49,23 @@ public:
 public slots:
     void restart();
     void moveOnNextExercise();
+
 public:
     Ui::MainWindow *ui;
     blindTypingTest* typingTesting = new blindTypingTest(this);
+
     void setTypingTestText(const QString& text){
         ui->testingTextEdit_tg->setPlainText(text);
     }
     QInputMethod* inputMethod;
     int calculationTypingSpeed(QTime &startTime, int correctElements);
-    bool get_echo();
     JsonConfigParser* jsonParser = new JsonConfigParser(this);
 protected:
    void showStartWindow(bool showWindow);
 private:
+    TableOutPut* tableOutPut = new TableOutPut(ui->treningTableWidget);
+    IDBManager* db = new DBTreningQuery("typing_result", "treningResult");
+
     Virtual_Keyboard* virtualKeybord;
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
@@ -90,7 +98,7 @@ public:
     QString get_currentMainText(const QString &fileName);
     QSettings *settings;
     QSqlDatabase& getDatabase() {
-        return db;
+        return dbs;
     }
     int selectedCourseIndex;
     int selectedLessonIndex;
@@ -98,8 +106,6 @@ public:
     void setCurrentIndexInComboBox(int courseIndex, int lessonsIndex, int exercisesIndex, QComboBox *ComboBox_Courses, QComboBox *ComboBox_Lessons, QComboBox *ComboBox_Exercises);
     void transitionToNextElement(int exerciseIndex, int lessonIndex, QJsonArray &exercisesArray);
     QTextCursor cursor;
-    QVector<QPushButton *> buttons;
-    void removeTextColor(QPushButton *button, const QString& color);
     void setColorTextButton(QPushButton *button);
     QPushButton* buttonSearchByText(const QString text);
     void changeButtonBorder(QPushButton *button);
@@ -111,11 +117,9 @@ public:
     inline void blockSignalsComboBoxes(bool state);
     inline void fillCourseComboBox(QComboBox *comboBox, QJsonArray& coursesArray);
     template <typename T>
-    void fillLessonsComboBox(QComboBox *comboBox, T &lessonsArray);
+    void fillLessonsComboBox(QComboBox *comboBox, const T &lessonsArray);
     void fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercisesArray);
     QSet<QChar> *extractUniqueLetters(QString text);
-    const QString &TYPING_QUERY_NAME = "typing_results";
-    const QString &TESTING_QUERY_NAME = "testing_results";
     QLocale determineLocale(const QString &language);
 private:
     void signalAndSlots();
@@ -128,7 +132,7 @@ private:
     void createDb();
 
     void callingResultOutputTableForTrening();
-    QSqlDatabase db;
+    QSqlDatabase dbs;
     QTime startTime;
     QTimer *qtimer = new QTimer(this);
     int temp;

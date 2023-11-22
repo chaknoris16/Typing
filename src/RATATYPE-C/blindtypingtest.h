@@ -26,7 +26,7 @@ public:
     void keyEvent(QKeyEvent *event);
     QTime startTime;
     QString mainText;
-    JsonTextParser* textParser = new JsonTextParser("lyrics.json");
+
 private:
     MainWindow* mainWindow;
     QTimer* timer = new QTimer(this);
@@ -90,35 +90,13 @@ public:
     void callResultWindow();
     void storageResultsInDatabase(QSqlDatabase &db, TestingState &Values, const QString queryName);
 
-    class RandomElementPicker {
-    public:
-        RandomElementPicker() {}
-        RandomElementPicker(const QJsonArray& array) : array_(array) {}
 
-        QJsonValue pickRandomElement()
-        {
-            if(array_.isEmpty()) {
-                qDebug() << "Array is empty.";
-                return QJsonValue();
-            }
-            int randomIndex = QRandomGenerator::global()->bounded(array_.size());
-            QJsonValue randomElement = array_.at(randomIndex);
-            array_.removeAt(randomIndex);
-
-            return randomElement;
-        }
-        void setArray(const QJsonArray& array) {
-            array_ = array;
-        }
-    private:
-        QJsonArray array_;
-    };
 private:
-    QString getTextForTypingTest(QJsonArray array, RandomElementPicker& randElementPick);
-    RandomElementPicker randElementPick;
+   // QString getTextForTypingTest(QJsonArray array, RandomElementPicker& randElementPick);
+    //RandomElementPicker randElementPick;
 public slots:
-    void setupTestingTable(const QString &databaseName);
-    void languageChange(int index);
+    //void setupTestingTable(const QString &databaseName);
+    //void languageChange(int index);
 };
 
 #endif // BLINDTYPINGTEST_H

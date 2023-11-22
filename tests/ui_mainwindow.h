@@ -191,7 +191,10 @@ public:
     QVBoxLayout *verticalLayout_18;
     QTabWidget *tabWidget;
     QWidget *tab;
-    QVBoxLayout *verticalLayout_10;
+    QHBoxLayout *horizontalLayout_8;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QVBoxLayout *verticalLayout_11;
     QTableWidget *treningTableWidget;
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_12;
@@ -1603,12 +1606,27 @@ public:
         tab->setStyleSheet(QString::fromUtf8("\n"
 "background-color: rgb(48, 165, 249);\n"
 " border-radius: 10px;"));
-        verticalLayout_10 = new QVBoxLayout(tab);
-        verticalLayout_10->setObjectName("verticalLayout_10");
-        treningTableWidget = new QTableWidget(tab);
+        horizontalLayout_8 = new QHBoxLayout(tab);
+        horizontalLayout_8->setObjectName("horizontalLayout_8");
+        scrollArea = new QScrollArea(tab);
+        scrollArea->setObjectName("scrollArea");
+        scrollArea->setStyleSheet(QString::fromUtf8("background-color: rgb(48, 165, 249);\n"
+"border-radius: 5px;\n"
+""));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 785, 379));
+        verticalLayout_11 = new QVBoxLayout(scrollAreaWidgetContents);
+        verticalLayout_11->setObjectName("verticalLayout_11");
+        treningTableWidget = new QTableWidget(scrollAreaWidgetContents);
         treningTableWidget->setObjectName("treningTableWidget");
 
-        verticalLayout_10->addWidget(treningTableWidget);
+        verticalLayout_11->addWidget(treningTableWidget);
+
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        horizontalLayout_8->addWidget(scrollArea);
 
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();

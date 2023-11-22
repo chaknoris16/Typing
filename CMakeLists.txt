@@ -1,7 +1,7 @@
 
 cmake_minimum_required(VERSION 3.21)
 project(Typing)
-set(BUILD_TEST_LIBRARY ON)
+set(BUILD_TEST_LIBRARY OFF)
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(src/RATATYPE-C)

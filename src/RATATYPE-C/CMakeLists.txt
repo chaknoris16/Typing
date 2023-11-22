@@ -8,7 +8,7 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(BUILD_TEST_LIBRARY ON)
+set(BUILD_TEST_LIBRARY OFF)
 
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
@@ -29,27 +29,39 @@ set(PROJECT_SOURCES
     startwindow.cpp
     startwindow.h
     startwindow.ui
-    text_for_print_json.cpp
-    text_for_print_json.h
-    vector_of_exercises.cpp
-    vector_of_exercises.h
-    virtual_keyboard.cpp
-    virtual_keyboard.h
+    text_for_print_json.h  text_for_print_json.cpp
+    typingtestingpage.h typingtestingpage.cpp
+    vector_of_exercises.h  vector_of_exercises.cpp
+    virtual_keyboard.h virtual_keyboard.cpp
     jsonconfigparser.h jsonconfigparser.cpp
+    tableoutput.h tableoutput.cpp
+    IDBManager.h
+    DBTreningQuery.h
+    DBTestingQuery.h
+    IJsonTextParser.h
+    RandomElementPicker.h
+    IRandomTextProvider.h
+    IColorizeCharacter.h
+    CharacterColorist.h
+
 )
 
 if(BUILD_TEST_LIBRARY)
-    add_library(RATATYPE-C_lib ${PROJECT_SOURCES})
+    add_library(RATATYPE-C_lib ${PROJECT_SOURCES}
+        )
     target_link_libraries(RATATYPE-C_lib PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
 endif()
 
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(RATATYPE-C
+
+qt_add_executable(RATATYPE-C
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-    )
+
+)
 endif()
+
 target_link_libraries(RATATYPE-C PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
 
 

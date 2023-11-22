@@ -11,8 +11,7 @@ blindTypingTest::blindTypingTest(MainWindow* mainWindow, QObject *parent) :
     mainWindow(mainWindow)
 {
     this->setting = new QSettings("MySoft", "Star Runner");
-    this->textParser->updateFields(this->setting->value("languageIndex").toInt());
-    this->mainText = this->getTextForTypingTest(this->textParser->getTextsArray(), this->randElementPick);
+   // this->mainText = this->getTextForTypingTest(this->textParser->getTextsArray(), this->randElementPick);
 }
 
 void blindTypingTest::colorizeCurrentCharacter(QTextCursor& cursor, QColor color)
@@ -128,11 +127,8 @@ void blindTypingTest::storageResultsInDatabase(QSqlDatabase& db, TestingState& V
                       "VALUES (:typing_speed, :accuracy, :datetime)");
 
         query.bindValue(":typing_speed", Values.get_typingSpeed() );
-        //qDebug()<<Values.get_typingSpeed();
         query.bindValue(":accuracy", Values.get_accuracy() );
-        //qDebug()<<Values.get_accuracy();
-        query.bindValue(":datetime", QDateTime::currentDateTime().toString(Qt::ISODate));
-        //qDebug()<< QDateTime::currentDateTime().toString(Qt::ISODate);
+        query.bindValue(":datetime", QDateTime::currentDateTime().toString(Qt::ISODate));;
         if (query.exec()) {
             qDebug() << "Data inserted successfully!";
         } else {
@@ -145,33 +141,33 @@ void blindTypingTest::storageResultsInDatabase(QSqlDatabase& db, TestingState& V
 
 
 
-void blindTypingTest::setupTestingTable(const QString &databaseName)
-{
-    qDebug()<<"setUPTable";
-    QSqlTableModel *modelTesting = new QSqlTableModel(this);
-    modelTesting->setTable(databaseName);
-    modelTesting->select();
-    mainWindow->ui->tableView_Testing->setModel(modelTesting);
-    mainWindow->ui->tableView_Testing->hideColumn(modelTesting->fieldIndex("id"));
-    mainWindow->ui->tableView_Testing->verticalHeader()->setVisible(false);
-    int columnCount_Testing = modelTesting->columnCount();
-    for (int col = 0; col < columnCount_Testing; ++col) {
-        mainWindow->ui->tableView_Testing->horizontalHeader()->setSectionResizeMode(col, QHeaderView::Stretch);
+// void blindTypingTest::setupTestingTable(const QString &databaseName)
+// {
+//     qDebug()<<"setUPTable";
+//     QSqlTableModel *modelTesting = new QSqlTableModel(this);
+//     modelTesting->setTable(databaseName);
+//     modelTesting->select();
+//     mainWindow->ui->tableView_Testing->setModel(modelTesting);
+//     mainWindow->ui->tableView_Testing->hideColumn(modelTesting->fieldIndex("id"));
+//     mainWindow->ui->tableView_Testing->verticalHeader()->setVisible(false);
+//     int columnCount_Testing = modelTesting->columnCount();
+//     for (int col = 0; col < columnCount_Testing; ++col) {
+//         mainWindow->ui->tableView_Testing->horizontalHeader()->setSectionResizeMode(col, QHeaderView::Stretch);
 
-    }
-}
+//     }
+// }
 
-void blindTypingTest::languageChange(int index)
-{
-    this->setting->setValue("languageIndex", index);
-    this->textParser->updateFields(index);
-    this->mainText = this->getTextForTypingTest(this->textParser->getTextsArray(), this->randElementPick);
-    mainWindow->ui->testingButton->clicked();
-    qDebug()<<"save index";
-}
+// void blindTypingTest::languageChange(int index)
+// {
+//     this->setting->setValue("languageIndex", index);
+//    // this->textParser->updateFields(index);
+//     //this->mainText = this->getTextForTypingTest(this->textParser->getTextsArray(), this->randElementPick);
+//     mainWindow->ui->testingButton->clicked();
+//     qDebug()<<"save index";
+// }
 
-QString blindTypingTest::getTextForTypingTest(QJsonArray array, RandomElementPicker &randElementPick)
-{
-    randElementPick.setArray(array);
-    return randElementPick.pickRandomElement().toString();
-}
+// QString blindTypingTest::getTextForTypingTest(QJsonArray array, RandomElementPicker &randElementPick)
+// {
+//     randElementPick.setArray(array);
+//     return randElementPick.pickRandomElement().toString();
+// }

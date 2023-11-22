@@ -30,8 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->pushButton_reset->setFocusPolicy(Qt::NoFocus);
     ui->widget_whis_settings->setVisible(false);
+
     virtualKeybord = new Virtual_Keyboard(this);
-    this->createDb();
+    //this->createDb();
 
     this->isTypingStarted = false;
     this->settings = new QSettings("MySoft", "Star Runner");
@@ -53,12 +54,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    QSqlDatabase::database().close();
     delete ui;
-}
-bool MainWindow::get_echo()
-{
-    return true;
+    delete db;
+    delete tableOutPut;
 }
 void MainWindow::keyReleaseEvent(QKeyEvent *event){
     if (event->key() == Qt::Key_Shift ) {
@@ -104,6 +102,7 @@ inline void MainWindow::setIncorectKeyboardLauoutMessage(QLocale locale)
     incorrectkeyboardlayout.setInformativeText("Please change the keyboard layout to " + QLocale::languageToString(locale.language()) +" layout.");
     incorrectkeyboardlayout.exec();
 }
+
 void MainWindow::processingIncorrectLetter(const QString& str, int flashDurationMs) {
     this->error_counter++;
     ui->errorCounterLabel->setStyleSheet("color: red; background-color: rgb(85, 197, 255);");
@@ -130,7 +129,9 @@ void MainWindow::removeLetterFromLabel() {
     ++correctElements;
     if (ui->keyFieldInside_2->text().isEmpty()) {
         this->timer->stop();
-        this->callingResultOutputTableForTrening();
+        QVariantList result;
+        result << ui->comboBox_Exercises->currentText() << this->get_typingSpeed() << this->get_errorCounter();
+        this->db->saveResult(result);
         this->resultWindowForTrening(get_errorCounter());
         qDebug()<<"Label is empty";
     }
@@ -220,59 +221,7 @@ QLocale MainWindow::determineLocale(const QString &language)
     }
 }
 
-void MainWindow::createDb(){
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("typing_data.db");
-    if (!db.open()) {
-        qDebug() << "Error: Could not open database.";
-    }
-    this->setQueryTyping(this->TYPING_QUERY_NAME);
-    this->setQueryTesting(this->TESTING_QUERY_NAME);
-}
-inline void MainWindow::setQueryTyping(const QString &queryName)
-{
-    QSqlQuery typingResultQuery;
-    typingResultQuery.exec("CREATE TABLE IF NOT EXISTS " + queryName + " ("
-                           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                           "exercise TEXT,"
-                           "typing_speed INTEGER,"
-                           "number_of_mistakes INTEGER,"
-                           "datetime TEXT)");
 
-    if (typingResultQuery.isActive()) {
-        qDebug() << "Table" << queryName << "created successfully.";
-    } else qDebug() << "Error: Could not create table " << queryName + ".";
-}
-
-inline void MainWindow::setQueryTesting(const QString &queryName)
-{
-    QSqlQuery testingResultQuery;
-    testingResultQuery.exec("CREATE TABLE IF NOT EXISTS " + queryName + " ("
-                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                 "typing_speed INTEGER,"
-                 "accuracy INTEGER,"
-                 "datetime TEXT)");
-    if (testingResultQuery.isActive()) {
-        qDebug() << "Table" << queryName << "created successfully.";
-    } else qDebug() << "Error: Could not create table " << queryName + ".";
-}
-void MainWindow::callingResultOutputTableForTrening() {
-    QString exercise = ui->comboBox_Exercises->currentText();
-    QString dateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
-    QSqlQuery query;
-    query.prepare("INSERT INTO typing_results (exercise, typing_speed, number_of_mistakes, datetime) "
-                  "VALUES (:exercise, :typingSpeed, :numberOfMistakes, :dateTime)");
-    query.bindValue(":exercise", exercise);
-    query.bindValue(":typingSpeed", get_typingSpeed());
-    query.bindValue(":numberOfMistakes", get_errorCounter());
-    query.bindValue(":dateTime", dateTime);
-
-    if (query.exec()) {
-        qDebug() << "Data inserted successfully.";
-    } else {
-        qDebug() << "Error: Could not insert data.";
-    }
-}
 
 QString MainWindow::selectingFirstWordFromLine(const QString& str, int courseIndex){
     int spaceIndex = str.indexOf(" ");
@@ -311,16 +260,17 @@ inline void MainWindow::fillCourseComboBox(QComboBox* comboBox, QJsonArray &cour
     }
 }
 template <typename T>
-void MainWindow::fillLessonsComboBox(QComboBox *comboBox, T &lessonsArray)
+void MainWindow::fillLessonsComboBox(QComboBox *comboBox, const T &lessonsArray)
 {
     comboBox->blockSignals(true);
     comboBox->clear();
+    comboBox->blockSignals(false);
     for(const auto& lessonValue : lessonsArray) {
         auto lessonObject = lessonValue.toObject();
         QString lessonName = lessonObject["name"].toString();
         comboBox->addItem(lessonName);
     }
-    comboBox->blockSignals(false);
+
 }
 
 void MainWindow::fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercisesArray)
@@ -329,7 +279,7 @@ void MainWindow::fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercise
     comboBox->clear();
     comboBox->blockSignals(false);
     for(const QJsonValue &exercisesValue : exercisesArray) {
-        QString exerciseName = selectingFirstWordFromLine(exercisesValue.toString(), selectedCourseIndex);
+        QString exerciseName = selectingFirstWordFromLine(exercisesValue.toString(), 1);
         comboBox->addItem(exerciseName);
     }
 }
@@ -338,33 +288,6 @@ void MainWindow::setCurrentIndexInComboBox(int courseIndex, int lessonsIndex, in
     ComboBox_Courses->setCurrentIndex(courseIndex);
     ComboBox_Lessons->setCurrentIndex(lessonsIndex);
     ComboBox_Exercises->setCurrentIndex(exercisesIndex);
-}
-
-void MainWindow::transitionToNextElement(int exerciseIndex, int lessonIndex, QJsonArray &exercisesArray){
-    if(exerciseIndex + 2 <= exercisesArray.size()){
-        this->settings->setValue("selectedExercisesIndex",this->selectedExercisesIndex + 1);
-        qDebug()<<"Next exercises"<<this->selectedExercisesIndex + 1;
-    }else {
-            this->settings->setValue("selectedLessonIndex", this->selectedLessonIndex + 1);
-            qDebug() << "Next lesson" << this->selectedLessonIndex + 1;
-    }
-}
-
-QString MainWindow::get_currentMainText(const QString &fileName)
-{
-    QFile jsonFile(fileName);
-    if (jsonFile.open(QIODevice::ReadOnly)) {
-        QByteArray jsonData = jsonFile.readAll();
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData);
-        QJsonObject coursesObject = jsonDoc.object();
-
-
-        QJsonObject selectedCourse = coursesObject["courses"].toArray()[this->selectedCourseIndex].toObject();
-        QJsonObject selectedLesson = selectedCourse["lessons"].toArray()[this->selectedLessonIndex].toObject();
-        return selectedLesson["exercises"].toArray()[this->selectedExercisesIndex].toString();
-
-        } else qWarning() << "Помилка при відкритті JSON файлу для читання.";
-    return "";
 }
 
 void MainWindow::signalAndSlots()
@@ -391,29 +314,17 @@ void MainWindow::signalAndSlots()
     });
     connect(ui->testingButton, &QPushButton::clicked, this, [this]()
     {
-        fillLessonsComboBox(ui->typingTestComboBox, typingTesting->textParser->getLuricsArray());
-        this->setTypingTestText(typingTesting->mainText);
+        TypingTestingPage* typingTest = new TypingTestingPage(ui->testingTextEdit_tg, this, ui->testingTableWidget, ui->typingTestComboBox);
+        typingTest->fillLanguageComboBox(ui->typingTestComboBox, typingTest->getLyricsArray());
+        typingTest->setMainText();
         ui->stackedWidget->setCurrentIndex(1);
-        ui->testingTextEdit_tg->setReadOnly(true);
-        ui->testingTextEdit_tg->setTextInteractionFlags(Qt::TextSelectableByMouse);
-        cursor = ui->testingTextEdit_tg->textCursor();
-        typingTesting->colorizeCurrentCharacter(cursor, QColor(0, 255, 0));
-        qDebug()<<"Testing is on";
+        connect(ui->typingTestComboBox, &QComboBox::currentIndexChanged, typingTest, &TypingTestingPage::changeLanguage);
+        connect(typingTest, &TypingTestingPage::setAcyracyCounter, ui->procentLabel, &QLabel::setText);
+        connect(typingTest, &TypingTestingPage::setSpeedCounter, ui->speedCounterLabel_tg, &QLabel::setText);
     });
     connect(ui->resultsButton,&QPushButton::clicked,this,[this](){
+        this->tableOutPut->setTable(this->db->getQuery());
         ui->stackedWidget->setCurrentIndex(3);
-        typingTesting->setupTestingTable("testing_results");
-        QSqlTableModel *model_trening = new QSqlTableModel(this);
-        model_trening->setTable("typing_results");
-        model_trening->select();
-        ui->tableView_whis_result->setModel(model_trening);
-        ui->tableView_whis_result->hideColumn(model_trening->fieldIndex("id"));
-        ui->tableView_whis_result->verticalHeader()->setVisible(false);
-        int columnCount = model_trening->columnCount();
-        for (int col = 0; col < columnCount; ++col) {
-            ui->tableView_whis_result->horizontalHeader()->setSectionResizeMode(col, QHeaderView::Stretch);
-            }
-
         });
     connect(ui->checkBox, &QCheckBox::toggled, this, [this](bool checked) {
         settings->setValue("showWindow", checked);
@@ -432,7 +343,7 @@ void MainWindow::signalAndSlots()
         jsonParser->setExercisesArray(index);
         this->fillExercisesComboBox(ui->comboBox_Exercises, jsonParser->exercisesArray);
     });
-    connect(ui->typingTestComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), typingTesting, &blindTypingTest::languageChange);
+    //connect(ui->typingTestComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), typingTesting, &blindTypingTest::languageChange);
     connect(ui->comboBox_Exercises, QOverload<int>::of(&QComboBox::currentIndexChanged), jsonParser, &JsonConfigParser::setExerciseIndex);
     connect(ui->comboBox_Exercises, &QComboBox::currentIndexChanged, this, &MainWindow::restart);
     //connect(ui->comboBox_Course, &QComboBox::currentIndexChanged, virtualKeybord, &Virtual_Keyboard::setMapKeyboardLauout);

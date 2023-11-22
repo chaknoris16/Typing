@@ -10,6 +10,7 @@ main.cpp
 test_jsonfileparser.cpp
 test_jsonfileparser.h
 test_virtualkeyboard.h test_virtualkeyboard.cpp
+test_bdmanager.h test_bdmanager.cpp
 )
 
 

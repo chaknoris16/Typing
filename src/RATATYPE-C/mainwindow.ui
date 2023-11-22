@@ -3265,7 +3265,7 @@ QTabBar::tab:selected
 }</string>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab">
            <property name="styleSheet">
@@ -3278,35 +3278,7 @@ background-color: rgb(48, 165, 249);
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_10">
             <item>
-             <widget class="QScrollArea" name="scrollArea">
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(48, 165, 249);
-border-radius: 5px;
-</string>
-              </property>
-              <property name="widgetResizable">
-               <bool>true</bool>
-              </property>
-              <widget class="QWidget" name="scrollAreaWidgetContents">
-               <property name="geometry">
-                <rect>
-                 <x>0</x>
-                 <y>0</y>
-                 <width>86</width>
-                 <height>86</height>
-                </rect>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_11">
-                <item>
-                 <widget class="QTableView" name="tableView_whis_result">
-                  <property name="styleSheet">
-                   <string notr="true"/>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </widget>
+             <widget class="QTableWidget" name="treningTableWidget"/>
             </item>
            </layout>
           </widget>
@@ -3334,7 +3306,7 @@ border-radius: 5px;
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_19">
                 <item>
-                 <widget class="QTableView" name="tableView_Testing"/>
+                 <widget class="QTableWidget" name="testingTableWidget"/>
                 </item>
                </layout>
               </widget>

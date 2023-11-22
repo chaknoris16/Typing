@@ -10,6 +10,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include "IJsonTextParser.h"
 class JsonConfigParser : public QObject
 {
     Q_OBJECT
@@ -51,28 +52,32 @@ private:
 signals:
 
 };
-class JsonTextParser :public JsonConfigParser
+
+class JsonTextParser : public JsonConfigParser, public IJsonTextParser
 {
     Q_OBJECT
 private:
      QString filePath;
 public slots:
-    void updateFields(int languageIndex)
+    void updateFields(int languageIndex) override
     {
         this->setExercisesArray(languageIndex);
     }
 public:
     JsonTextParser(const QString& filePath);
 
-
-    const QJsonArray& getLuricsArray() const{
+    const QJsonArray getLuricsArray() override
+    {
         return this->lyricsArray;
     }
-    QString getLanguage() const{
+
+    const QString getLanguage() override
+    {
         return this->language;
     }
 
-    QJsonArray getTextsArray() const{
+    const QJsonArray getTextsArray() override
+    {
         return this->textsArray;
     }
 
