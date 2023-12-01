@@ -128,7 +128,7 @@ QPushButton:hover {
 </string>
              </property>
              <property name="text">
-              <string>Тренажер</string>
+              <string>Simulator</string>
              </property>
             </widget>
            </item>
@@ -179,7 +179,7 @@ QPushButton:hover {
 </string>
              </property>
              <property name="text">
-              <string>Тестування</string>
+              <string>Testing</string>
              </property>
             </widget>
            </item>
@@ -230,7 +230,7 @@ QPushButton:hover {
 </string>
              </property>
              <property name="text">
-              <string>Результати</string>
+              <string>Results</string>
              </property>
             </widget>
            </item>
@@ -254,7 +254,7 @@ QPushButton:hover {
             <widget class="QPushButton" name="coursesButton">
              <property name="minimumSize">
               <size>
-               <width>53</width>
+               <width>84</width>
                <height>30</height>
               </size>
              </property>
@@ -281,7 +281,7 @@ QPushButton:hover {
 </string>
              </property>
              <property name="text">
-              <string>Курси</string>
+              <string>Settings</string>
              </property>
             </widget>
            </item>
@@ -324,7 +324,7 @@ QPushButton:hover {
              <item>
               <widget class="QLabel" name="label_2">
                <property name="text">
-                <string>Курс</string>
+                <string>Course</string>
                </property>
               </widget>
              </item>
@@ -352,7 +352,7 @@ QPushButton:hover {
              <item>
               <widget class="QLabel" name="label_3">
                <property name="text">
-                <string>Урок</string>
+                <string>Lesson</string>
                </property>
               </widget>
              </item>
@@ -380,7 +380,7 @@ QPushButton:hover {
              <item>
               <widget class="QLabel" name="label_5">
                <property name="text">
-                <string>Вправа</string>
+                <string>Exercise</string>
                </property>
               </widget>
              </item>
@@ -428,7 +428,7 @@ QPushButton:hover {
               <string notr="true"/>
              </property>
              <property name="text">
-              <string>Сховати клавіатуру</string>
+              <string>Hide the keyboard</string>
              </property>
              <property name="checkable">
               <bool>false</bool>
@@ -444,7 +444,7 @@ QPushButton:hover {
               <enum>Qt::NoFocus</enum>
              </property>
              <property name="text">
-              <string>Початкове вікно</string>
+              <string>Initial window</string>
              </property>
              <property name="checkable">
               <bool>true</bool>
@@ -477,6 +477,9 @@ QPushButton:hover {
                <width>260</width>
                <height>0</height>
               </size>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::NoFocus</enum>
              </property>
              <property name="styleSheet">
               <string notr="true"/>
@@ -543,6 +546,14 @@ QPushButton:hover {
                        <verstretch>0</verstretch>
                       </sizepolicy>
                      </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>12</pointsize>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
                      <property name="styleSheet">
                       <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 background-color: rgb(85, 197, 255);</string>
@@ -565,7 +576,7 @@ background-color: rgb(85, 197, 255);</string>
 background-color: rgb(85, 197, 255);</string>
                      </property>
                      <property name="text">
-                      <string>помилок</string>
+                      <string>errors</string>
                      </property>
                     </widget>
                    </item>
@@ -580,6 +591,14 @@ background-color: rgb(85, 197, 255);</string>
                        <horstretch>0</horstretch>
                        <verstretch>0</verstretch>
                       </sizepolicy>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>12</pointsize>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">font: 12pt &quot;Segoe UI&quot;;
@@ -603,7 +622,7 @@ background-color: rgb(85, 197, 255);</string>
 background-color: rgb(85, 197, 255);</string>
                      </property>
                      <property name="text">
-                      <string>зн./хв</string>
+                      <string>marks/min</string>
                      </property>
                     </widget>
                    </item>
@@ -2903,7 +2922,7 @@ background-color: rgb(154, 211, 250);
                    </size>
                   </property>
                   <property name="text">
-                   <string>ШВИДКІСТЬ</string>
+                   <string>SPEED</string>
                   </property>
                  </widget>
                 </item>
@@ -2934,7 +2953,7 @@ background-color: rgb(154, 211, 250);
                      </size>
                     </property>
                     <property name="text">
-                     <string>зн./хв</string>
+                     <string>marks/min</string>
                     </property>
                    </widget>
                   </item>
@@ -2949,7 +2968,7 @@ background-color: rgb(154, 211, 250);
                    </size>
                   </property>
                   <property name="text">
-                   <string>ТОЧНІСТЬ</string>
+                   <string>PRECISION</string>
                   </property>
                  </widget>
                 </item>
@@ -3274,11 +3293,11 @@ background-color: rgb(48, 165, 249);
  border-radius: 10px;</string>
            </property>
            <attribute name="title">
-            <string>Тренажер</string>
+            <string>Simulator</string>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_10">
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
             <item>
-             <widget class="QTableWidget" name="treningTableWidget"/>
+             <layout class="QVBoxLayout" name="table_trening_verticalLayout"/>
             </item>
            </layout>
           </widget>
@@ -3287,30 +3306,11 @@ background-color: rgb(48, 165, 249);
             <string notr="true">background-color: rgb(48, 165, 249);</string>
            </property>
            <attribute name="title">
-            <string>Тестування</string>
+            <string>Testing</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_12">
             <item>
-             <widget class="QScrollArea" name="scrollArea_2">
-              <property name="widgetResizable">
-               <bool>true</bool>
-              </property>
-              <widget class="QWidget" name="scrollAreaWidgetContents_2">
-               <property name="geometry">
-                <rect>
-                 <x>0</x>
-                 <y>0</y>
-                 <width>86</width>
-                 <height>86</height>
-                </rect>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_19">
-                <item>
-                 <widget class="QTableWidget" name="testingTableWidget"/>
-                </item>
-               </layout>
-              </widget>
-             </widget>
+             <layout class="QVBoxLayout" name="verticalLayout_10"/>
             </item>
            </layout>
           </widget>

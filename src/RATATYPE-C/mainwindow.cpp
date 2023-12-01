@@ -3,7 +3,6 @@
 #include "ui_startwindow.h"
 #include "resultwindow.h"
 #include "vector_of_exercises.h"
-#include "text_for_print_json.h"
 #include <QKeyEvent>
 #include <QTimer>
 #include <QTime>
@@ -30,10 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->pushButton_reset->setFocusPolicy(Qt::NoFocus);
     ui->widget_whis_settings->setVisible(false);
-
     virtualKeybord = new Virtual_Keyboard(this);
-    //this->createDb();
-
     this->isTypingStarted = false;
     this->settings = new QSettings("MySoft", "Star Runner");
     this->showWindow = settings->value("showWindow").toBool();
@@ -46,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     virtualKeybord->setKeyboardCharacters(virtualKeybord->getMapDefaultPair());
     this->inputMethod = QGuiApplication::inputMethod();
     this->populateComboBoxesFromJsonFile();
+    this->typingTest = new TypingTestingPage(ui->testingTextEdit_tg, this, ui->typingTestComboBox);
     this->signalAndSlots();
     this->currentLocaleLanguage = this->determineLocale(jsonParser->getCurrentCourseName());
     this->showStartWindow(showWindow);
@@ -56,7 +53,10 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete db;
-    delete tableOutPut;
+    delete treningTableOutPut;
+    delete testingTableOutPut;
+    delete typingSpeedCalculator;
+    delete typingTest;
 }
 void MainWindow::keyReleaseEvent(QKeyEvent *event){
     if (event->key() == Qt::Key_Shift ) {
@@ -74,7 +74,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if(ui->widget_2->isVisible()){
         processing_keyPressEvent(event,ui->keyFieldInside_2);
     }else{
-        typingTesting->keyEvent(event);
+        emit this->passingToTrening(event);
     }
 }
 
@@ -118,7 +118,7 @@ void MainWindow::removeLetterFromLabel() {
     if (!isTypingStarted) {
         startTime = QTime::currentTime();
         connect(this->timer, &QTimer::timeout, this, [=](){
-            set_typingSpeed(this->calculationTypingSpeed(this->startTime, this->correctElements));
+            set_typingSpeed(this->typingSpeedCalculator->calculationTypingSpeed(this->startTime, this->correctElements));
             ui->sign_per_minute_counter->setText(QString::number(get_typingSpeed()));
             });
         this->timer->start(2000);
@@ -139,6 +139,8 @@ void MainWindow::removeLetterFromLabel() {
 }
 void MainWindow::resultWindowForTrening(int errorCounter) {
     resultwindow *resultWindow = new resultwindow(this);
+    connect(resultWindow, &resultwindow::nextSignal, this, &MainWindow::moveOnNextExercise);
+    connect(resultWindow, &resultwindow::againSignal, this, &MainWindow::restart);
     resultWindow->setCounterTypingSpeed(get_typingSpeed());
     resultWindow->setErrorCounter(errorCounter);
     resultWindow->exec();
@@ -151,7 +153,6 @@ int MainWindow::calculationTypingSpeed(QTime& startTime, int correctElements)
     QTime currentTime = QTime::currentTime();
     int timeElapsed = startTime.msecsTo(currentTime);
     double minutesElapsed = timeElapsed / 60000.0;
-
     unsigned int typingSpeed = correctElements / minutesElapsed;
     qDebug()<<"typingSpeed"<< typingSpeed;
     return typingSpeed;
@@ -189,7 +190,6 @@ void MainWindow::showStartWindow(bool showWindow) //QShowEvent *event
         startWindow->setWindowModality(Qt::ApplicationModal);
         ui->pushButton_reset->setFocusPolicy(Qt::NoFocus);
         startWindow->show();
-        startWindow->deleteLater();
     }
 }
 
@@ -223,16 +223,8 @@ QLocale MainWindow::determineLocale(const QString &language)
 
 
 
-QString MainWindow::selectingFirstWordFromLine(const QString& str, int courseIndex){
-    int spaceIndex = str.indexOf(" ");
-    if(str.left(spaceIndex) != str.mid(spaceIndex + 1,spaceIndex) && courseIndex == 1){
-        return "Repetition";
-    }
-    if (spaceIndex != -1) {
-        QString extractedString = str.left(spaceIndex);
-        return extractedString;
-    }
-    return "";
+QString MainWindow::selectingFirstWordFromLine(const QString& str){
+    return str.section(' ', 0, 0);
 }
 
 void MainWindow::populateComboBoxesFromJsonFile(){
@@ -279,7 +271,7 @@ void MainWindow::fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercise
     comboBox->clear();
     comboBox->blockSignals(false);
     for(const QJsonValue &exercisesValue : exercisesArray) {
-        QString exerciseName = selectingFirstWordFromLine(exercisesValue.toString(), 1);
+        QString exerciseName = selectingFirstWordFromLine(exercisesValue.toString());
         comboBox->addItem(exerciseName);
     }
 }
@@ -292,44 +284,57 @@ void MainWindow::setCurrentIndexInComboBox(int courseIndex, int lessonsIndex, in
 
 void MainWindow::signalAndSlots()
 {
-    connect(ui->pushButton_reset,SIGNAL(clicked()),this,SLOT(restart()));
-    connect(ui->RestartButton_ts,&QPushButton::clicked,this,&MainWindow::restart);
+    connect(ui->pushButton_reset,&QPushButton::clicked, this, &MainWindow::restart);
+    connect(ui->RestartButton_ts, &QPushButton::clicked, typingTest, &TypingTestingPage::setMainText);
 
     connect(ui->coursesButton, &QPushButton::clicked, this, [this]() {
         ui->widget_whis_settings->setVisible(!ui->widget_whis_settings->isVisible());
     });
+
+
     connect(ui->stackedWidget, QOverload<int>::of(&QStackedWidget::currentChanged), this, [this](int index){
         bool state = index == 1;
         ui->comboBox_Course->setEnabled(!state);
         ui->comboBox_Lessons->setEnabled(!state);
         ui->comboBox_Exercises->setEnabled(!state);
         ui->on_or_offVirtKeybordButton->setEnabled(!state);
-        if(state) emit typingTestSet();
+       // if(state) emit typingTestSet();
     });
+
     connect(ui->on_or_offVirtKeybordButton, &QCheckBox::toggled, this, [this]() {
         ui->widget_whis_keybord->setVisible(!ui->widget_whis_keybord->isVisible());
     });
+
     connect(ui->simulatorsButton, &QPushButton::clicked, this, [this]() {
         ui->stackedWidget->setCurrentIndex(0);
     });
+
     connect(ui->testingButton, &QPushButton::clicked, this, [this]()
     {
-        TypingTestingPage* typingTest = new TypingTestingPage(ui->testingTextEdit_tg, this, ui->testingTableWidget, ui->typingTestComboBox);
+        ui->stackedWidget->setCurrentIndex(1); 
         typingTest->fillLanguageComboBox(ui->typingTestComboBox, typingTest->getLyricsArray());
         typingTest->setMainText();
-        ui->stackedWidget->setCurrentIndex(1);
         connect(ui->typingTestComboBox, &QComboBox::currentIndexChanged, typingTest, &TypingTestingPage::changeLanguage);
         connect(typingTest, &TypingTestingPage::setAcyracyCounter, ui->procentLabel, &QLabel::setText);
         connect(typingTest, &TypingTestingPage::setSpeedCounter, ui->speedCounterLabel_tg, &QLabel::setText);
+        connect(this, &MainWindow::passingToTrening, typingTest, &TypingTestingPage::keyEvent);
     });
+
     connect(ui->resultsButton,&QPushButton::clicked,this,[this](){
-        this->tableOutPut->setTable(this->db->getQuery());
         ui->stackedWidget->setCurrentIndex(3);
-        });
+        this->treningTableOutPut->setTable(this->db->getQuery());
+        this->testingTableOutPut->setTable(this->typingTest->getQuery());
+        ui->table_trening_verticalLayout->removeWidget(this->treningTableOutPut);
+        ui->table_trening_verticalLayout->addWidget(this->treningTableOutPut);
+        ui->verticalLayout_10->removeWidget(this->testingTableOutPut);
+        ui->verticalLayout_10->addWidget(this->testingTableOutPut);
+    });
+
     connect(ui->checkBox, &QCheckBox::toggled, this, [this](bool checked) {
         settings->setValue("showWindow", checked);
         qDebug()<< checked;
     });
+
     connect(ui->comboBox_Course, QOverload<int>::of(&QComboBox::currentIndexChanged), this,[this](int index){
         jsonParser->setCourseIndex(index);
         jsonParser->setLessonsArray(index);
@@ -338,11 +343,13 @@ void MainWindow::signalAndSlots()
         this->fillLessonsComboBox(ui->comboBox_Lessons, jsonParser->lessonsArray);
 
     });
+
     connect(ui->comboBox_Lessons, QOverload<int>::of(&QComboBox::currentIndexChanged), this,[this](int index){
         jsonParser->setLessonIndex(index);
         jsonParser->setExercisesArray(index);
         this->fillExercisesComboBox(ui->comboBox_Exercises, jsonParser->exercisesArray);
     });
+
     //connect(ui->typingTestComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), typingTesting, &blindTypingTest::languageChange);
     connect(ui->comboBox_Exercises, QOverload<int>::of(&QComboBox::currentIndexChanged), jsonParser, &JsonConfigParser::setExerciseIndex);
     connect(ui->comboBox_Exercises, &QComboBox::currentIndexChanged, this, &MainWindow::restart);

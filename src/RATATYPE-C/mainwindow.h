@@ -28,13 +28,14 @@
 #include <iterator>
 #include "resultwindow.h"
 #include "startwindow.h"
-#include "blindtypingtest.h"
 #include "startwindow.h"
 #include "jsonconfigparser.h"
 #include "virtual_keyboard.h"
 #include "IDBManager.h"
 #include "DBTreningQuery.h"
 #include "tableoutput.h"
+#include "ITypingSpeedCalculator.h"
+#include "TypingSpeedCalculator.h"
 #include "typingtestingpage.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -46,26 +47,27 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
 public slots:
     void restart();
     void moveOnNextExercise();
 
 public:
     Ui::MainWindow *ui;
-    blindTypingTest* typingTesting = new blindTypingTest(this);
-
     void setTypingTestText(const QString& text){
         ui->testingTextEdit_tg->setPlainText(text);
     }
+    TypingTestingPage* typingTest;
     QInputMethod* inputMethod;
     int calculationTypingSpeed(QTime &startTime, int correctElements);
     JsonConfigParser* jsonParser = new JsonConfigParser(this);
 protected:
    void showStartWindow(bool showWindow);
 private:
-    TableOutPut* tableOutPut = new TableOutPut(ui->treningTableWidget);
-    IDBManager* db = new DBTreningQuery("typing_result", "treningResult");
-
+    TableOutPut* treningTableOutPut = new TableOutPut();
+    TableOutPut* testingTableOutPut = new TableOutPut();
+    IDBManager* db = new DBTreningQuery("typing_result", "trening");
+    ITypingSpeedCalculator* typingSpeedCalculator = new TypingSpeedCalculator();
     Virtual_Keyboard* virtualKeybord;
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
@@ -112,7 +114,7 @@ public:
     void changeButtonStyle(QPushButton *button,QString);
     void changeColorTextInSelectButton(const QString& str, bool set_or_remove);
     QSettings copysettins;
-    QString selectingFirstWordFromLine(const QString &str, int courseIndex);
+    QString selectingFirstWordFromLine(const QString &str);
     void populateComboBoxesFromJsonFile();
     inline void blockSignalsComboBoxes(bool state);
     inline void fillCourseComboBox(QComboBox *comboBox, QJsonArray& coursesArray);
@@ -122,6 +124,7 @@ public:
     QSet<QChar> *extractUniqueLetters(QString text);
     QLocale determineLocale(const QString &language);
 private:
+
     void signalAndSlots();
     void removeLetterFromLabel();
     void keyEventForTesting(QKeyEvent *event);
@@ -143,7 +146,7 @@ private:
     inline void setQueryTyping(const QString& queryName);
     inline void setQueryTesting(const QString& queryName);
 signals:
-    typingTestSet();
+    void passingToTrening(QKeyEvent* event);
 };
 
 #endif // MAINWINDOW_H

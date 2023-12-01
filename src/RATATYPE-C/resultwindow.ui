@@ -123,7 +123,6 @@ background-color: rgb(234, 216, 24);</string>
     </layout>
    </widget>
   </widget>
-
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
@@ -170,7 +169,7 @@ background-color: rgb(234, 216, 24);</string>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>

@@ -21,12 +21,12 @@ public:
     }
     void setQuery(const QString& queryName) override
     {
-        QSqlQuery testingResultQuery;
+        QSqlQuery testingResultQuery(QSqlDatabase::database(_queryName + "_connection"));
         testingResultQuery.exec("CREATE TABLE IF NOT EXISTS " + queryName + " ("
                                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                                "typing_speed INTEGER,"
-                                "accuracy INTEGER,"
-                                "datetime TEXT)");
+                                "\"Typing Speed\" INTEGER,"
+                                "\"Accuracy\" INTEGER,"
+                                "\"Date Time\" TEXT)");
         if (!testingResultQuery.isActive()) qDebug() << "Error: Could not create table " << _queryName + ".";
     }
 
@@ -34,12 +34,12 @@ public:
     {
         if(_database.open())
         {
-            QSqlQuery query;
-            query.prepare("INSERT INTO " + _queryName + " (typing_speed, accuracy, datetime) "
+            QSqlQuery query(QSqlDatabase::database(_queryName + "_connection"));
+            query.prepare("INSERT INTO " + _queryName + " (\"Typing Speed\", \"Accuracy\", \"Date Time\") "
                           "VALUES (:typing_speed, :accuracy, :datetime)");
             query.bindValue(":typing_speed", result[0].toInt());
             query.bindValue(":accuracy", result[1].toInt());
-            query.bindValue(":datetime", QDateTime::currentDateTime().toString(Qt::ISODate));;
+            query.bindValue(":datetime", QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss"));
             if (query.exec()) {
                 qDebug() << "Data inserted successfully!";
             } else {
@@ -52,7 +52,8 @@ public:
     {
         QList<QVariantMap> results;
 
-        QSqlQuery query("SELECT * FROM " + _queryName);
+        QSqlQuery query(QSqlDatabase::database(_queryName + "_connection"));
+        query.exec("SELECT * FROM " + _queryName);
         while (query.next()) {
             QVariantMap result;
             result["typing_speed"] = query.value("typing_speed").toInt();
@@ -67,7 +68,8 @@ public:
 
     QSqlQuery getQuery() const override
     {
-        QSqlQuery query = QSqlQuery("SELECT * FROM " + _queryName);
+        QSqlQuery query = QSqlQuery(QSqlDatabase::database(_queryName + "_connection"));
+        query.exec("SELECT * FROM " + _queryName);
         return query;
     }
 };

@@ -8,6 +8,7 @@ public:
     virtual ~IColorizeCharacter() = default;
     virtual void colorizeCorrectCharacter(QTextCursor& cursor, QColor color) = 0;
     virtual void colorizeIncorrectCharacter(QTextCursor& cursor, QColor color) = 0;
+    virtual void setIsFirstSymbol(bool state) = 0;
     virtual void setPos(int newPos) = 0;
 };
 

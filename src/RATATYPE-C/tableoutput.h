@@ -6,13 +6,14 @@
 #include <QWidget>
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include <QSqlError>
 class TableOutPut : public QTableWidget
 {
 public:
-    TableOutPut(QTableWidget *tableWidget, QWidget *parent = nullptr);
+    TableOutPut(QWidget *parent = nullptr);
     void setTable(QSqlQuery query);
 private:
-    QTableWidget* _tableWidget;
+   // QTableWidget* _tableWidget;
 };
 
 #endif // TABLEOUTPUT_H

@@ -1,6 +1,9 @@
 #ifndef CHARACTERCOLORIST_H
 #define CHARACTERCOLORIST_H
 #include "IColorizeCharacter.h"
+#include <QBrush>
+#include <QColor>
+#include <QTextCursor>
 class CharacterColorist : public IColorizeCharacter
 {
 public:
@@ -8,11 +11,10 @@ public:
 
     void colorizeCorrectCharacter(QTextCursor &cursor, QColor color) override
     {
-        if(this->isFirstSenbool){
+        if(this->isFirstSymbol){
             cursor.setPosition(this->Pos);
-            this->isFirstSenbool = false;
+            this->isFirstSymbol = false;
         } else {
-
             this->format.setBackground(QBrush(QColor(255, 255, 255)));
             this->format.setForeground(QBrush(QColor(0, 255, 0)));
             cursor.setCharFormat(this->format);
@@ -23,13 +25,18 @@ public:
         selectedText = cursor.selectedText();
         if (!selectedText.isEmpty())
         {
-            this->colorizeCorrectCharacter(cursor, color);
+            this->colorizeCurrentCharacter(cursor, color);
         }
     }
 
-    void colorizeIncorrectCharacter(QTextCursor &cursor, QColor color) override
+    void colorizeIncorrectCharacter(QTextCursor& cursor, QColor color) override
     {
-        this->colorizeCorrectCharacter(cursor, color);
+        this->colorizeCurrentCharacter(cursor, color);
+    }
+
+    void setIsFirstSymbol(bool state) override
+    {
+       this->isFirstSymbol = state;
     }
 
     void setPos(int newPos)  override
@@ -37,15 +44,15 @@ public:
         this->Pos = newPos;
     }
 private:
-    bool isFirstSenbool = true;
+    bool isFirstSymbol = true;
     QTextCharFormat format;
     QString selectedText;
     int Pos = 0;
-    void colorizeCurrentCharacter(QTextCursor &cursor, QColor color)
+    void colorizeCurrentCharacter(QTextCursor& cursor, QColor color)
     {
         this->format.setBackground(QBrush(color));
         this->format.setForeground(QBrush(QColor(255, 255, 255)));
-        cursor.setCharFormat(format);
+        cursor.setCharFormat(this->format);
     }
 };
 

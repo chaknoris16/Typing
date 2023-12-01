@@ -8,13 +8,16 @@
 #include "IDBManager.h"
 #include "DBTestingQuery.h"
 #include "tableoutput.h"
-#include "mainwindow.h"
+
 #include "jsonconfigparser.h"
 #include "IJsonTextParser.h"
 #include "RandomElementPicker.h"
 #include "IRandomTextProvider.h"
 #include "IColorizeCharacter.h"
 #include "CharacterColorist.h"
+#include "ITypingSpeedCalculator.h"
+#include "TypingSpeedCalculator.h"
+#include <QTimer>
 #include <QSettings>
 #include <QString>
 #include <QComboBox>
@@ -22,32 +25,45 @@ class TypingTestingPage : public QObject
 {
     Q_OBJECT
 public:
-    explicit TypingTestingPage(QTextEdit* textEdit = nullptr, QObject *parent = nullptr, QTableWidget* tableWidget = nullptr, QComboBox* comboBox = nullptr);
+    TypingTestingPage();
+    TypingTestingPage(QTextEdit* textEdit = nullptr, QObject *parent = nullptr, QComboBox* comboBox = nullptr);
     ~TypingTestingPage();
     QString getMainText();
     void fillLanguageComboBox(QComboBox* comboBox, const QJsonArray &lessonArray);
-    void setMainText();
+
     const QJsonArray getLyricsArray() const
     {
        return textParser->getLuricsArray();
     }
+    QSqlQuery getQuery();
 signals:
     void setAcyracyCounter(const QString& procentCount);
     void setSpeedCounter(const QString& typingSpeedCount);
 public slots:
     void changeLanguage(int languageIndex);
+    void keyEvent(QKeyEvent *event);
+    void setMainText();
 private:
     QString mainText;
     QTextEdit* _textEdit;
-    QTableWidget* _outPutTable;
     QComboBox* _comboBox;
     IDBManager* db = new DBTestingQuery("typing_result", "testingResult");
-    TableOutPut* table = new TableOutPut(_outPutTable);
+    int correctElements = 0;
+    int errorCounter = 0;
+    TableOutPut* table = new TableOutPut();
     IJsonTextParser* textParser = new JsonTextParser("lyrics.json");
     IRandomTextProvider* randomText = new RandomElementPicker(textParser->getTextsArray());
     IColorizeCharacter* characterColorist = new CharacterColorist();
+    ITypingSpeedCalculator* typingSpeedCalculator = new TypingSpeedCalculator();
     QSettings* settings;
-    //QTextCursor* textCursor = new QTextCursor(textEdit->textCursor());
+    inline int accuracyСalculation(int errorCounter, const QString &text);
+    void validCharacterHandler(const QString& textForTyping);
+    QTime startTime;
+    QTimer* timer = new QTimer(this);
+    QTextCursor cursor = _textEdit->textCursor();
+    void callResultWindow();
+    int typingSpeed = 0;
+    int accuracy = 100;
 };
 
 #endif // TYPINGTESTINGPAGE_H

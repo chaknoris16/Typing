@@ -1,6 +1,7 @@
 #ifndef RANDOMELEMENTPICKER_H
 #define RANDOMELEMENTPICKER_H
 #include <QJsonArray>
+#include <QRandomGenerator>
 #include "IRandomTextProvider.h"
 class RandomElementPicker :public IRandomTextProvider
 {

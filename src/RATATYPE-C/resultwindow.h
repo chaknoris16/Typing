@@ -3,18 +3,14 @@
 
 #include "mainwindow.h"
 #include <QDialog>
-class MainWindow;
-namespace Ui {
-class resultwindow;
-}
+namespace Ui {class resultwindow;}
 
 class resultwindow : public QDialog
 {
     Q_OBJECT
- Ui::resultwindow *ui;
+    Ui::resultwindow *ui;
 public:
-    MainWindow* mainWindow;
-    explicit resultwindow(MainWindow *mainWindow , QWidget *parent = nullptr);
+    explicit resultwindow(QWidget *parent = nullptr);
     void setCounterTypingSpeed(int typingSpeed);
     void setErrorCounter(int errorsCounter);
     void setAccyracyСounter(int accyracy);
@@ -30,6 +26,9 @@ private:
     int minSpeed = 60;
     int maxNumberErrors = 2;
     void connectSignalsAndSlots();
+signals:
+    void againSignal();
+    void nextSignal();
 
 };
 

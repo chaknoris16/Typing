@@ -27,9 +27,9 @@ public:
     QString connectionName = "MyConnection";
 private:
     QString _DBName;
-    QSqlDatabase createDB(const QString& DbName) //, const QString& connectionName
+    QSqlDatabase createDB(const QString& DbName)
     {
-        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");  // , connectionName
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", _queryName + "_connection");  // , connectionName
         db.setDatabaseName(DbName);
         return db;
     }

@@ -3,11 +3,9 @@
 #include "mainwindow.h"
 
 #include "vector_of_exercises.h"
-class MainWindow;
-resultwindow::resultwindow(MainWindow *mainWindow, QWidget *parent ) :
+resultwindow::resultwindow(QWidget *parent ) :
     QDialog(parent),
-    ui(new Ui::resultwindow),
-    mainWindow(mainWindow)
+    ui(new Ui::resultwindow)
 {
     ui->setupUi(this);
     setWindowFlags(windowFlags() & ~Qt::WindowCloseButtonHint);
@@ -47,11 +45,12 @@ void resultwindow::setAccyracyСounter(int accyracy)
 void resultwindow::connectSignalsAndSlots()
 {
     connect(ui->againButton, &QPushButton::clicked, this, [=](){
-        mainWindow->restart();
+        emit this->againSignal();
         this->close();
     });
+
     connect(ui->nextLevelButton, &QPushButton::clicked, this, [=](){
-        mainWindow->moveOnNextExercise();
+        emit this->nextSignal();
         this->close();
     });
 }

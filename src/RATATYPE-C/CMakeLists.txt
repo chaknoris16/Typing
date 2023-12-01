@@ -16,8 +16,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Sql)
 
 set(PROJECT_SOURCES
-    blindtypingtest.cpp
-    blindtypingtest.h
     main.cpp
     mainwindow.cpp
     mainwindow.h
@@ -29,7 +27,6 @@ set(PROJECT_SOURCES
     startwindow.cpp
     startwindow.h
     startwindow.ui
-    text_for_print_json.h  text_for_print_json.cpp
     typingtestingpage.h typingtestingpage.cpp
     vector_of_exercises.h  vector_of_exercises.cpp
     virtual_keyboard.h virtual_keyboard.cpp
@@ -43,7 +40,8 @@ set(PROJECT_SOURCES
     IRandomTextProvider.h
     IColorizeCharacter.h
     CharacterColorist.h
-
+    ITypingSpeedCalculator.h
+    TypingSpeedCalculator.h
 )
 
 if(BUILD_TEST_LIBRARY)
