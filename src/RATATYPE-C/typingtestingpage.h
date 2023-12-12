@@ -17,6 +17,7 @@
 #include "CharacterColorist.h"
 #include "ITypingSpeedCalculator.h"
 #include "TypingSpeedCalculator.h"
+#include "keyboardlayoutlanguagecontroller.h"
 #include <QTimer>
 #include <QSettings>
 #include <QString>
@@ -44,12 +45,12 @@ public slots:
     void keyEvent(QKeyEvent *event);
     void setMainText();
 private:
+    QLocale defLocale;
     QString mainText;
     QTextEdit* _textEdit;
     QComboBox* _comboBox;
+    KeyboardLayoutLanguageController* keyboardLayoutController = new KeyboardLayoutLanguageController(_textEdit);
     IDBManager* db = new DBTestingQuery("typing_result", "testingResult");
-    int correctElements = 0;
-    int errorCounter = 0;
     TableOutPut* table = new TableOutPut();
     IJsonTextParser* textParser = new JsonTextParser("lyrics.json");
     IRandomTextProvider* randomText = new RandomElementPicker(textParser->getTextsArray());
@@ -64,6 +65,9 @@ private:
     void callResultWindow();
     int typingSpeed = 0;
     int accuracy = 100;
+    int correctElements = 0;
+    int errorCounter = 0;
+    void counterReset();
 };
 
 #endif // TYPINGTESTINGPAGE_H

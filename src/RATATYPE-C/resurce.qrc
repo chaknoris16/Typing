@@ -14,4 +14,8 @@
         <file>img/imageFrame.jpg</file>
         <file>img/imageFrame.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>../../../build-Typing-Desktop_Qt_6_6_0_MinGW_64_bit-Release/src/RATATYPE-C/msgStyle.css</file>
+        <file>msgStyle.css</file>
+    </qresource>
 </RCC>

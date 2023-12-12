@@ -21,12 +21,20 @@
 #include <QShortcut>
 #include <QSqlError>
 #include "jsonconfigparser.h"
+#include <QInputMethod>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->keyboardLangControl = new KeyboardLayoutLanguageController(ui->keyFieldInside_2);
+    this->comboBox_Course = new QComboBox(this);
+    this->comboBox_Lessons = new CustomComboBox(this);
+    this->comboBox_Exercises = new CustomComboBox(this);
+    this->addStyledComboBox(ui->verticalLayout_Course, this->comboBox_Course);
+    this->addStyledComboBox(ui->verticalLayout_Lesson, this->comboBox_Lessons);
+    this->addStyledComboBox(ui->verticalLayout_Exercise, this->comboBox_Exercises);
     ui->pushButton_reset->setFocusPolicy(Qt::NoFocus);
     ui->widget_whis_settings->setVisible(false);
     virtualKeybord = new Virtual_Keyboard(this);
@@ -34,19 +42,17 @@ MainWindow::MainWindow(QWidget *parent)
     this->settings = new QSettings("MySoft", "Star Runner");
     this->showWindow = settings->value("showWindow").toBool();
     ui->checkBox->setChecked(showWindow);
-    virtualKeybord = new Virtual_Keyboard(this);
     this->mainText = jsonParser->getCurrentMainText();
     ui->keyFieldInside_2->setText(this->mainText);
+    this->keyboardLangControl->determineLocale(jsonParser->getCurrentCourseName());
     virtualKeybord->changeBorderButton(jsonParser->getCurrentMainText().at(0), whiteBorderForButton);
     virtualKeybord->changeButtonColorByText(extractUniqueLetters(jsonParser->getCurrentMainText()), Qt::black);
     virtualKeybord->setKeyboardCharacters(virtualKeybord->getMapDefaultPair());
-    this->inputMethod = QGuiApplication::inputMethod();
     this->populateComboBoxesFromJsonFile();
     this->typingTest = new TypingTestingPage(ui->testingTextEdit_tg, this, ui->typingTestComboBox);
     this->signalAndSlots();
-    this->currentLocaleLanguage = this->determineLocale(jsonParser->getCurrentCourseName());
+    this->currentLocaleLanguage = this->keyboardLangControl->determineLocale(jsonParser->getCurrentCourseName());
     this->showStartWindow(showWindow);
-
 }
 
 MainWindow::~MainWindow()
@@ -80,7 +86,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::processing_keyPressEvent(QKeyEvent *event, QLabel *textlabel){
     if (!event->text().isEmpty()){
-        if(inputMethod->locale() == this->currentLocaleLanguage){
+        if(this->keyboardLangControl->checkLanguageMatch(this->currentLocaleLanguage)){
             labelText = textlabel->text();
             if (!labelText.isEmpty()) {
                 firstChar = labelText.at(0);
@@ -91,7 +97,7 @@ void MainWindow::processing_keyPressEvent(QKeyEvent *event, QLabel *textlabel){
                    this->removeLetterFromLabel();
                 } else if(event->text().at(0).isLetterOrNumber())this->processingIncorrectLetter(event->text().at(0), 100);
             } else qDebug() << "labelText is empty" ;
-        }else this->setIncorectKeyboardLauoutMessage(this->currentLocaleLanguage);
+        }else this->keyboardLangControl->setIncorectKeyboardLauoutMessage(this->currentLocaleLanguage);
     }
 }
 
@@ -114,7 +120,8 @@ void MainWindow::processingIncorrectLetter(const QString& str, int flashDuration
 }
 
 
-void MainWindow::removeLetterFromLabel() {
+void MainWindow::removeLetterFromLabel()
+{
     if (!isTypingStarted) {
         startTime = QTime::currentTime();
         connect(this->timer, &QTimer::timeout, this, [=](){
@@ -130,13 +137,13 @@ void MainWindow::removeLetterFromLabel() {
     if (ui->keyFieldInside_2->text().isEmpty()) {
         this->timer->stop();
         QVariantList result;
-        result << ui->comboBox_Exercises->currentText() << this->get_typingSpeed() << this->get_errorCounter();
+        result << this->comboBox_Exercises->currentText() << this->get_typingSpeed() << this->get_errorCounter();
         this->db->saveResult(result);
         this->resultWindowForTrening(get_errorCounter());
         qDebug()<<"Label is empty";
     }
-
 }
+
 void MainWindow::resultWindowForTrening(int errorCounter) {
     resultwindow *resultWindow = new resultwindow(this);
     connect(resultWindow, &resultwindow::nextSignal, this, &MainWindow::moveOnNextExercise);
@@ -145,8 +152,6 @@ void MainWindow::resultWindowForTrening(int errorCounter) {
     resultWindow->setErrorCounter(errorCounter);
     resultWindow->exec();
 }
-
-
 
 int MainWindow::calculationTypingSpeed(QTime& startTime, int correctElements)
 {
@@ -157,6 +162,7 @@ int MainWindow::calculationTypingSpeed(QTime& startTime, int correctElements)
     qDebug()<<"typingSpeed"<< typingSpeed;
     return typingSpeed;
 }
+
 void MainWindow::restart()
 {
     qDebug()<<"restart - is start";
@@ -164,26 +170,29 @@ void MainWindow::restart()
     virtualKeybord->deleteBorderButton(whiteBorderForButton);
     this->mainText = jsonParser->getCurrentMainText();
     ui->keyFieldInside_2->setText(this->mainText);
-    this->setCurrentIndexInComboBox(jsonParser->getCurrentCourseIndex(),jsonParser->getCurrentLessonIndex(),jsonParser->getCurrentExercisIndex(),ui->comboBox_Course,ui->comboBox_Lessons,ui->comboBox_Exercises);
+    this->setCurrentIndexInComboBox(jsonParser->getCurrentCourseIndex(),jsonParser->getCurrentLessonIndex(),jsonParser->getCurrentExercisIndex(),this->comboBox_Course, this->comboBox_Lessons, this->comboBox_Exercises);
     this->resetCounters();
     this->resetLabelValues();
     isTypingStarted = false;
-    this->currentLocaleLanguage = this->determineLocale(jsonParser->getCurrentCourseName());
+    this->currentLocaleLanguage = this->keyboardLangControl->determineLocale(jsonParser->getCurrentCourseName());
     virtualKeybord->setMapKeyboardLauout(jsonParser->getCurrentKeyboardLayout().keyboardSymbols, jsonParser->getCurrentKeyboardLayout().shiftKeyboardSymbols);
     virtualKeybord->changeBorderButton(this->mainText.at(0), whiteBorderForButton);
     virtualKeybord->changeButtonColorByText(this->extractUniqueLetters(this->mainText), Qt::black);
 }
+
 inline void MainWindow::resetCounters()
 {
     this->set_errorCounter(0);
     this->set_typingSpeed(0);
     correctElements = 0;
 }
+
 inline void MainWindow::resetLabelValues()
 {
     ui->sign_per_minute_counter->setText("0");
     ui->errorCounterLabel->setText("0");
 }
+
 void MainWindow::showStartWindow(bool showWindow) //QShowEvent *event
 {   if(showWindow){
         startwindow* startWindow = new startwindow(this);
@@ -192,6 +201,20 @@ void MainWindow::showStartWindow(bool showWindow) //QShowEvent *event
         startWindow->show();
     }
 }
+
+void MainWindow::addStyledComboBox(QVBoxLayout *layout, QComboBox *comboBox)
+{
+    comboBox->setStyleSheet("QComboBox {"
+                                   " background-color: rgb(40, 163, 232);"
+                                   " color: rgb(0, 0, 0); "
+                                   " border-radius: 5px;"
+                                   "}");
+
+    comboBox->setFocusPolicy(Qt::NoFocus);
+
+    layout->addWidget(comboBox);
+}
+
 
 void MainWindow::moveOnNextExercise(){
     jsonParser->moveToNextExercise(jsonParser->exercisesArray, jsonParser->getCurrentExercisIndex(), jsonParser->getCurrentLessonIndex());
@@ -229,21 +252,27 @@ QString MainWindow::selectingFirstWordFromLine(const QString& str){
 
 void MainWindow::populateComboBoxesFromJsonFile(){
     this->blockSignalsComboBoxes(true);
-        this->fillCourseComboBox(ui->comboBox_Course, jsonParser->coursesArray);
+        this->comboBoxManager->fillCourseComboBox(this->comboBox_Course, jsonParser->coursesArray);
         //Courses
-        this->fillLessonsComboBox(ui->comboBox_Lessons, jsonParser->lessonsArray);
+        this->comboBoxManager->fillLessonsComboBox(comboBox_Lessons, jsonParser->lessonsArray, jsonParser->getMaxLessonIndex());
         //Lessons
-        this->fillExercisesComboBox(ui->comboBox_Exercises, jsonParser->exercisesArray);
-        this->setCurrentIndexInComboBox(jsonParser->getCurrentCourseIndex(), jsonParser->getCurrentLessonIndex(), jsonParser->getCurrentExercisIndex(), ui->comboBox_Course, ui->comboBox_Lessons, ui->comboBox_Exercises);
+        this->comboBoxManager->fillExercisesComboBox(this->comboBox_Exercises, jsonParser->exercisesArray, jsonParser->getMaxExerciseIndex());
+        this->setCurrentIndexInComboBox(jsonParser->getCurrentCourseIndex(), jsonParser->getCurrentLessonIndex(), jsonParser->getCurrentExercisIndex(), this->comboBox_Course, this->comboBox_Lessons, this->comboBox_Exercises);
     this->blockSignalsComboBoxes(false);
+        qDebug()<< "CurrentCourseIndex" << jsonParser->getCurrentCourseIndex();
+        qDebug() << "CurrentLessonIndex" << jsonParser->getCurrentLessonIndex();
+        qDebug() << "CurrentExercisIndex" << jsonParser->getCurrentExercisIndex();
+        qDebug() << "MaxLessonIndex" << jsonParser->getMaxLessonIndex();
+        qDebug() << "MaxExerciseIndex" << jsonParser->getMaxExerciseIndex();
 }
+
 inline void MainWindow::blockSignalsComboBoxes(bool state)
 {
-    ui->comboBox_Course->blockSignals(state);
-    ui->comboBox_Lessons->blockSignals(state);
-    ui->comboBox_Exercises->blockSignals(state);
+    this->comboBox_Course->blockSignals(state);
+    this->comboBox_Lessons->blockSignals(state);
+    this->comboBox_Exercises->blockSignals(state);
 }
-inline void MainWindow::fillCourseComboBox(QComboBox* comboBox, QJsonArray &coursesArray)
+inline void MainWindow::fillCourseComboBox_M(QComboBox* comboBox, QJsonArray &coursesArray)
 {
     for (const QJsonValue &courseValue : coursesArray) {
         QJsonObject courseObject = courseValue.toObject();
@@ -251,8 +280,8 @@ inline void MainWindow::fillCourseComboBox(QComboBox* comboBox, QJsonArray &cour
         comboBox->addItem(courseName);
     }
 }
-template <typename T>
-void MainWindow::fillLessonsComboBox(QComboBox *comboBox, const T &lessonsArray)
+
+void MainWindow::fillLessonsComboBox_M(QComboBox *comboBox, const QJsonArray& lessonsArray)
 {
     comboBox->blockSignals(true);
     comboBox->clear();
@@ -262,10 +291,9 @@ void MainWindow::fillLessonsComboBox(QComboBox *comboBox, const T &lessonsArray)
         QString lessonName = lessonObject["name"].toString();
         comboBox->addItem(lessonName);
     }
-
 }
 
-void MainWindow::fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercisesArray)
+void MainWindow::fillExercisesComboBox_M(QComboBox *comboBox, QJsonArray &exercisesArray)
 {
     comboBox->blockSignals(true);
     comboBox->clear();
@@ -286,7 +314,6 @@ void MainWindow::signalAndSlots()
 {
     connect(ui->pushButton_reset,&QPushButton::clicked, this, &MainWindow::restart);
     connect(ui->RestartButton_ts, &QPushButton::clicked, typingTest, &TypingTestingPage::setMainText);
-
     connect(ui->coursesButton, &QPushButton::clicked, this, [this]() {
         ui->widget_whis_settings->setVisible(!ui->widget_whis_settings->isVisible());
     });
@@ -294,11 +321,10 @@ void MainWindow::signalAndSlots()
 
     connect(ui->stackedWidget, QOverload<int>::of(&QStackedWidget::currentChanged), this, [this](int index){
         bool state = index == 1;
-        ui->comboBox_Course->setEnabled(!state);
-        ui->comboBox_Lessons->setEnabled(!state);
-        ui->comboBox_Exercises->setEnabled(!state);
+        this->comboBox_Course->setEnabled(!state);
+        this->comboBox_Lessons->setEnabled(!state);
+        this->comboBox_Exercises->setEnabled(!state);
         ui->on_or_offVirtKeybordButton->setEnabled(!state);
-       // if(state) emit typingTestSet();
     });
 
     connect(ui->on_or_offVirtKeybordButton, &QCheckBox::toggled, this, [this]() {
@@ -335,23 +361,63 @@ void MainWindow::signalAndSlots()
         qDebug()<< checked;
     });
 
-    connect(ui->comboBox_Course, QOverload<int>::of(&QComboBox::currentIndexChanged), this,[this](int index){
+    connect(this->comboBox_Course, QOverload<int>::of(&QComboBox::currentIndexChanged), this,[this](int index){
+        jsonParser->saveMaxIndexes();
         jsonParser->setCourseIndex(index);
         jsonParser->setLessonsArray(index);
-
-        qDebug()<<jsonParser->getCurrentKeyboardLayout().keyboardSymbols;
-        this->fillLessonsComboBox(ui->comboBox_Lessons, jsonParser->lessonsArray);
+        jsonParser->resetMaxCounters();
+        this->comboBoxManager->fillLessonsComboBox(this->comboBox_Lessons, jsonParser->lessonsArray, jsonParser->getMaxLessonIndex());
 
     });
 
-    connect(ui->comboBox_Lessons, QOverload<int>::of(&QComboBox::currentIndexChanged), this,[this](int index){
-        jsonParser->setLessonIndex(index);
-        jsonParser->setExercisesArray(index);
-        this->fillExercisesComboBox(ui->comboBox_Exercises, jsonParser->exercisesArray);
+    connect(this->comboBox_Lessons, QOverload<int>::of(&QComboBox::currentIndexChanged), this,[this](int index){
+        if(this->comboBox_Lessons->getItemEnabled(index))
+        {
+            this->comboBox_Exercises->blockSignals(true);
+            jsonParser->setExercisesArray(index);
+            int tempIndex = 0;
+            if(index < jsonParser->getMaxLessonIndex()) {
+                jsonParser->setExerciseIndex(0);
+                tempIndex = jsonParser->exercisesArray.size() - 1;
+            }
+            jsonParser->setLessonIndex(index);
+
+            this->comboBoxManager->fillExercisesComboBox(this->comboBox_Exercises, jsonParser->exercisesArray, tempIndex);
+            this->comboBox_Exercises->setCurrentIndex(jsonParser->getCurrentExercisIndex());
+            restart();
+            this->comboBox_Exercises->blockSignals(false);
+        }else {
+            this->comboBox_Lessons->blockSignals(true);
+            this->comboBox_Lessons->setCurrentIndex(jsonParser->getMaxLessonIndex());
+            this->comboBox_Lessons->blockSignals(false);
+        }
     });
 
-    //connect(ui->typingTestComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), typingTesting, &blindTypingTest::languageChange);
-    connect(ui->comboBox_Exercises, QOverload<int>::of(&QComboBox::currentIndexChanged), jsonParser, &JsonConfigParser::setExerciseIndex);
-    connect(ui->comboBox_Exercises, &QComboBox::currentIndexChanged, this, &MainWindow::restart);
-    //connect(ui->comboBox_Course, &QComboBox::currentIndexChanged, virtualKeybord, &Virtual_Keyboard::setMapKeyboardLauout);
+    connect(this->comboBox_Exercises, QOverload<int>::of(&QComboBox::currentIndexChanged), this,[this](int index){
+        if(this->comboBox_Exercises->getItemEnabled(index)){
+            jsonParser->setExerciseIndex(index);
+            restart();
+        }else{
+            this->comboBox_Exercises->blockSignals(true);
+            this->comboBox_Exercises->setCurrentIndex(jsonParser->getMaxExerciseIndex());
+            this->comboBox_Exercises->blockSignals(false);
+        }
+    });
+
+    //connect(this->comboBox_Exercises, &QComboBox::currentIndexChanged, this, &MainWindow::restart);
+
+    connect(jsonParser, QOverload<int>::of(&JsonConfigParser::reFillExercisesCommbobox), this,[this](int index){
+        this->comboBox_Exercises->blockSignals(true);
+        this->comboBox_Exercises->setItemEnabled(index, true);
+        //this->comboBoxManager->fillExercisesComboBox(this->comboBox_Exercises, jsonParser->exercisesArray, index);
+        this->comboBox_Exercises->blockSignals(false);
+
+    });
+
+    connect(jsonParser, QOverload<int>::of(&JsonConfigParser::reFillLessonsCommbobox), this,[this](int index){
+        this->comboBox_Lessons->blockSignals(true);
+        this->comboBox_Lessons->setItemEnabled(index, true);
+        this->comboBox_Lessons->blockSignals(false);
+
+    });
 }

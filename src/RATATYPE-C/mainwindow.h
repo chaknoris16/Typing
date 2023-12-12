@@ -16,7 +16,6 @@
 #include <QSet>
 #include <QFile>
 #include <QSqlDatabase>
-#include <QSqlQuery>
 #include <QSqlTableModel>
 #include <QTableView>
 #include <QDateTime>
@@ -37,6 +36,9 @@
 #include "ITypingSpeedCalculator.h"
 #include "TypingSpeedCalculator.h"
 #include "typingtestingpage.h"
+#include "keyboardlayoutlanguagecontroller.h"
+#include "CostomComboBox.h"
+#include "ComboBoxManager.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -61,9 +63,14 @@ public:
     QInputMethod* inputMethod;
     int calculationTypingSpeed(QTime &startTime, int correctElements);
     JsonConfigParser* jsonParser = new JsonConfigParser(this);
+    QComboBox * comboBox_Course;
+    CustomComboBox * comboBox_Lessons;
+    CustomComboBox * comboBox_Exercises;
 protected:
    void showStartWindow(bool showWindow);
 private:
+    ComboBoxManager* comboBoxManager = new ComboBoxManager(this);
+    void addStyledComboBox(QVBoxLayout *layout, QComboBox *comboBox);
     TableOutPut* treningTableOutPut = new TableOutPut();
     TableOutPut* testingTableOutPut = new TableOutPut();
     IDBManager* db = new DBTreningQuery("typing_result", "trening");
@@ -117,14 +124,14 @@ public:
     QString selectingFirstWordFromLine(const QString &str);
     void populateComboBoxesFromJsonFile();
     inline void blockSignalsComboBoxes(bool state);
-    inline void fillCourseComboBox(QComboBox *comboBox, QJsonArray& coursesArray);
-    template <typename T>
-    void fillLessonsComboBox(QComboBox *comboBox, const T &lessonsArray);
-    void fillExercisesComboBox(QComboBox *comboBox, QJsonArray &exercisesArray);
+    inline void fillCourseComboBox_M(QComboBox *comboBox, QJsonArray& coursesArray);
+
+    void fillLessonsComboBox_M(QComboBox *comboBox, const QJsonArray& lessonsArray);
+    void fillExercisesComboBox_M(QComboBox *comboBox, QJsonArray &exercisesArray);
     QSet<QChar> *extractUniqueLetters(QString text);
     QLocale determineLocale(const QString &language);
 private:
-
+    KeyboardLayoutLanguageController* keyboardLangControl;
     void signalAndSlots();
     void removeLetterFromLabel();
     void keyEventForTesting(QKeyEvent *event);
@@ -132,6 +139,7 @@ private:
     void TimeOut(void (*foo), int interval);
     void callreadingFromFile();
     QTimer* timer = new QTimer(this);
+
     void createDb();
 
     void callingResultOutputTableForTrening();

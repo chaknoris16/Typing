@@ -22,9 +22,9 @@ startwindow::~startwindow()
 void startwindow::fillComboBoxes()
 {
     blockSignalsInComboBoxes();
-    mainWindow->fillLessonsComboBox(ui->lessons_comboBox, jsonParser->lessonsArray);
+    mainWindow->fillLessonsComboBox_M(ui->lessons_comboBox, jsonParser->lessonsArray);
     ui->lessons_comboBox->setCurrentIndex(jsonParser->getCurrentLessonIndex());
-    mainWindow->fillExercisesComboBox(ui->exercisesComboBox,jsonParser->exercisesArray);
+    mainWindow->fillExercisesComboBox_M(ui->exercisesComboBox,jsonParser->exercisesArray);
     ui->exercisesComboBox->setCurrentIndex(jsonParser->getCurrentExercisIndex());
     unBlockSignalsInComboBoxes();
 
@@ -38,13 +38,13 @@ void startwindow::setNumbEntranceInLabel(){
 void startwindow::connectSignalsAndSlots()
 {
     connect(ui->lessons_comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int newLessonsIndex){
-        mainWindow->ui->comboBox_Lessons->setCurrentIndex(newLessonsIndex);
-        mainWindow->fillExercisesComboBox(ui->exercisesComboBox, mainWindow->jsonParser->exercisesArray);
+        mainWindow->comboBox_Lessons->setCurrentIndex(newLessonsIndex);
+        mainWindow->fillExercisesComboBox_M(ui->exercisesComboBox, mainWindow->jsonParser->exercisesArray);
     });
 
 
     connect(ui->exercisesComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int newExerciseIndex){
-        mainWindow->ui->comboBox_Exercises->setCurrentIndex(newExerciseIndex);
+        mainWindow->comboBox_Exercises->setCurrentIndex(newExerciseIndex);
         this->setNumbEntranceInLabel();
     });
     connect(ui->begin_button, &QPushButton::clicked, this, [=](){

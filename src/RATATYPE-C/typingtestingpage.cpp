@@ -1,7 +1,7 @@
 #include "typingtestingpage.h"
 #include "mainwindow.h"
 #include "resultwindow.h"
-TypingTestingPage::TypingTestingPage(QTextEdit *textEdit, QObject *parent,QComboBox *comboBox)
+TypingTestingPage::TypingTestingPage(QTextEdit *textEdit, QObject *parent, QComboBox *comboBox)
     : QObject{parent},
     _textEdit{textEdit},
     _comboBox{comboBox}
@@ -32,14 +32,16 @@ void TypingTestingPage::fillLanguageComboBox(QComboBox *comboBox, const QJsonArr
 {
     MainWindow* mainWindow;
     comboBox->blockSignals(true);
-    mainWindow->fillLessonsComboBox(comboBox, lessonArray);
+    mainWindow->fillLessonsComboBox_M(comboBox, lessonArray);
     comboBox->setCurrentIndex(this->settings->value("languageIndex").toInt());
     comboBox->blockSignals(false);
+    this->defLocale = this->keyboardLayoutController->determineLocale(this->textParser->getLanguage());
 }
 
 void TypingTestingPage::setMainText()
 {
     qDebug()<<"setMainText";
+    this->counterReset();
     this->randomText->setArray(this->textParser->getTextsArray());
     this->mainText = randomText->pickRandomElement();
     this->_textEdit->clear();
@@ -62,22 +64,26 @@ void TypingTestingPage::changeLanguage(int languageIndex)
     this->settings->setValue("languageIndex", languageIndex);
     this->textParser->updateFields(languageIndex);
     this->setMainText();
+    this->defLocale = this->keyboardLayoutController->determineLocale(this->textParser->getLanguage());
 }
 
 void TypingTestingPage::keyEvent(QKeyEvent *event)
 {
     if (!event->text().isEmpty())
     {
-        if(event->text().at(0) == this->mainText.at(correctElements))
+        if(this->keyboardLayoutController->checkLanguageMatch(this->defLocale))
         {
-            this->validCharacterHandler(this->mainText);
-        }else
-        {
-            this->characterColorist->colorizeIncorrectCharacter(cursor, QColor(255, 0, 0));
-            this->errorCounter++;
-            this->accuracy = accuracyСalculation(this->errorCounter, this->mainText);
-            emit this->setAcyracyCounter(QString::number(this->accuracy));
-        }
+            if(event->text().at(0) == this->mainText.at(correctElements))
+            {
+                this->validCharacterHandler(this->mainText);
+            }else
+            {
+                this->characterColorist->colorizeIncorrectCharacter(cursor, QColor(255, 0, 0));
+                this->errorCounter++;
+                this->accuracy = accuracyСalculation(this->errorCounter, this->mainText);
+                emit this->setAcyracyCounter(QString::number(this->accuracy));
+            }
+        }else this->keyboardLayoutController->setIncorectKeyboardLauoutMessage(this->defLocale);
     }else qDebug()<<event->text()<<"Error";
 }
 
@@ -108,7 +114,7 @@ void TypingTestingPage::validCharacterHandler(const QString &textForTyping)
         this->errorCounter = 0;
         this->callResultWindow();
         QVariantList result;
-        result << this->typingSpeed << this->accuracy;
+        result <<this->textParser->getLanguage()<< this->typingSpeed << this->accuracy;
         this->db->saveResult(result);
         qDebug()<<"Label is empty";
     }
@@ -124,4 +130,14 @@ void TypingTestingPage::callResultWindow()
     result_window->exec();
 
     result_window->deleteLater();
+}
+
+void TypingTestingPage::counterReset()
+{
+    this->typingSpeed = 0;
+    this->accuracy = 100;
+    this->correctElements = 0;
+    this->errorCounter = 0;
+    emit this->setSpeedCounter(QString::number(0));
+    emit this->setAcyracyCounter(QString::number(100));
 }

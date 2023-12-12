@@ -22,19 +22,26 @@ private:
     };
 public:
     explicit JsonConfigParser(QObject *parent = nullptr);
-
     QJsonArray coursesArray;
     QJsonArray lessonsArray;
     QJsonArray exercisesArray;
     keyboardLayout getCurrentKeyboardLayout();
     const QString getCurrentMainText();
     QString getCurrentCourseName();
-    bool get_MainText();
     ~JsonConfigParser();
     QJsonArray extractArraysFromJson(const QString& filePath, const QString &keyName);
     QPair<QJsonArray, QString> extractValuesFromJsonArray(QJsonArray &lyricsArray, int index);
     void setLessonsArray(int courseIndex);
     virtual void setExercisesArray(int lessonIndex);
+
+    void resetMaxCounters();
+    void saveMaxIndexes();
+    int getMaxLessonIndex() const;
+    void setMaxLessonIndex(int newMaxLessonIndex);
+
+    int getMaxExerciseIndex() const;
+    void setMaxExerciseIndex(int newMaxExerciseIndex);
+
 public slots:
     void setCourseIndex(int courseIndex);
     void setLessonIndex(int lessonIndex);
@@ -46,11 +53,14 @@ public slots:
 private:
     int courseIndex;
     int lessonIndex;
-    int exerciseIdex;
+    int exerciseIndex;
+    int maxLessonIndex{};
+    int maxExerciseIndex{};
     QSettings *settings;
 
 signals:
-
+    void reFillLessonsCommbobox(int index);
+    void reFillExercisesCommbobox(int index);
 };
 
 class JsonTextParser : public JsonConfigParser, public IJsonTextParser

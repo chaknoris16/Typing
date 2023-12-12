@@ -24,6 +24,7 @@ public:
         QSqlQuery testingResultQuery(QSqlDatabase::database(_queryName + "_connection"));
         testingResultQuery.exec("CREATE TABLE IF NOT EXISTS " + queryName + " ("
                                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                                "\"Language\" TEXT,"
                                 "\"Typing Speed\" INTEGER,"
                                 "\"Accuracy\" INTEGER,"
                                 "\"Date Time\" TEXT)");
@@ -35,10 +36,11 @@ public:
         if(_database.open())
         {
             QSqlQuery query(QSqlDatabase::database(_queryName + "_connection"));
-            query.prepare("INSERT INTO " + _queryName + " (\"Typing Speed\", \"Accuracy\", \"Date Time\") "
-                          "VALUES (:typing_speed, :accuracy, :datetime)");
-            query.bindValue(":typing_speed", result[0].toInt());
-            query.bindValue(":accuracy", result[1].toInt());
+            query.prepare("INSERT INTO " + _queryName + " (\"Language\",\"Typing Speed\", \"Accuracy\", \"Date Time\") "
+                          "VALUES (:language,:typing_speed, :accuracy, :datetime)");
+            query.bindValue(":language", result[0].toString());
+            query.bindValue(":typing_speed", result[1].toInt());
+            query.bindValue(":accuracy", result[2].toInt());
             query.bindValue(":datetime", QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss"));
             if (query.exec()) {
                 qDebug() << "Data inserted successfully!";

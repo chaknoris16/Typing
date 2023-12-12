@@ -32,6 +32,8 @@ set(PROJECT_SOURCES
     virtual_keyboard.h virtual_keyboard.cpp
     jsonconfigparser.h jsonconfigparser.cpp
     tableoutput.h tableoutput.cpp
+    keyboardlayoutlanguagecontroller.h keyboardlayoutlanguagecontroller.cpp
+    incorrectkeyboardlayout.h incorrectkeyboardlayout.cpp incorrectkeyboardlayout.ui
     IDBManager.h
     DBTreningQuery.h
     DBTestingQuery.h
@@ -42,6 +44,9 @@ set(PROJECT_SOURCES
     CharacterColorist.h
     ITypingSpeedCalculator.h
     TypingSpeedCalculator.h
+    CostomComboBox.h
+    ComboBoxManager.h
+
 )
 
 if(BUILD_TEST_LIBRARY)
