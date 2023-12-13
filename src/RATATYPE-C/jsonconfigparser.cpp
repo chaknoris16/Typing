@@ -145,6 +145,15 @@ void JsonConfigParser::setMaxExerciseIndex(int newMaxExerciseIndex)
     maxExerciseIndex = newMaxExerciseIndex;
 }
 
+int JsonConfigParser::determinateMaxExerciseIndex()
+{
+    if(this->lessonIndex < this->maxLessonIndex)
+    {
+        return exercisesArray.size() - 1;
+    }
+    return this->maxExerciseIndex;
+}
+
 int JsonConfigParser::getMaxLessonIndex() const
 {
     return maxLessonIndex;

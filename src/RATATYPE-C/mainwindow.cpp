@@ -256,7 +256,7 @@ void MainWindow::populateComboBoxesFromJsonFile(){
         //Courses
         this->comboBoxManager->fillLessonsComboBox(comboBox_Lessons, jsonParser->lessonsArray, jsonParser->getMaxLessonIndex());
         //Lessons
-        this->comboBoxManager->fillExercisesComboBox(this->comboBox_Exercises, jsonParser->exercisesArray, jsonParser->getMaxExerciseIndex());
+        this->comboBoxManager->fillExercisesComboBox(this->comboBox_Exercises, jsonParser->exercisesArray,jsonParser->determinateMaxExerciseIndex());
         this->setCurrentIndexInComboBox(jsonParser->getCurrentCourseIndex(), jsonParser->getCurrentLessonIndex(), jsonParser->getCurrentExercisIndex(), this->comboBox_Course, this->comboBox_Lessons, this->comboBox_Exercises);
     this->blockSignalsComboBoxes(false);
         qDebug()<< "CurrentCourseIndex" << jsonParser->getCurrentCourseIndex();
@@ -375,7 +375,7 @@ void MainWindow::signalAndSlots()
         {
             this->comboBox_Exercises->blockSignals(true);
             jsonParser->setExercisesArray(index);
-            int tempIndex = 0;
+            int tempIndex = jsonParser->getMaxExerciseIndex();
             if(index < jsonParser->getMaxLessonIndex()) {
                 jsonParser->setExerciseIndex(0);
                 tempIndex = jsonParser->exercisesArray.size() - 1;
@@ -409,15 +409,13 @@ void MainWindow::signalAndSlots()
     connect(jsonParser, QOverload<int>::of(&JsonConfigParser::reFillExercisesCommbobox), this,[this](int index){
         this->comboBox_Exercises->blockSignals(true);
         this->comboBox_Exercises->setItemEnabled(index, true);
-        //this->comboBoxManager->fillExercisesComboBox(this->comboBox_Exercises, jsonParser->exercisesArray, index);
+        this->comboBoxManager->fillExercisesComboBox(this->comboBox_Exercises, jsonParser->exercisesArray, index);
         this->comboBox_Exercises->blockSignals(false);
-
     });
 
     connect(jsonParser, QOverload<int>::of(&JsonConfigParser::reFillLessonsCommbobox), this,[this](int index){
         this->comboBox_Lessons->blockSignals(true);
         this->comboBox_Lessons->setItemEnabled(index, true);
         this->comboBox_Lessons->blockSignals(false);
-
     });
 }

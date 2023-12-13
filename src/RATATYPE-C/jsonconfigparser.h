@@ -41,6 +41,7 @@ public:
 
     int getMaxExerciseIndex() const;
     void setMaxExerciseIndex(int newMaxExerciseIndex);
+    int determinateMaxExerciseIndex();
 
 public slots:
     void setCourseIndex(int courseIndex);

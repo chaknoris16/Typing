@@ -46,7 +46,6 @@ set(PROJECT_SOURCES
     TypingSpeedCalculator.h
     CostomComboBox.h
     ComboBoxManager.h
-
 )
 
 if(BUILD_TEST_LIBRARY)
