@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/resurces">
+        <file>img/packo (1).svg</file>
+        <file>img/packo.svg</file>
+        <file>img/right.svg</file>
+        <file>img/reset.svg</file>
+        <file>img/171013.ico</file>
+        <file>img/Frame 1.svg</file>
+        <file>img/ResetPage.svg</file>
+        <file>img/MainIcon.svg</file>
+        <file>img/StartWidget.svg</file>
+        <file>img/battonStartFrame.svg</file>
+        <file>img/imageFrame.svg</file>
+        <file>img/imageFrame.jpg</file>
+        <file>img/imageFrame.png</file>
+        <file>img/Start.svg</file>
+    </qresource>
+    <qresource prefix="/fails">
+        <file>lyrics.json</file>
+        <file>course.json</file>
+    </qresource>
+</RCC>

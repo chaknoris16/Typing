@@ -1,0 +1,34 @@
+{
+  "lyrics": [
+		{
+			"course": "English",
+			"lessons": [
+				"The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. How razorback-jumping frogs can level six piqued gymnasts! Mr. Jock, TV quiz PhD, bags few lynx",
+				"In the ever-evolving landscape of technology, the year 2023 marks a pivotal moment. As programmers, we navigate a labyrinth of (1s) and (0s), crafting algorithms that breathe life into the digital realm. Parentheses encapsulate logical expressions, creating a hierarchy of operations much like the branches of a decision tree",
+				"Consider the elegance of (15th March 1985), a date etched in the history of domain name registration. Like a timestamp in the chronicles of the internet, it signifies the birth of a virtual landscape where characters and digits converge. SQL databases, with their structured tables and intricate relationships, become the architects of data storage, managing information with the precision of a numerical librarian",
+				"The C++ programming language, born in (1979), has matured into a linguistic powerhouse. Its syntax, punctuated with semicolons and braces, orchestrates a symphony of functionality. Object-oriented principles, denoted by dots and arrows, weave a narrative of code reusability and modularity",
+				"Within the Qt framework, widgets materialize as digital artifacts, each bearing a unique identifier. (Coordinates x, y) position graphical elements on the canvas of a user interface, transforming code into a visual tapestry. Dialog boxes, framed by parentheses, prompt users for input, creating an interactive dialogue between human and machine",
+				"As you delve into the development of your desktop application for teaching blind typing, envision a journey marked by milestones. Progress may be measured not only in lines of code but in the tangible impact on users. Metrics such as (words per minute) and (error rates) become benchmarks, quantifying the efficiency of the typing learning experience",
+				"In the grand symposium of programming, where algorithms converse in a language of numbers, let your fingertips dance across the keyboard with numerical finesse. Each keystroke, each line of code, contributes to the mathematical opus of software creation. Embrace the numerical intricacies, and may your coding journey be adorned with parentheses and digits alike",
+				"In the digital tapestry of the (21st century), programming languages emerge as the architects of innovation. Picture the year (2025) as a waypoint in this dynamic landscape, where algorithms, encapsulated within parentheses, navigate the binary currents. (November 12, 1980) marks the inception of the Qt framework, a technological beacon guiding developers through the graphical interface labyrinth",
+				"Consider the numerical ballet within C++ code: arrays (indexed from 0), loops iterating through (1 to N), and conditional statements forming logical parentheses. Each line, a numerical brushstroke, contributes to the canvas of functionality. Objects, instantiated with constructors and embraced by destructors, encapsulate the essence of (object-oriented) elegance",
+				"Parentheses play a pivotal role, not only in mathematical expressions but also in the orchestration of functions and methods. Imagine the (coordinates x, y) mapping out the visual symphony of widgets on a Qt canvas. Dialogues unfold within parentheses, creating an interactive ballet between the user and the desktop application",
+				"As you embark on the journey of teaching blind typing, envision each lesson as a (milestone) in the numerical progression of skills. (Speed and accuracy) become the metrics, the quantifiers of progress in the world of typing. The (typing speed) challenge becomes a digital marathon, where each word per minute is a step toward mastery",
+				"Within the parentheses and amidst the digits, find the rhythm of your coding and typing journey. Embrace the numerical intricacies, for in them, you'll discover the ordered beauty of the (digital realm). May your fingers dance across the keys with the grace of numerical precision"
+			],
+			"name": "English"
+		},
+		{
+			"course": "Ukrainian",
+			"lessons": [
+				"У цифровому ткацтві (21-го століття) мови програмування виходять як архітекти інновацій. Уявіть рік (2025) як точку в цьому динамічному ландшафті, де алгоритми, обгорнуті у дужки, навігують бінарними потоками. (12 листопада 1980 року) визначає народження фреймворку Кут, технологічного маяка, який направляє розробників крізь лабіринт графічного інтерфейсу",
+				"Уявіть числовий балет у коді С++: масиви (індексуються з 0), цикли ітеруються від (1 до Н), а умовні оператори формують логічні дужки. Кожен рядок - це числовий мазок, що вносить внесок у полотно функціональності. Об'єкти, створювані конструкторами і охоплені деструкторами, заключають у собі суть (об'єктно-орієнтованої) елегантності",
+				"Дужки грають ключову роль не лише в математичних виразах, але й в оркестрації функцій та методів. Уявіть (координати), які відображають візуальну симфонію віджетів на полотні Кут. Діалоги розгортаються в межах дужок, створюючи інтерактивний балет між користувачем та робочим столом",
+				"Коли ви вирушаєте в подорож навчання сліпому друку, уявіть кожний урок як (віху) в числовому прогресі навичок. (Швидкість та точність) стають метриками, кількісниками прогресу в світі друку. Завдання на (швидкість друку) стає цифровим марафоном, де кожен слово за хвилину - це крок до майстерності",
+				"Серед дужок і серед цифр знаходьте ритм своєї подорожі кодування та друку. Візьміть до уваги числові тонкощі, оскільки саме в них ви відкриєте упорядковану красу (цифрового світу). Нехай ваші пальці танцюють по клавішах із грацією числової точності"
+			],
+			"name": "Ukrainian"
+		}
+ ],
+ "name": "lyrics"
+}

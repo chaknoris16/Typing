@@ -1,0 +1,886 @@
+{
+    "courses": [
+        {
+            "course": "English",
+            "currentLessonIndex": 0,
+            "keyboardLayout": "`1234567890-=qwertyuiop[]|asdfghjkl;'zxcvbnm,./ ",
+            "lessons": [
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "jkkjk kjkkj jkjjk kkjkj jjkjk jkjkk kjkjj jkjkj kkjkj jjkjk",
+                        "dffdf fdffd dfddf ffdfd ddfdf dfdff fdfdd dfdfd ffdfd ddfdf",
+                        "jffjf jjjff fjffj jjffj fffjj dkdkd kdkdk kkddk ddkdk kddkk",
+                        "ddjjd kkfkk ffjfj kkdkk jjdjd kdkdk ffjjk kkddf dkfdf kkjjf",
+                        "l;;l; ;l;;l l;ll; ;;l;l ll;l; l;l;; ;l;ll l;l;l ;;l;l ll;l;",
+                        "lfk ;fk djlf kflf ;fkj kj;f dj;;f ;f;lf ;lfkf dljdf ;f;lfkf",
+                        "assas sassa asaas ssasa aasas asass sasaa asasa ssasa aasas",
+                        "all add; as ask; sad; fas lad dak; dad fad fall; lass dall;",
+                        "alas dald fall; dad flak; lass sad; fass; all fall lad; ask"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Home Row Position"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "ghhgh hghhg ghggh hhghg gghgh ghghh hghgg ghghg hhghg gghgh",
+                        "gad has aha; had flag gas; sag ash; gag dash glag half;",
+                        "gaff; hall hald saga hash; sash gall flag; has dash half",
+                        "rttrt trttr rtrrt ttrtr rrtrt rtrtt trtrr rtrtr ttrtr rrtrt",
+                        "art tad gar at sat rag tag; far jar tar rah hat rat rag tat",
+                        "daft dart jars task; hard tart start grad data talk; shaft rash",
+                        "hart; haft karat halt salt dark; raft draft shark; grass",
+                        "graft fast raja shark gard shard start lard; flat",
+                        "yuuyu uyuuy yuyyu uuyuy yyuyu yuyuu uyuyy yuyuy uuyuy yyuyu",
+                        "day fly dug lay jay sky lug fur fry try hut; say lady yard",
+                        "lush shut fray surd lurk usual surf flay just lust dust",
+                        "vbbvb bvbbv vbvvb bbvbv vvbvb vbvbb bvbvv vbvbv bbvbv vvbvb",
+                        "bad vag bug bar vug vas vat bav bay bat bag bah vast bur",
+                        "baby vagary burst vary ruby valuta buy vast vault vulgar by",
+                        "nmmnm mnmmn nmnnm mmnmn nnmnm nmnmm mnmnn nmnmn mmnmn",
+                        "ham gun jam ran gum man fun mat nab arm sun may nut tun mud",
+                        "hang damm harm darn farm hung lamb rang sand tang tank many",
+                        "must bank gang busy hand thank bury junk human marry funny",
+                        "numb bush ray baulk flask bald stuff bask shark navy hurry"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Index Fingers"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "iooio oiooi ioiio ooioi iioio ioioo oioii ioioi ooioi iioio",
+                        "hid ill oil for hit out rid dog hot old too sit oat fin aim",
+                        "weewe eweew wewwe eewew wwewe wewee eweww wewew eewew wwewe",
+                        "red tea way leg tie let see owe wet set lie few how sir who",
+                        ",..,. .,.., ,.,,. ..,., ,,.,. ,.,.. .,.,, ,.,., ..,., ,,.,.",
+                        "why, yes. low, two, was, den. led. ebb, ten, you. new, met.",
+                        "xccxc cxccх хсххс ссхсх ххсхс хсхсс схсхх хсхсх ссхсх ххсхс",
+                        "act, six icy cub fix cab car. wax cry arc axe, can cat cod",
+                        "also take, wake late ease, joke sort food obey under beyond",
+                        "exercise hair rare. gold xenon warry; worm shirt luxury soul",
+                        "after death known; early first jewel large offer raise order",
+                        "hotel later ready. agree dirty earth, floor weight water soil",
+                        "night knife; house lunch naught yield; world story where habit"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Middle and Ring Fingers"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "zqqzq qzqqz zqzzq qqzqz zzqzq zqzqq qzqzz zqzqz qqzqz zzqzq",
+                        "zoo quit zit quite zoom quick zest zing quake zeal zany",
+                        "p[[p[ [p[[p p[pp[ [[p[p pp[p[ p[p[[ [p[pp p[p[p [[p[p pp[p[",
+                        "put opaque [pup puzzle [proposal [prompt plan [pomp lamp",
+                        "']]'/ ]'/]' ']'/] /]']' '/]'] ']'/] ]']/' /]']' ]/']' '']/]",
+                        "plus/minus; acropolis' [appall] miles/hour [cm/sec] per' pair",
+                        "zombie square; poetic /marquee/ question prize [quiz] proper",
+                        "poster. price queen [plate] zippy, reply zero km/h quality;",
+                        "zigzag' porosity, quantity peace/poker camp zodiac damp plan",
+                        "zone quarter. prosperity zirconium' /pound/ power; [press]",
+                        "zipper [zoological] quack, piece proud; pearl. penetrate/"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Pinkies"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "mean mean mean mean mean mean mean mean mean mean mean mean",
+                        "jeans jeans jeans jeans jeans jeans jeans jeans jeans jeans",
+                        "echo echo echo echo echo echo echo echo echo echo echo echo",
+                        "thin thin thin thin thin thin thin thin thin thin thin thin",
+                        "disk disk disk disk disk disk disk disk disk disk disk disk",
+                        "dish dish dish dish dish dish dish dish dish dish dish dish",
+                        "dale dale dale dale dale dale dale dale dale dale dale dale",
+                        "path path path path path path path path path path path path",
+                        "oils oils oils oils oils oils oils oils oils oils oils oils",
+                        "last last last last last last last last last last last last",
+                        "land land land land land land land land land land land land",
+                        "pets pets pets pets pets pets pets pets pets pets pets pets",
+                        "mean jeans echo thin disk dish dale oils path last land pets",
+                        "mean jeans echo thin disk dish dale oils path last land pets"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Repetition 1"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "pound pound pound pound pound pound pound pound pound pound",
+                        "pits pits pits pits pits pits pits pits pits pits pits pits",
+                        "ryas ryas ryas ryas ryas ryas ryas ryas ryas ryas ryas ryas",
+                        "ebbed ebbed ebbed ebbed ebbed ebbed ebbed ebbed ebbed ebbed",
+                        "risk risk risk risk risk risk risk risk risk risk risk risk",
+                        "reeks reeks reeks reeks reeks reeks reeks reeks reeks reeks",
+                        "leak leak leak leak leak leak leak leak leak leak leak leak",
+                        "lens lens lens lens lens lens lens lens lens lens lens lens",
+                        "flux flux flux flux flux flux flux flux flux flux flux flux",
+                        "leave leave leave leave leave leave leave leave leave leave",
+                        "leis leis leis leis leis leis leis leis leis leis leis leis",
+                        "leaf leaf leaf leaf leaf leaf leaf leaf leaf leaf leaf leaf",
+                        "pound pits ryas ebbed risk reeks leak lens flux leave leis leaf",
+                        "pound pits ryas ebbed risk reeks leak lens flux leave leis leaf"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Repetition 2"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "lief lief lief lief lief lief lief lief lief lief lief lief",
+                        "lazy lazy lazy lazy lazy lazy lazy lazy lazy lazy lazy lazy",
+                        "keno keno keno keno keno keno keno keno keno keno keno keno",
+                        "quack quack quack quack quack quack quack quack quack quack",
+                        "knife knife knife knife knife knife knife knife knife knife",
+                        "jack jack jack jack jack jack jack jack jack jack jack jack",
+                        "chap chap chap chap chap chap chap chap chap chap chap chap",
+                        "sock sock sock sock sock sock sock sock sock sock sock sock",
+                        "keys keys keys keys keys keys keys keys keys keys keys keys",
+                        "obey obey obey obey obey obey obey obey obey obey obey obey",
+                        "men's men's men's men's men's men's men's men's men's men's",
+                        "caps caps caps caps caps caps caps caps caps caps caps caps",
+                        "lief lazy keno quack knife jack chap sock keys obey men's caps",
+                        "lief lazy keno quack knife jack chap sock keys obey men's caps"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Repetition 3"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "vile vile vile vile vile vile vile vile vile vile vile vile",
+                        "fine fine fine fine fine fine fine fine fine fine fine fine",
+                        "vent vent vent vent vent vent vent vent vent vent vent vent",
+                        "vale vale vale vale vale vale vale vale vale vale vale vale",
+                        "back back back back back back back back back back back back",
+                        "bans bans bans bans bans bans bans bans bans bans bans bans",
+                        "bags bags bags bags bags bags bags bags bags bags bags bags",
+                        "tins tins tins tins tins tins tins tins tins tins tins tins",
+                        "gift gift gift gift gift gift gift gift gift gift gift gift",
+                        "grit grit grit grit grit grit grit grit grit grit grit grit",
+                        "herb herb herb herb herb herb herb herb herb herb herb herb",
+                        "hand hand hand hand hand hand hand hand hand hand hand hand",
+                        "vile fine vent vale back bans bags tins gift grit herb hand",
+                        "vile fine vent vale back bans bags tins gift grit herb hand"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Repetition 4"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "ouoie uaueo iyaei yoeia eyaie uaoyi oyaey iyoeo iouya eaiyu",
+                        "ieyoi auyei oeaui eyaey oyuae eyoei uyieo aeoyi yioae oiyeu",
+                        "aeoua ieyoa uaeoe iaeoa ueaya aeyoi uaeoy eioae uaeya ioeia",
+                        "oeiau yoeie ieaua ieyei auaeo yoieu aeyoi auioy eaiae uoaie",
+                        "oeiau yoeie ieaua ieyei auaeo yoieu aeyoi auioy eaiae uoaie"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Vowels Сryptogram"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "gowof hrocj ayxle rfkqk dugpw cjxln dma]e xjnup skxnz rmokl",
+                        "aixle rlnlb dmywg tvprh lumtk ajrmw heomc zlnuk pfpex ndlyv",
+                        "nsptn bwitk zopsw vkstg mdibw auvle quvkn smrkx nithd krihx",
+                        "odmyl dlekh xutnv cmdiw lwubr hcken amrug ltnxp kwoby cysna",
+                        "kruxm aodnw ylq]s kpayc xuspg nzkej iehxf krmxl hsitb dmysk"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Alphabet Сryptogram"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "ing ing ing ing ing ing ing ing ing ing ing ing ing",
+                        "tion tion tion tion tion tion tion tion tion tion tion tion",
+                        "ment ment ment ment ment ment ment ment ment ment ment ment",
+                        "ure ure ure ure ure ure ure ure ure ure ure ure ure ure",
+                        "sion sion sion sion sion sion sion sion sion sion sion sion",
+                        "ous ous ous ous ous ous ous ous ous ous ous ous ous ous",
+                        "our our our our our our our our our our our our our our",
+                        "er er er er er er er er er er er er er er er er er er er",
+                        "tch tch tch tch tch tch tch tch tch tch tch tch tch tch",
+                        "ck ck ck ck ck ck ck ck ck ck ck ck ck ck ck ck ck ck ck",
+                        "ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea ea",
+                        "er er er er er er er er er er er er er er er er er er er",
+                        "the ht the ht the ht the ht the ht the ht the ht the ht the ht",
+                        "ght ght ght ght ght ght ght ght ght ght ght ght ght ght",
+                        "es ly es ly es ly es ly es ly es ly es ly es ly es ly es ly",
+                        "ed ed ed ed ed ed ed ed ed ed ed ed ed ed ed ed ed ed ed",
+                        "and and and and and and and and and and and and and and and"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Common Combinations"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "78878 87887 78778 88787 77878 78788 87877 78787 88787 77878",
+                        "mean7 jeans8 echo7 thin8 disk7 dish8 dale7 oils8 path7 last8",
+                        "56656 65665 56556 66565 55656 56566 65655 56565 66565 55656",
+                        "land5 pets6 pound8 pits7 ryas5 ebbed6 risk5 reeks7 leak8 lens6",
+                        "90090 09009 90990 00909 99090 90900 09099 90909 00909 99090",
+                        "flux9 lave0 leis7 leaf0 lief6 lazy9 keno5 quack9 knife8 jack0",
+                        "34434 43443 34334 44343 33434 34344 43433 34343 44343 33434",
+                        "chap3 sock4 keys3 obey0 men's7 caps4 vile3 fine4 vent6 vale4",
+                        "-==-= =-==- -=--= ==-=- --=-= -=-== =-=-- -=-=- ==-=- --=-=",
+                        "back= bans- bags3 tins- gift4 grit= herb5 hand= pink7 chin=",
+                        "12212 21221 12112 22121 11212 12122 21211 12121 22121 11212",
+                        "cash2 come1 earn= evil2 form- join3 vote1 deck6 fern2 zeal1",
+                        "only6 pain3 sale3 rank0===king7 5bait5 3 5deny5 3 4find42-10",
+                        "17-5=12 8-3=5 10-3=7 6-4=2 13-2=11 19-4=15 8-5=3 5-1=4 19-12=7",
+                        "49-1=48 12-3=9 15-9=6 12-8=4 11-4=7 19-13=6 12-3=9 10-6=4 9-4=5"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Numbers and Punctuation"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "GHDJY GYDUC Z:CCH HGXCD V:JPR JGKXG JDJEG YLG<N JENGT CJGCY",
+                        "GTY<D FGYDH KYNUN RDA:G F<DUJ LPDUY RLCPF GCGGD YAFCJ YGEXR",
+                        "RPVDC D<:DV BVXCN TWYPY DNBTG AGLYV RFKBD HYPVL YRPJC G<H:X",
+                        "MAGIC RIVER MONEY NOISE PAPER WOMAN EVENT ANGRY COVER METAL",
+                        "COMPANY HORSES HAPPY SPECIAL VENTURE CHANGE RETURN KNIGHT",
+                        "MagiC RiveR MoneY NoisE PapeR WomaN EvenT AngrY CoveR MetaL",
+                        "ComPanY HorSeS HappY SpeCiaL VenTurE ChaNgE RetUrN KniGhT"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Using Shift Key"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "! @! @ !@! @ ! @!! ! @! @@ !@@ @ !!@ @ !!@ !@ ! @! @ @! !@@",
+                        "@song ! song @! song @ song !@ song ! song @@! song @ song !!",
+                        "# $# #$$ $# $#$ # $ $ ##$ # $# $ #$# # $#$ #$ $ # $$# $ #$$",
+                        "rain $ rain #$ rain ##$ rain # rain $# rain $ rain $# rain $",
+                        "%^ ^ %%^ % ^% ^ %^% ^^ % ^%^ ^ %^ % ^%% ^% ^ %^^ % ^^% % ^%^",
+                        "pale %^ pale ^ pale ^%^ pale % pale %^ pale ^% pale ^ pale %",
+                        "& *& * &*& * *&& & *& ** &** & * &* *& &* &*& *& * *& &* **",
+                        "calf & calf *& calf * calf &*& calf & calf **& calf * calf &",
+                        "() ) ( )) ( (())(()) ( ) ( ) (( ( ) )(( ) ( )( ) )() ()",
+                        "mask ( mask )( mask ) mask ( mask )() mask ) mask () mask )(",
+                        "+ _ _+_ _+ _ __+ +_+ _ ++ _+ + _ ++_ _ + +_+ _ +_ + _+ + _+_",
+                        "mine _ mine +_ mine _+_ mine + mine _+ mine + mine _ mine _+",
+                        "coal (@ coal ?# coal ) coal $^ coal #_ coal )% coal & coal ^"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Numbers and Punctuation 2"
+                }
+            ],
+            "maxLessonIndex": 0,
+            "shiftPressKeyboardLayout": "~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:'ZXCVBNM<>? "
+        },
+        {
+            "course": "English of mistakes",
+            "currentLessonIndex": 4,
+            "keyboardLayout": "`1234567890-=qwertyuiop[]|asdfghjkl;'zxcvbnm,./ ",
+            "lessons": [
+                {
+                    "currentExerciseIndex": 1,
+                    "exercises": [
+                        "allot allot allot allot allot allot allot allot allot allot",
+                        "enemy enemy enemy enemy enemy enemy enemy enemy enemy enemy",
+                        "fifty fifty fifty fifty fifty fifty fifty fifty fifty fifty",
+                        "forty forty forty forty forty forty forty forty forty forty",
+                        "guard guard guard guard guard guard guard guard guard guard",
+                        "judge judge judge judge judge judge judge judge judge judge",
+                        "kneel kneel kneel kneel kneel kneel kneel kneel kneel kneel",
+                        "laser laser laser laser laser laser laser laser laser laser",
+                        "later later later later later later later later later later",
+                        "money money money money money money money money money money",
+                        "niece niece niece niece niece niece niece niece niece niece",
+                        "ninth ninth ninth ninth ninth ninth ninth ninth ninth ninth",
+                        "kneel money niece allot enemy judge guard ninth laser later fifty forty",
+                        "judge guard ninth later fifty forty kneel money allot niece laser enemy"
+                    ],
+                    "maxExerciseIndex": 2,
+                    "name": "Tiny words"
+                },
+                {
+                    "currentExerciseIndex": 13,
+                    "exercises": [
+                        "piece piece piece piece piece piece piece piece piece piece",
+                        "queue queue queue queue queue queue queue queue queue queue",
+                        "sense sense sense sense sense sense sense sense sense sense",
+                        "siege siege siege siege siege siege siege siege siege siege",
+                        "their their their their their their their their their their",
+                        "truly truly truly truly truly truly truly truly truly truly",
+                        "until until until until until until until until until until",
+                        "weird weird weird weird weird weird weird weird weird weird",
+                        "which which which which which which which which which which",
+                        "which which which which which which which which which which",
+                        "yacht yacht yacht yacht yacht yacht yacht yacht yacht yacht",
+                        "young young young young young young young young young young",
+                        "yacht queue their siege piece which young truly sense width weird until",
+                        "their width queue siege piece truly weird which young until yacht sense"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Tiny words 2"
+                },
+                {
+                    "currentExerciseIndex": 3,
+                    "exercises": [
+                        "across across across across across across across across across across",
+                        "advice advice advice advice advice advice advice advice advice advice",
+                        "belief belief belief belief belief belief belief belief belief belief",
+                        "column column column column column column column column column column",
+                        "coming coming coming coming coming coming coming coming coming coming",
+                        "dispel dispel dispel dispel dispel dispel dispel dispel dispel dispel",
+                        "easily easily easily easily easily easily easily easily easily easily",
+                        "effect effect effect effect effect effect effect effect effect effect",
+                        "eighth eighth eighth eighth eighth eighth eighth eighth eighth eighth",
+                        "either either either either either either either either either either",
+                        "fourth fourth fourth fourth fourth fourth fourth fourth fourth fourth",
+                        "friend friend friend friend friend friend friend friend friend friend",
+                        "either effect advice friend fourth eighth dispel across belief column easily coming",
+                        "across column coming fourth easily belief advice eighth friend effect dispel either"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Small words"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "genius genius genius genius genius genius genius genius genius genius",
+                        "height height height height height height height height height height",
+                        "ignore ignore ignore ignore ignore ignore ignore ignore ignore ignore",
+                        "innate innate innate innate innate innate innate innate innate innate",
+                        "island island island island island island island island island island",
+                        "length length length length length length length length length length",
+                        "likely likely likely likely likely likely likely likely likely likely",
+                        "lovely lovely lovely lovely lovely lovely lovely lovely lovely lovely",
+                        "muscle muscle muscle muscle muscle muscle muscle muscle muscle muscle",
+                        "ninety ninety ninety ninety ninety ninety ninety ninety ninety ninety",
+                        "potato potato potato potato potato potato potato potato potato potato",
+                        "prefer prefer prefer prefer prefer prefer prefer prefer prefer prefer",
+                        "prefer ignore potato height likely ninety innate length muscle lovely island genius",
+                        "genius muscle height prefer lovely likely ninety innate potato length island ignore"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Small words 2"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "really really really really really really really really really really",
+                        "rhythm rhythm rhythm rhythm rhythm rhythm rhythm rhythm rhythm rhythm",
+                        "safety safety safety safety safety safety safety safety safety safety",
+                        "scared scared scared scared scared scared scared scared scared scared",
+                        "speech speech speech speech speech speech speech speech speech speech",
+                        "tattoo tattoo tattoo tattoo tattoo tattoo tattoo tattoo tattoo tattoo",
+                        "there there there there there there there there there there there there",
+                        "tongue tongue tongue tongue tongue tongue tongue tongue tongue tongue",
+                        "unique unique unique unique unique unique unique unique unique unique",
+                        "vacuum vacuum vacuum vacuum vacuum vacuum vacuum vacuum vacuum vacuum",
+                        "vision vision vision vision vision vision vision vision vision vision",
+                        "volume volume volume volume volume volume volume volume volume volume",
+                        "there tongue really unique vision safety speech rhythm tattoo scared vacuum volume",
+                        "really speech vacuum unique there tattoo tongue rhythm scared vision safety volume"
+                    ],
+                    "maxExerciseIndex": 1,
+                    "name": "Small words 3"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "absence absence absence absence absence absence absence absence absence absence",
+                        "achieve achieve achieve achieve achieve achieve achieve achieve achieve achieve",
+                        "address address address address address address address address address address",
+                        "amateur amateur amateur amateur amateur amateur amateur amateur amateur amateur",
+                        "believe believe believe believe believe believe believe believe believe believe",
+                        "clothes clothes clothes clothes clothes clothes clothes clothes clothes clothes",
+                        "deceive deceive deceive deceive deceive deceive deceive deceive deceive deceive",
+                        "dilemma dilemma dilemma dilemma dilemma dilemma dilemma dilemma dilemma dilemma",
+                        "disease disease disease disease disease disease disease disease disease disease",
+                        "finally finally finally finally finally finally finally finally finally finally",
+                        "foreign foreign foreign foreign foreign foreign foreign foreign foreign foreign",
+                        "forward forward forward forward forward forward forward forward forward forward",
+                        "disease absence believe clothes deceive achieve dilemma finally amateur address",
+                        "believe foreign disease deceive finally clothes amateur address forward dilemma"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Muddke words"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "further further further further further further further further further further",
+                        "general general general general general general general general general general",
+                        "grammar grammar grammar grammar grammar grammar grammar grammar grammar grammar",
+                        "hamster hamster hamster hamster hamster hamster hamster hamster hamster hamster",
+                        "happily happily happily happily happily happily happily happily happily happily",
+                        "hygiene hygiene hygiene hygiene hygiene hygiene hygiene hygiene hygiene hygiene",
+                        "ideally ideally ideally ideally ideally ideally ideally ideally ideally ideally",
+                        "jealous jealous jealous jealous jealous jealous jealous jealous jealous jealous",
+                        "leisure leisure leisure leisure leisure leisure leisure leisure leisure leisure",
+                        "library library library library library library library library library library",
+                        "married married married married married married married married married married",
+                        "missile missile missile missile missile missile missile missile missile missile",
+                        "leisure general further hygiene jealous ideally happily library hamster grammar",
+                        "happily jealous ideally married library leisure hygiene grammar missile hamster"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Muddke words 2"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "opinion opinion opinion opinion opinion opinion opinion opinion opinion opinion",
+                        "pastime pastime pastime pastime pastime pastime pastime pastime pastime pastime",
+                        "pharaoh pharaoh pharaoh pharaoh pharaoh pharaoh pharaoh pharaoh pharaoh pharaoh",
+                        "quality quality quality quality quality quality quality quality quality quality",
+                        "realize realize realize realize realize realize realize realize realize realize",
+                        "receipt receipt receipt receipt receipt receipt receipt receipt receipt receipt",
+                        "receive receive receive receive receive receive receive receive receive receive",
+                        "scenery scenery scenery scenery scenery scenery scenery scenery scenery scenery",
+                        "similar similar similar similar similar similar similar similar similar similar",
+                        "success success success success success success success success success success",
+                        "village village village village village village village village village village",
+                        "weather weather weather weather weather weather weather weather weather weather",
+                        "success pastime quality realize scenery receive receipt similar opinion pharaoh",
+                        "receipt village success quality similar scenery receive weather pharaoh realize"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Muddke words 3"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "business business business business business business business business business business",
+                        "calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar",
+                        "describe describe describe describe describe describe describe describe describe describe",
+                        "espresso espresso espresso espresso espresso espresso espresso espresso espresso espresso",
+                        "familiar familiar familiar familiar familiar familiar familiar familiar familiar familiar",
+                        "familiar familiar familiar familiar familiar familiar familiar familiar familiar familiar",
+                        "guidance guidance guidance guidance guidance guidance guidance guidance guidance guidance",
+                        "honorary honorary honorary honorary honorary honorary honorary honorary honorary honorary",
+                        "humorous humorous humorous humorous humorous humorous humorous humorous humorous humorous",
+                        "lollipop lollipop lollipop lollipop lollipop lollipop lollipop lollipop lollipop lollipop",
+                        "marriage marriage marriage marriage marriage marriage marriage marriage marriage marriage",
+                        "misspell misspell misspell misspell misspell misspell misspell misspell misspell misspell misspell",
+                        "espresso guidance describe calendar familiar business humorous grateful honorary",
+                        "familiar marriage lollipop grateful guidance humorous espresso misspell honorary"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Big words"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "mountain mountain mountain mountain mountain mountain mountain mountain mountain mountain",
+                        "neighbor neighbor neighbor neighbor neighbor neighbor neighbor neighbor neighbor neighbor",
+                        "nowadays nowadays nowadays nowadays nowadays nowadays nowadays nowadays nowadays nowadays",
+                        "obedient obedient obedient obedient obedient obedient obedient obedient obedient obedient",
+                        "occasion occasion occasion occasion occasion occasion occasion occasion occasion occasion",
+                        "official official official official official official official official official official",
+                        "ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary",
+                        "parallel parallel parallel parallel parallel parallel parallel parallel parallel parallel",
+                        "pavilion pavilion pavilion pavilion pavilion pavilion pavilion pavilion pavilion pavilion",
+                        "personal personal personal personal personal personal personal personal personal personal",
+                        "physical physical physical physical physical physical physical physical physical physical",
+                        "pleasant pleasant pleasant pleasant pleasant pleasant pleasant pleasant pleasant pleasant",
+                        "pavilion neighbor mountain ordinary obedient nowadays official occasion parallel",
+                        "pavilion obedient physical official parallel ordinary personal occasion pleasant"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Big words 2"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "possible possible possible possible possible possible possible possible possible possible",
+                        "publicly publicly publicly publicly publicly publicly publicly publicly publicly publicly",
+                        "remember remember remember remember remember remember remember remember remember",
+                        "roommate roommate roommate roommate roommate roommate roommate roommate roommate",
+                        "schedule schedule schedule schedule schedule schedule schedule schedule schedule schedule",
+                        "separate separate separate separate separate separate separate separate separate separate",
+                        "strategy strategy strategy strategy strategy strategy strategy strategy strategy strategy",
+                        "surprise surprise surprise surprise surprise surprise surprise surprise surprise surprise",
+                        "tendency tendency tendency tendency tendency tendency tendency tendency tendency tendency",
+                        "tomorrow tomorrow tomorrow tomorrow tomorrow tomorrow tomorrow tomorrow tomorrow tomorrow",
+                        "valuable valuable valuable valuable valuable valuable valuable valuable valuable valuable",
+                        "wherever wherever wherever wherever wherever wherever wherever wherever wherever wherever",
+                        "separate possible remember publicly schedule tendency surprise roommate strategy",
+                        "strategy tendency schedule valuable surprise tomorrow separate publicly wherever"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Big words 3"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "apartment apartment apartment apartment apartment apartment apartment apartment",
+                        "basically basically basically basically basically basically basically basically basically basically",
+                        "beginning beginning beginning beginning beginning beginning beginning beginning beginning",
+                        "challenge challenge challenge challenge challenge challenge challenge challenge challenge",
+                        "chauffeur chauffeur chauffeur chauffeur chauffeur chauffeur chauffeur chauffeur chauffeur",
+                        "colleague colleague colleague colleague colleague colleague colleague colleague colleague",
+                        "conscious conscious conscious conscious conscious conscious conscious conscious conscious",
+                        "copyright copyright copyright copyright copyright copyright copyright copyright copyright",
+                        "criticism criticism criticism criticism criticism criticism criticism criticism criticism criticism",
+                        "curiosity curiosity curiosity curiosity curiosity curiosity curiosity curiosity curiosity curiosity",
+                        "difficult difficult difficult difficult difficult difficult difficult difficult difficult difficult",
+                        "disappear disappear disappear disappear disappear disappear disappear disappear disappear",
+                        "basically copyright colleague challenge beginning conscious apartment chauffeur",
+                        "copyright disappear chauffeur curiosity criticism difficult conscious colleague"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Large words"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "embarrass embarrass embarrass embarrass embarrass embarrass embarrass embarrass embarrass",
+                        "excellent excellent excellent excellent excellent excellent excellent excellent excellent excellent",
+                        "financial financial financial financial financial financial financial financial financial financial",
+                        "generally generally generally generally generally generally generally generally generally generally",
+                        "glamorous glamorous glamorous glamorous glamorous glamorous glamorous glamorous glamorous",
+                        "immediate immediate immediate immediate immediate immediate immediate immediate immediate",
+                        "introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce",
+                        "knowledge knowledge knowledge knowledge knowledge knowledge knowledge knowledge knowledge",
+                        "lightning lightning lightning lightning lightning lightning lightning lightning lightning lightning",
+                        "luxurious luxurious luxurious luxurious luxurious luxurious luxurious luxurious luxurious luxurious",
+                        "naturally naturally naturally naturally naturally naturally naturally naturally naturally naturally",
+                        "necessary necessary necessary necessary necessary necessary necessary necessary necessary necessary",
+                        "introduce excellent embarrass generally glamorous knowledge financial immediate",
+                        "immediate luxurious naturally knowledge introduce glamorous necessary lightning"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Large words 2"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "physician physician physician physician physician physician physician physician physician physician",
+                        "preferred preferred preferred preferred preferred preferred preferred preferred preferred preferred",
+                        "professor professor professor professor professor professor professor professor professor professor",
+                        "raspberry raspberry raspberry raspberry raspberry raspberry raspberry raspberry raspberry raspberry",
+                        "realistic realistic realistic realistic realistic realistic realistic realistic realistic realistic",
+                        "recognize recognize recognize recognize recognize recognize recognize recognize recognize recognize",
+                        "recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend",
+                        "secretary secretary secretary secretary secretary secretary secretary secretary secretary secretary",
+                        "sincerely sincerely sincerely sincerely sincerely sincerely sincerely sincerely sincerely sincerely",
+                        "technicue technicue technicue technicue technicue technicue technicue technicue technicue technicue",
+                        "temporary temporary temporary temporary temporary temporary temporary temporary temporary temporary",
+                        "therefore therefore therefore therefore therefore therefore therefore therefore therefore therefore"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Large words 3"
+                }
+            ],
+            "maxLessonIndex": 4,
+            "shiftPressKeyboardLayout": "~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:'ZXCVBNM<>? "
+        },
+        {
+            "course": "Ukrainian layout",
+            "currentLessonIndex": 0,
+            "keyboardLayout": "'1234567890-=йцукенгшщзхї/фівапролджєячсмитьбю. ",
+            "lessons": [
+                {
+                    "currentExerciseIndex": 1,
+                    "exercises": [
+                        "оллол лолло олоол ллоло оолол ололл лолоо ололо ллоло",
+                        "ваава аваав вавва аавав ввава ваваа ававв вавав аавав ввава",
+                        "влаво овала ловла аловл алвло алаво ловла валао лалво аолов",
+                        "ава вал лов лао овва овал лава ваал",
+                        "джждж жджжд джддж жжджд ддждж джджж ждждд джджд жжджд",
+                        "лад ода вода вада жало ложа жваво олово вдало вдовж довада",
+                        "фііфі ффііф ііфіф іфііф фііфф фііфі ффііф ііфііф фііфф іфіфі",
+                        "ідол авіа ввід далі вдадо філіал оліфа жало довід відділ",
+                        "адажіо вдовж діловод фоліо водовід жваво лідово відвід"
+                    ],
+                    "maxExerciseIndex": 1,
+                    "name": "Home Row Position"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "пррпр рпррп прппр ррпрп ппрпр прпрр рпрпп прпрп ррпрп ппрпр",
+                        "опір ворожа дрова фара відвар опад відро довіра арфа вправа двір",
+                        "володар радар лавра віра орало флора відрада прапрадід впродовж",
+                        "кееке екеек кекке еекек кекее екекк кекек еекек ккеке",
+                        "окріп арка покрова феодал рокер ріпка леді рекорд віддалік",
+                        "адже фіалка акорд ожеледа важко довкола вежа пророк фрак",
+                        "колір авжеж правік дерево жерло фліпер ідеал кава кефір",
+                        "ковдра філе короп лавка вереда радіокод лекало орда предок",
+                        "вепер драпак іржаво квадра лелека опара перво попіл ріпак",
+                        "нггнг гнггн нгннг ггнгн ннгнг нгнгг гнгнн нгннг ггнгн ннгнг",
+                        "ангел фаланга вагон нагар гарно довго легені жорна іноді",
+                        "кажан ванна лагідно екран напад огірок одна пані аналог",
+                        "миими имиим мимми иимим ммими мимии имимм мимим иимим",
+                        "аміак вимога гама дама едем іменини комір лімфа мари надприродно",
+                        "ваги вимір грип дивина жила кипа книга лама мама мимоволі",
+                        "тььть ьтььт тьтть ььтьт ттьть тьтьь ьтьтт тьтьт ььтьт ттьть",
+                        "авто альтернатива варто гавкіт камінь кріт мантра навіть нити",
+                        "агент апетит велетень вільно епітет кегль літак модель нежить",
+                        "рів корж продаж клоп ложе пекар важко докір лікар відерко",
+                        "два повар поділ рідко ікра підкова кров феодал дірка"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Index Fingers"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "шщщшщ щшщщш шщшшщ щщшщш шшщшщ шщшщщ щшщшш шщшщш",
+                        "арешт видовище щодо фарш пішки ощадно виграш шити вірш",
+                        "belief belief belief belief belief belief belief belief belief belief",
+                        "column column column column column column column column column column",
+                        "coming coming coming coming coming coming coming coming coming coming",
+                        "dispel dispel dispel dispel dispel dispel dispel dispel dispel dispel",
+                        "easily easily easily easily easily easily easily easily easily easily",
+                        "effect effect effect effect effect effect effect effect effect effect",
+                        "eighth eighth eighth eighth eighth eighth eighth eighth eighth eighth",
+                        "either either either either either either either either either either",
+                        "fourth fourth fourth fourth fourth fourth fourth fourth fourth fourth",
+                        "friend friend friend friend friend friend friend friend friend friend",
+                        "either effect advice friend fourth eighth dispel across belief column easily coming",
+                        "across column coming fourth easily belief advice eighth friend effect dispel either"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Middle and Ring Fingers"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "genius genius genius genius genius genius genius genius genius genius",
+                        "height height height height height height height height height height",
+                        "ignore ignore ignore ignore ignore ignore ignore ignore ignore ignore",
+                        "innate innate innate innate innate innate innate innate innate innate",
+                        "island island island island island island island island island island",
+                        "length length length length length length length length length length",
+                        "likely likely likely likely likely likely likely likely likely likely",
+                        "lovely lovely lovely lovely lovely lovely lovely lovely lovely lovely",
+                        "muscle muscle muscle muscle muscle muscle muscle muscle muscle muscle",
+                        "ninety ninety ninety ninety ninety ninety ninety ninety ninety ninety",
+                        "potato potato potato potato potato potato potato potato potato potato",
+                        "prefer prefer prefer prefer prefer prefer prefer prefer prefer prefer",
+                        "prefer ignore potato height likely ninety innate length muscle lovely island genius",
+                        "genius muscle height prefer lovely likely ninety innate potato length island ignore"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Small words 2"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "really really really really really really really really really really",
+                        "rhythm rhythm rhythm rhythm rhythm rhythm rhythm rhythm rhythm rhythm",
+                        "safety safety safety safety safety safety safety safety safety safety",
+                        "scared scared scared scared scared scared scared scared scared scared",
+                        "speech speech speech speech speech speech speech speech speech speech",
+                        "tattoo tattoo tattoo tattoo tattoo tattoo tattoo tattoo tattoo tattoo",
+                        "there there there there there there there there there there there there",
+                        "tongue tongue tongue tongue tongue tongue tongue tongue tongue tongue",
+                        "unique unique unique unique unique unique unique unique unique unique",
+                        "vacuum vacuum vacuum vacuum vacuum vacuum vacuum vacuum vacuum vacuum",
+                        "vision vision vision vision vision vision vision vision vision vision",
+                        "volume volume volume volume volume volume volume volume volume volume",
+                        "there tongue really unique vision safety speech rhythm tattoo scared vacuum volume",
+                        "really speech vacuum unique there tattoo tongue rhythm scared vision safety volume"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Small words 3"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "absence absence absence absence absence absence absence absence absence absence",
+                        "achieve achieve achieve achieve achieve achieve achieve achieve achieve achieve",
+                        "address address address address address address address address address address",
+                        "amateur amateur amateur amateur amateur amateur amateur amateur amateur amateur",
+                        "believe believe believe believe believe believe believe believe believe believe",
+                        "clothes clothes clothes clothes clothes clothes clothes clothes clothes clothes",
+                        "deceive deceive deceive deceive deceive deceive deceive deceive deceive deceive",
+                        "dilemma dilemma dilemma dilemma dilemma dilemma dilemma dilemma dilemma dilemma",
+                        "disease disease disease disease disease disease disease disease disease disease",
+                        "finally finally finally finally finally finally finally finally finally finally",
+                        "foreign foreign foreign foreign foreign foreign foreign foreign foreign foreign",
+                        "forward forward forward forward forward forward forward forward forward forward",
+                        "disease absence believe clothes deceive achieve dilemma finally amateur address",
+                        "believe foreign disease deceive finally clothes amateur address forward dilemma"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Muddke words"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "further further further further further further further further further further",
+                        "general general general general general general general general general general",
+                        "grammar grammar grammar grammar grammar grammar grammar grammar grammar grammar",
+                        "hamster hamster hamster hamster hamster hamster hamster hamster hamster hamster",
+                        "happily happily happily happily happily happily happily happily happily happily",
+                        "hygiene hygiene hygiene hygiene hygiene hygiene hygiene hygiene hygiene hygiene",
+                        "ideally ideally ideally ideally ideally ideally ideally ideally ideally ideally",
+                        "jealous jealous jealous jealous jealous jealous jealous jealous jealous jealous",
+                        "leisure leisure leisure leisure leisure leisure leisure leisure leisure leisure",
+                        "library library library library library library library library library library",
+                        "married married married married married married married married married married",
+                        "missile missile missile missile missile missile missile missile missile missile",
+                        "leisure general further hygiene jealous ideally happily library hamster grammar",
+                        "happily jealous ideally married library leisure hygiene grammar missile hamster"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Muddke words 2"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "opinion opinion opinion opinion opinion opinion opinion opinion opinion opinion",
+                        "pastime pastime pastime pastime pastime pastime pastime pastime pastime pastime",
+                        "pharaoh pharaoh pharaoh pharaoh pharaoh pharaoh pharaoh pharaoh pharaoh pharaoh",
+                        "quality quality quality quality quality quality quality quality quality quality",
+                        "realize realize realize realize realize realize realize realize realize realize",
+                        "receipt receipt receipt receipt receipt receipt receipt receipt receipt receipt",
+                        "receive receive receive receive receive receive receive receive receive receive",
+                        "scenery scenery scenery scenery scenery scenery scenery scenery scenery scenery",
+                        "similar similar similar similar similar similar similar similar similar similar",
+                        "success success success success success success success success success success",
+                        "village village village village village village village village village village",
+                        "weather weather weather weather weather weather weather weather weather weather",
+                        "success pastime quality realize scenery receive receipt similar opinion pharaoh",
+                        "receipt village success quality similar scenery receive weather pharaoh realize"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Muddke words 3"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "business business business business business business business business business business",
+                        "calendar calendar calendar calendar calendar calendar calendar calendar calendar calendar",
+                        "describe describe describe describe describe describe describe describe describe describe",
+                        "espresso espresso espresso espresso espresso espresso espresso espresso espresso espresso",
+                        "familiar familiar familiar familiar familiar familiar familiar familiar familiar familiar",
+                        "familiar familiar familiar familiar familiar familiar familiar familiar familiar familiar",
+                        "guidance guidance guidance guidance guidance guidance guidance guidance guidance guidance",
+                        "honorary honorary honorary honorary honorary honorary honorary honorary honorary honorary",
+                        "humorous humorous humorous humorous humorous humorous humorous humorous humorous humorous",
+                        "lollipop lollipop lollipop lollipop lollipop lollipop lollipop lollipop lollipop lollipop",
+                        "marriage marriage marriage marriage marriage marriage marriage marriage marriage marriage",
+                        "misspell misspell misspell misspell misspell misspell misspell misspell misspell misspell misspell",
+                        "espresso guidance describe calendar familiar business humorous grateful honorary",
+                        "familiar marriage lollipop grateful guidance humorous espresso misspell honorary"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Big words"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "mountain mountain mountain mountain mountain mountain mountain mountain mountain mountain",
+                        "neighbor neighbor neighbor neighbor neighbor neighbor neighbor neighbor neighbor neighbor",
+                        "nowadays nowadays nowadays nowadays nowadays nowadays nowadays nowadays nowadays nowadays",
+                        "obedient obedient obedient obedient obedient obedient obedient obedient obedient obedient",
+                        "occasion occasion occasion occasion occasion occasion occasion occasion occasion occasion",
+                        "official official official official official official official official official official",
+                        "ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary ordinary",
+                        "parallel parallel parallel parallel parallel parallel parallel parallel parallel parallel",
+                        "pavilion pavilion pavilion pavilion pavilion pavilion pavilion pavilion pavilion pavilion",
+                        "personal personal personal personal personal personal personal personal personal personal",
+                        "physical physical physical physical physical physical physical physical physical physical",
+                        "pleasant pleasant pleasant pleasant pleasant pleasant pleasant pleasant pleasant pleasant",
+                        "pavilion neighbor mountain ordinary obedient nowadays official occasion parallel",
+                        "pavilion obedient physical official parallel ordinary personal occasion pleasant"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Big words 2"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "possible possible possible possible possible possible possible possible possible possible",
+                        "publicly publicly publicly publicly publicly publicly publicly publicly publicly publicly",
+                        "remember remember remember remember remember remember remember remember remember",
+                        "roommate roommate roommate roommate roommate roommate roommate roommate roommate",
+                        "schedule schedule schedule schedule schedule schedule schedule schedule schedule schedule",
+                        "separate separate separate separate separate separate separate separate separate separate",
+                        "strategy strategy strategy strategy strategy strategy strategy strategy strategy strategy",
+                        "surprise surprise surprise surprise surprise surprise surprise surprise surprise surprise",
+                        "tendency tendency tendency tendency tendency tendency tendency tendency tendency tendency",
+                        "tomorrow tomorrow tomorrow tomorrow tomorrow tomorrow tomorrow tomorrow tomorrow tomorrow",
+                        "valuable valuable valuable valuable valuable valuable valuable valuable valuable valuable",
+                        "wherever wherever wherever wherever wherever wherever wherever wherever wherever wherever",
+                        "separate possible remember publicly schedule tendency surprise roommate strategy",
+                        "strategy tendency schedule valuable surprise tomorrow separate publicly wherever"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Big words 3"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "apartment apartment apartment apartment apartment apartment apartment apartment",
+                        "basically basically basically basically basically basically basically basically basically basically",
+                        "beginning beginning beginning beginning beginning beginning beginning beginning beginning",
+                        "challenge challenge challenge challenge challenge challenge challenge challenge challenge",
+                        "chauffeur chauffeur chauffeur chauffeur chauffeur chauffeur chauffeur chauffeur chauffeur",
+                        "colleague colleague colleague colleague colleague colleague colleague colleague colleague",
+                        "conscious conscious conscious conscious conscious conscious conscious conscious conscious",
+                        "copyright copyright copyright copyright copyright copyright copyright copyright copyright",
+                        "criticism criticism criticism criticism criticism criticism criticism criticism criticism criticism",
+                        "curiosity curiosity curiosity curiosity curiosity curiosity curiosity curiosity curiosity curiosity",
+                        "difficult difficult difficult difficult difficult difficult difficult difficult difficult difficult",
+                        "disappear disappear disappear disappear disappear disappear disappear disappear disappear",
+                        "basically copyright colleague challenge beginning conscious apartment chauffeur",
+                        "copyright disappear chauffeur curiosity criticism difficult conscious colleague"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Large words"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "embarrass embarrass embarrass embarrass embarrass embarrass embarrass embarrass embarrass",
+                        "excellent excellent excellent excellent excellent excellent excellent excellent excellent excellent",
+                        "financial financial financial financial financial financial financial financial financial financial",
+                        "generally generally generally generally generally generally generally generally generally generally",
+                        "glamorous glamorous glamorous glamorous glamorous glamorous glamorous glamorous glamorous",
+                        "immediate immediate immediate immediate immediate immediate immediate immediate immediate",
+                        "introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce",
+                        "knowledge knowledge knowledge knowledge knowledge knowledge knowledge knowledge knowledge",
+                        "lightning lightning lightning lightning lightning lightning lightning lightning lightning lightning",
+                        "luxurious luxurious luxurious luxurious luxurious luxurious luxurious luxurious luxurious luxurious",
+                        "naturally naturally naturally naturally naturally naturally naturally naturally naturally naturally",
+                        "necessary necessary necessary necessary necessary necessary necessary necessary necessary necessary",
+                        "introduce excellent embarrass generally glamorous knowledge financial immediate",
+                        "immediate luxurious naturally knowledge introduce glamorous necessary lightning"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Large words 2"
+                },
+                {
+                    "currentExerciseIndex": 0,
+                    "exercises": [
+                        "physician physician physician physician physician physician physician physician physician physician",
+                        "preferred preferred preferred preferred preferred preferred preferred preferred preferred preferred",
+                        "professor professor professor professor professor professor professor professor professor professor",
+                        "raspberry raspberry raspberry raspberry raspberry raspberry raspberry raspberry raspberry raspberry",
+                        "realistic realistic realistic realistic realistic realistic realistic realistic realistic realistic",
+                        "recognize recognize recognize recognize recognize recognize recognize recognize recognize recognize",
+                        "recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend",
+                        "secretary secretary secretary secretary secretary secretary secretary secretary secretary secretary",
+                        "sincerely sincerely sincerely sincerely sincerely sincerely sincerely sincerely sincerely sincerely",
+                        "technicue technicue technicue technicue technicue technicue technicue technicue technicue technicue",
+                        "temporary temporary temporary temporary temporary temporary temporary temporary temporary temporary",
+                        "therefore therefore therefore therefore therefore therefore therefore therefore therefore therefore"
+                    ],
+                    "maxExerciseIndex": 0,
+                    "name": "Large words 3"
+                }
+            ],
+            "maxLessonIndex": 0,
+            "shiftPressKeyboardLayout": "₴!'№;%:?*()_+ЙЦУКЕНГШЩЗХЇ/ФІВАПРОЛДЖЄЯЧСМИТЬБЮ, "
+        }
+    ],
+    "currentCourseIndex": 1,
+    "name": "courses"
+}
