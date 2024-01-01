@@ -5,7 +5,7 @@
 class TypingSpeedCalculator : public ITypingSpeedCalculator
 {
 public:
-    calculationTypingSpeed(QTime &startTime, int correctElements) override
+    int calculationTypingSpeed(QTime &startTime, int correctElements) override
     {
         QTime currentTime = QTime::currentTime();
         int timeElapsed = startTime.msecsTo(currentTime);
