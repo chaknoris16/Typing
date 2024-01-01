@@ -4,7 +4,7 @@ class ITypingSpeedCalculator
 {
 public:
     virtual ~ITypingSpeedCalculator() = default;
-    virtual calculationTypingSpeed(QTime& startTime, int correctElements) = 0;
+    virtual int calculationTypingSpeed(QTime& startTime, int correctElements) = 0;
 };
 
 #endif // ITYPINGSPEEDCALCULATOR_H
