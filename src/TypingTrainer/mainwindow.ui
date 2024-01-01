@@ -20,7 +20,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>RATATYPE</string>
+   <string>Typing Trainer</string>
   </property>
   <property name="windowIcon">
    <iconset theme="applications-development" resource="resurce.qrc">
@@ -383,7 +383,7 @@ QPushButton:hover {
               <string>Hide the keyboard</string>
              </property>
              <property name="checkable">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -3280,6 +3280,7 @@ background-color: rgb(48, 165, 249);
   </widget>
  </widget>
  <resources>
+  <include location="resurce.qrc"/>
   <include location="resurce.qrc"/>
  </resources>
  <connections/>

@@ -220,23 +220,6 @@ QSet<QChar> *MainWindow::extractUniqueLetters(QString text)
     return uniqueLetters;
 }
 
-// QLocale MainWindow::determineLocale(const QString &language)
-// {
-//     if (language.toLower().contains("english")) {
-//         return QLocale(QLocale::English);
-//     } else if (language.toLower().contains("ukrainian")) {
-//         return QLocale(QLocale::Ukrainian);
-//     } else {
-//         return QLocale::system();
-//     }
-// }
-
-
-
-// QString MainWindow::selectingFirstWordFromLine(const QString& str){
-//     return str.section(' ', 0, 0);
-// }
-
 void MainWindow::populateComboBoxes(){
     this->blockSignalsComboBoxes(true);
         this->comboBoxManager->fillCourseComboBox(this->comboBox_Course, jsonParser->coursesArray);
@@ -261,37 +244,6 @@ inline void MainWindow::blockSignalsComboBoxes(bool state)
     this->comboBox_Lessons->blockSignals(state);
     this->comboBox_Exercises->blockSignals(state);
 }
-// inline void MainWindow::fillCourseComboBox_M(QComboBox* comboBox, QJsonArray &coursesArray)
-// {
-//     for (const QJsonValue &courseValue : coursesArray) {
-//         QJsonObject courseObject = courseValue.toObject();
-//         QString courseName = courseObject["course"].toString();
-//         comboBox->addItem(courseName);
-//     }
-// }
-
-// void MainWindow::fillLessonsComboBox_M(QComboBox *comboBox, const QJsonArray& lessonsArray)
-// {
-//     comboBox->blockSignals(true);
-//     comboBox->clear();
-//     comboBox->blockSignals(false);
-//     for(const auto& lessonValue : lessonsArray) {
-//         auto lessonObject = lessonValue.toObject();
-//         QString lessonName = lessonObject["name"].toString();
-//         comboBox->addItem(lessonName);
-//     }
-// }
-
-// void MainWindow::fillExercisesComboBox_M(QComboBox *comboBox, QJsonArray &exercisesArray)
-// {
-//     comboBox->blockSignals(true);
-//     comboBox->clear();
-//     comboBox->blockSignals(false);
-//     for(const QJsonValue &exercisesValue : exercisesArray) {
-//         QString exerciseName = selectingFirstWordFromLine(exercisesValue.toString());
-//         comboBox->addItem(exerciseName);
-//     }
-// }
 
 void MainWindow::signalAndSlots()
 {

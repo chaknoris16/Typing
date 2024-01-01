@@ -399,7 +399,7 @@ public:
         on_or_offVirtKeybordButton->setCursor(QCursor(Qt::PointingHandCursor));
         on_or_offVirtKeybordButton->setFocusPolicy(Qt::NoFocus);
         on_or_offVirtKeybordButton->setStyleSheet(QString::fromUtf8(""));
-        on_or_offVirtKeybordButton->setCheckable(false);
+        on_or_offVirtKeybordButton->setCheckable(true);
 
         horizontalLayout_13->addWidget(on_or_offVirtKeybordButton);
 
@@ -1606,7 +1606,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "RATATYPE", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Typing Trainer", nullptr));
         simulatorsButton->setText(QCoreApplication::translate("MainWindow", "Simulator", nullptr));
         testingButton->setText(QCoreApplication::translate("MainWindow", "Testing", nullptr));
         resultsButton->setText(QCoreApplication::translate("MainWindow", "Results", nullptr));

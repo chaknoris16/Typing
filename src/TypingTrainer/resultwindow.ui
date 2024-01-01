@@ -70,7 +70,7 @@ background-color: rgb(234, 216, 24);</string>
         <string notr="true">color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>ЗН./ХВ</string>
+        <string>marks/min</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -113,7 +113,7 @@ background-color: rgb(234, 216, 24);</string>
         <string notr="true">color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>ПОМИЛОК</string>
+        <string>ERROR</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -144,7 +144,7 @@ background-color: rgb(234, 216, 24);</string>
        <string notr="true">color: rgb(41, 69, 85);</string>
       </property>
       <property name="text">
-       <string>Вправу завершено!</string>
+       <string>Exercise completed!</string>
       </property>
       <property name="scaledContents">
        <bool>false</bool>
@@ -215,7 +215,7 @@ border: 3px solid rgb(168, 168, 168);
 }</string>
       </property>
       <property name="text">
-       <string>ЩЕ РАЗ</string>
+       <string>AGAIN</string>
       </property>
      </widget>
     </item>
@@ -256,7 +256,7 @@ border: 3px solid rgb(168, 168, 168);
 }</string>
       </property>
       <property name="text">
-       <string>ДАЛІ</string>
+       <string>NEXT</string>
       </property>
      </widget>
     </item>

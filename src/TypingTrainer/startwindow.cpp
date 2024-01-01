@@ -42,7 +42,7 @@ void startwindow::connectSignalsAndSlots()
 {
     connect(this->lesson_ComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int newLessonsIndex){
         mainWindow->getComboBox_Lessons()->setCurrentIndex(newLessonsIndex);
-        this->comboBoxManager->fillLessonsComboBox(this->exercise_ComboBox, mainWindow->jsonParser->exercisesArray, mainWindow->jsonParser->getMaxLessonIndex());
+        this->comboBoxManager->fillExercisesComboBox(this->exercise_ComboBox, mainWindow->jsonParser->exercisesArray, mainWindow->jsonParser->getMaxExerciseIndex());
     });
 
 
