@@ -279,11 +279,11 @@
         },
         {
             "course": "English of mistakes",
-            "currentLessonIndex": 4,
+            "currentLessonIndex": 0,
             "keyboardLayout": "`1234567890-=qwertyuiop[]|asdfghjkl;'zxcvbnm,./ ",
             "lessons": [
                 {
-                    "currentExerciseIndex": 1,
+                    "currentExerciseIndex": 0,
                     "exercises": [
                         "allot allot allot allot allot allot allot allot allot allot",
                         "enemy enemy enemy enemy enemy enemy enemy enemy enemy enemy",
@@ -300,11 +300,11 @@
                         "kneel money niece allot enemy judge guard ninth laser later fifty forty",
                         "judge guard ninth later fifty forty kneel money allot niece laser enemy"
                     ],
-                    "maxExerciseIndex": 2,
+                    "maxExerciseIndex": 0,
                     "name": "Tiny words"
                 },
                 {
-                    "currentExerciseIndex": 13,
+                    "currentExerciseIndex": 0,
                     "exercises": [
                         "piece piece piece piece piece piece piece piece piece piece",
                         "queue queue queue queue queue queue queue queue queue queue",
@@ -325,7 +325,7 @@
                     "name": "Tiny words 2"
                 },
                 {
-                    "currentExerciseIndex": 3,
+                    "currentExerciseIndex": 0,
                     "exercises": [
                         "across across across across across across across across across across",
                         "advice advice advice advice advice advice advice advice advice advice",
@@ -384,7 +384,7 @@
                         "there tongue really unique vision safety speech rhythm tattoo scared vacuum volume",
                         "really speech vacuum unique there tattoo tongue rhythm scared vision safety volume"
                     ],
-                    "maxExerciseIndex": 1,
+                    "maxExerciseIndex": 0,
                     "name": "Small words 3"
                 },
                 {
@@ -575,7 +575,7 @@
                     "name": "Large words 3"
                 }
             ],
-            "maxLessonIndex": 4,
+            "maxLessonIndex": 0,
             "shiftPressKeyboardLayout": "~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:'ZXCVBNM<>? "
         },
         {
@@ -584,7 +584,7 @@
             "keyboardLayout": "'1234567890-=йцукенгшщзхї/фівапролджєячсмитьбю. ",
             "lessons": [
                 {
-                    "currentExerciseIndex": 1,
+                    "currentExerciseIndex": 0,
                     "exercises": [
                         "оллол лолло олоол ллоло оолол ололл лолоо ололо ллоло",
                         "ваава аваав вавва аавав ввава ваваа ававв вавав аавав ввава",
@@ -596,7 +596,7 @@
                         "ідол авіа ввід далі вдадо філіал оліфа жало довід відділ",
                         "адажіо вдовж діловод фоліо водовід жваво лідово відвід"
                     ],
-                    "maxExerciseIndex": 1,
+                    "maxExerciseIndex": 0,
                     "name": "Home Row Position"
                 },
                 {
@@ -881,6 +881,6 @@
             "shiftPressKeyboardLayout": "₴!'№;%:?*()_+ЙЦУКЕНГШЩЗХЇ/ФІВАПРОЛДЖЄЯЧСМИТЬБЮ, "
         }
     ],
-    "currentCourseIndex": 1,
+    "currentCourseIndex": 0,
     "name": "courses"
 }

@@ -35,7 +35,7 @@ background-color: qlineargradient(spread:pad, x1:0.491713, y1:0, x2:0.514, y2:1,
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_17">
     <item>
-     <spacer name="verticalSpacer">
+     <spacer name="verticalSpacer_1">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
@@ -3293,7 +3293,7 @@ background-color: rgb(48, 165, 249);
      </widget>
     </item>
     <item>
-     <spacer name="verticalSpacer_2">
+     <spacer name="verticalSpacer_21">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
@@ -3309,9 +3309,9 @@ background-color: rgb(48, 165, 249);
      </spacer>
     </item>
    </layout>
-   <zorder>verticalSpacer</zorder>
+   <zorder>verticalSpacer_1</zorder>
    <zorder>widget_whis_settings</zorder>
-   <zorder>verticalSpacer_2</zorder>
+   <zorder>verticalSpacer_21</zorder>
    <zorder>stackedWidget</zorder>
   </widget>
  </widget>
