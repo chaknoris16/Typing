@@ -323,6 +323,9 @@ QPushButton:hover {
             <layout class="QVBoxLayout" name="verticalLayout_Course">
              <item>
               <widget class="QLabel" name="label_2">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 0);</string>
+               </property>
                <property name="text">
                 <string>Course</string>
                </property>
@@ -335,7 +338,7 @@ QPushButton:hover {
              <item>
               <widget class="QLabel" name="label_3">
                <property name="styleSheet">
-                <string notr="true"/>
+                <string notr="true">color: rgb(0, 0, 0);</string>
                </property>
                <property name="text">
                 <string>Lesson</string>
@@ -348,6 +351,9 @@ QPushButton:hover {
             <layout class="QVBoxLayout" name="verticalLayout_Exercise">
              <item>
               <widget class="QLabel" name="label_5">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 0);</string>
+               </property>
                <property name="text">
                 <string>Exercise</string>
                </property>
@@ -377,7 +383,7 @@ QPushButton:hover {
               <enum>Qt::NoFocus</enum>
              </property>
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">color: rgb(0, 0, 0);</string>
              </property>
              <property name="text">
               <string>Hide the keyboard</string>
@@ -394,6 +400,9 @@ QPushButton:hover {
              </property>
              <property name="focusPolicy">
               <enum>Qt::NoFocus</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(0, 0, 0);</string>
              </property>
              <property name="text">
               <string>Initial window</string>
@@ -492,7 +501,9 @@ QPushButton:hover {
                      </property>
                      <property name="styleSheet">
                       <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-background-color: rgb(85, 197, 255);</string>
+background-color: rgb(85, 197, 255);
+
+color: rgb(0, 0, 0);</string>
                      </property>
                      <property name="text">
                       <string>0</string>
@@ -509,7 +520,8 @@ background-color: rgb(85, 197, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-background-color: rgb(85, 197, 255);</string>
+background-color: rgb(85, 197, 255);
+color: rgb(0, 0, 0);</string>
                      </property>
                      <property name="text">
                       <string>errors</string>
@@ -538,7 +550,8 @@ background-color: rgb(85, 197, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-background-color: rgb(85, 197, 255);</string>
+background-color: rgb(85, 197, 255);
+color: rgb(0, 0, 0);</string>
                      </property>
                      <property name="text">
                       <string>0</string>
@@ -555,7 +568,8 @@ background-color: rgb(85, 197, 255);</string>
                      </property>
                      <property name="styleSheet">
                       <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-background-color: rgb(85, 197, 255);</string>
+background-color: rgb(85, 197, 255);
+color: rgb(0, 0, 0);</string>
                      </property>
                      <property name="text">
                       <string>marks/min</string>
@@ -647,6 +661,7 @@ QPushButton:hover {
                 <string notr="true">background-color: rgb(255, 255, 255);
 font: 12pt &quot;Segoe UI&quot;;
  border-radius: 10px;
+color: rgb(0, 0, 0);
 </string>
                </property>
                <property name="text">
@@ -2842,6 +2857,9 @@ background-color: rgb(154, 211, 250);
                   <pointsize>14</pointsize>
                  </font>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);</string>
+                </property>
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -2857,6 +2875,9 @@ background-color: rgb(154, 211, 250);
                     <height>25</height>
                    </size>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(0, 0, 0);</string>
+                  </property>
                   <property name="text">
                    <string>SPEED</string>
                   </property>
@@ -2871,6 +2892,9 @@ background-color: rgb(154, 211, 250);
                       <width>50</width>
                       <height>30</height>
                      </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(0, 0, 0);</string>
                     </property>
                     <property name="text">
                      <string>0</string>
@@ -2888,6 +2912,9 @@ background-color: rgb(154, 211, 250);
                       <height>20</height>
                      </size>
                     </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(0, 0, 0);</string>
+                    </property>
                     <property name="text">
                      <string>marks/min</string>
                     </property>
@@ -2902,6 +2929,9 @@ background-color: rgb(154, 211, 250);
                     <width>73</width>
                     <height>30</height>
                    </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(0, 0, 0);</string>
                   </property>
                   <property name="text">
                    <string>PRECISION</string>
@@ -2921,6 +2951,9 @@ background-color: rgb(154, 211, 250);
                     <property name="layoutDirection">
                      <enum>Qt::LeftToRight</enum>
                     </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(0, 0, 0);</string>
+                    </property>
                     <property name="text">
                      <string>100</string>
                     </property>
@@ -2936,6 +2969,9 @@ background-color: rgb(154, 211, 250);
                       <width>16777215</width>
                       <height>20</height>
                      </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(0, 0, 0);</string>
                     </property>
                     <property name="text">
                      <string>%</string>
@@ -3200,7 +3236,7 @@ image: url(:/resurces/img/battonStartFrame.svg);</string>
 {
 	border: 1px;
 	border-radius: 10px;
-	
+	color: rgb(0, 0, 0);
 	background-color: rgb(48, 165, 249);
 
 }

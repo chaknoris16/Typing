@@ -360,6 +360,7 @@ public:
         verticalLayout_Course->setObjectName("verticalLayout_Course");
         label_2 = new QLabel(widget_whis_settings);
         label_2->setObjectName("label_2");
+        label_2->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
 
         verticalLayout_Course->addWidget(label_2);
 
@@ -370,7 +371,7 @@ public:
         verticalLayout_Lesson->setObjectName("verticalLayout_Lesson");
         label_3 = new QLabel(widget_whis_settings);
         label_3->setObjectName("label_3");
-        label_3->setStyleSheet(QString::fromUtf8(""));
+        label_3->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
 
         verticalLayout_Lesson->addWidget(label_3);
 
@@ -381,6 +382,7 @@ public:
         verticalLayout_Exercise->setObjectName("verticalLayout_Exercise");
         label_5 = new QLabel(widget_whis_settings);
         label_5->setObjectName("label_5");
+        label_5->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
 
         verticalLayout_Exercise->addWidget(label_5);
 
@@ -398,7 +400,7 @@ public:
         on_or_offVirtKeybordButton->setMaximumSize(QSize(145, 16777215));
         on_or_offVirtKeybordButton->setCursor(QCursor(Qt::PointingHandCursor));
         on_or_offVirtKeybordButton->setFocusPolicy(Qt::NoFocus);
-        on_or_offVirtKeybordButton->setStyleSheet(QString::fromUtf8(""));
+        on_or_offVirtKeybordButton->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         on_or_offVirtKeybordButton->setCheckable(true);
 
         horizontalLayout_13->addWidget(on_or_offVirtKeybordButton);
@@ -407,6 +409,7 @@ public:
         checkBox->setObjectName("checkBox");
         checkBox->setCursor(QCursor(Qt::PointingHandCursor));
         checkBox->setFocusPolicy(Qt::NoFocus);
+        checkBox->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         checkBox->setCheckable(true);
         checkBox->setChecked(false);
 
@@ -466,7 +469,9 @@ public:
         font1.setItalic(false);
         errorCounterLabel->setFont(font1);
         errorCounterLabel->setStyleSheet(QString::fromUtf8("font: 12pt \"Segoe UI\";\n"
-"background-color: rgb(85, 197, 255);"));
+"background-color: rgb(85, 197, 255);\n"
+"\n"
+"color: rgb(0, 0, 0);"));
 
         horizontalLayout_20->addWidget(errorCounterLabel);
 
@@ -475,7 +480,8 @@ public:
         sizePolicy2.setHeightForWidth(label_8->sizePolicy().hasHeightForWidth());
         label_8->setSizePolicy(sizePolicy2);
         label_8->setStyleSheet(QString::fromUtf8("font: 12pt \"Segoe UI\";\n"
-"background-color: rgb(85, 197, 255);"));
+"background-color: rgb(85, 197, 255);\n"
+"color: rgb(0, 0, 0);"));
 
         horizontalLayout_20->addWidget(label_8);
 
@@ -490,7 +496,8 @@ public:
         sign_per_minute_counter->setSizePolicy(sizePolicy2);
         sign_per_minute_counter->setFont(font1);
         sign_per_minute_counter->setStyleSheet(QString::fromUtf8("font: 12pt \"Segoe UI\";\n"
-"background-color: rgb(85, 197, 255);"));
+"background-color: rgb(85, 197, 255);\n"
+"color: rgb(0, 0, 0);"));
 
         horizontalLayout_21->addWidget(sign_per_minute_counter);
 
@@ -499,7 +506,8 @@ public:
         sizePolicy2.setHeightForWidth(label_10->sizePolicy().hasHeightForWidth());
         label_10->setSizePolicy(sizePolicy2);
         label_10->setStyleSheet(QString::fromUtf8("font: 12pt \"Segoe UI\";\n"
-"background-color: rgb(85, 197, 255);"));
+"background-color: rgb(85, 197, 255);\n"
+"color: rgb(0, 0, 0);"));
 
         horizontalLayout_21->addWidget(label_10);
 
@@ -549,6 +557,7 @@ public:
         keyFieldInside_2->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "font: 12pt \"Segoe UI\";\n"
 " border-radius: 10px;\n"
+"color: rgb(0, 0, 0);\n"
 ""));
         keyFieldInside_2->setScaledContents(true);
         keyFieldInside_2->setAlignment(Qt::AlignCenter);
@@ -1363,6 +1372,7 @@ public:
         QFont font3;
         font3.setPointSize(14);
         testingTextEdit_tg->setFont(font3);
+        testingTextEdit_tg->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         testingTextEdit_tg->setReadOnly(true);
 
         horizontalLayout_4->addWidget(testingTextEdit_tg);
@@ -1372,6 +1382,7 @@ public:
         speedLabel_tg = new QLabel(layoutWidget);
         speedLabel_tg->setObjectName("speedLabel_tg");
         speedLabel_tg->setMaximumSize(QSize(73, 25));
+        speedLabel_tg->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
 
         verticalLayout_6->addWidget(speedLabel_tg);
 
@@ -1380,6 +1391,7 @@ public:
         speedCounterLabel_tg = new QLabel(layoutWidget);
         speedCounterLabel_tg->setObjectName("speedCounterLabel_tg");
         speedCounterLabel_tg->setMaximumSize(QSize(50, 30));
+        speedCounterLabel_tg->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         speedCounterLabel_tg->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout->addWidget(speedCounterLabel_tg);
@@ -1387,6 +1399,7 @@ public:
         zn_per_minute = new QLabel(layoutWidget);
         zn_per_minute->setObjectName("zn_per_minute");
         zn_per_minute->setMaximumSize(QSize(16777215, 20));
+        zn_per_minute->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
 
         horizontalLayout->addWidget(zn_per_minute);
 
@@ -1396,6 +1409,7 @@ public:
         label_9 = new QLabel(layoutWidget);
         label_9->setObjectName("label_9");
         label_9->setMaximumSize(QSize(73, 30));
+        label_9->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
 
         verticalLayout_6->addWidget(label_9);
 
@@ -1405,6 +1419,7 @@ public:
         procentLabel->setObjectName("procentLabel");
         procentLabel->setMaximumSize(QSize(39, 30));
         procentLabel->setLayoutDirection(Qt::LeftToRight);
+        procentLabel->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         procentLabel->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_3->addWidget(procentLabel);
@@ -1412,6 +1427,7 @@ public:
         label_4 = new QLabel(layoutWidget);
         label_4->setObjectName("label_4");
         label_4->setMaximumSize(QSize(16777215, 20));
+        label_4->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
 
         horizontalLayout_3->addWidget(label_4);
 
@@ -1538,7 +1554,7 @@ public:
 "{\n"
 "	border: 1px;\n"
 "	border-radius: 10px;\n"
-"	\n"
+"	color: rgb(0, 0, 0);\n"
 "	background-color: rgb(48, 165, 249);\n"
 "\n"
 "}\n"

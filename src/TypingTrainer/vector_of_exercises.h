@@ -1,8 +1,5 @@
 #ifndef VECTOR_OF_EXERCISES_H
 #define VECTOR_OF_EXERCISES_H
-
-#endif // VECTOR_OF_EXERCISES_H
-
 #include <QVector>
 #include <QString>
 
@@ -24,3 +21,4 @@ extern QString text_FailedExercise;
 extern QString text_FailedExerciseInstruction;
 extern QString courseJson;
 
+#endif // VECTOR_OF_EXERCISES_H
