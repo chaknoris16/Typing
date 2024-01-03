@@ -1,5 +1,5 @@
 # Typing Trainer
-#### Typing Trainer is a cross-platform program for training or testing blind typing. The application has many exercises and supports two languages for slow printing. All training and training results are stored in the SQL Lite database.
+#### Typing Trainer is a cross-platform program for training or testing blind typing. The application has many exercises and supports two languages for slow printing. All training and training results are stored in the SQLite database.
 
 ## Opportunities
 + Two modes: training and testing
