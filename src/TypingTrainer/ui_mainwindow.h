@@ -32,7 +32,7 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QVBoxLayout *verticalLayout_17;
-    QSpacerItem *verticalSpacer;
+    QSpacerItem *verticalSpacer_1;
     QVBoxLayout *verticalLayout_4;
     QWidget *widget_whis_bottons;
     QVBoxLayout *verticalLayout_3;
@@ -188,7 +188,7 @@ public:
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_12;
     QVBoxLayout *verticalLayout_10;
-    QSpacerItem *verticalSpacer_2;
+    QSpacerItem *verticalSpacer_21;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -217,9 +217,9 @@ public:
         centralwidget->setObjectName("centralwidget");
         verticalLayout_17 = new QVBoxLayout(centralwidget);
         verticalLayout_17->setObjectName("verticalLayout_17");
-        verticalSpacer = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Fixed);
+        verticalSpacer_1 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
-        verticalLayout_17->addItem(verticalSpacer);
+        verticalLayout_17->addItem(verticalSpacer_1);
 
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setObjectName("verticalLayout_4");
@@ -1562,6 +1562,7 @@ public:
 "{\n"
 "	\n"
 "	background-color: rgb(69, 162, 208);\n"
+"	color: rgb(0, 0, 0);\n"
 "	min-width: 30ex;\n"
 "	min-height: 10ex;\n"
 "	margin-left: 1px;\n"
@@ -1570,7 +1571,7 @@ public:
 "QTabBar::tab:selected\n"
 "{\n"
 "	background-color: rgb(48, 165, 249);\n"
-"	\n"
+"	color: rgb(0, 0, 0);\n"
 "}"));
         tab = new QWidget();
         tab->setObjectName("tab");
@@ -1603,9 +1604,9 @@ public:
 
         verticalLayout_17->addWidget(stackedWidget);
 
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_21 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_17->addItem(verticalSpacer_2);
+        verticalLayout_17->addItem(verticalSpacer_21);
 
         MainWindow->setCentralWidget(centralwidget);
         widget_whis_settings->raise();

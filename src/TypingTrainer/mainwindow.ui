@@ -3244,6 +3244,7 @@ QTabBar::tab
 {
 	
 	background-color: rgb(69, 162, 208);
+	color: rgb(0, 0, 0);
 	min-width: 30ex;
 	min-height: 10ex;
 	margin-left: 1px;
@@ -3252,7 +3253,7 @@ QTabBar::tab
 QTabBar::tab:selected
 {
 	background-color: rgb(48, 165, 249);
-	
+	color: rgb(0, 0, 0);
 }</string>
           </property>
           <property name="currentIndex">

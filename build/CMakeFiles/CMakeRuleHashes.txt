@@ -1,0 +1,5 @@
+# Hashes of file build rules.
+ecc6b87e1caa1a7776c2fe4f56f0a01e src/TypingTrainer/CMakeFiles/TypingTrainer_autogen
+ecc6b87e1caa1a7776c2fe4f56f0a01e src/TypingTrainer/CMakeFiles/TypingTrainer_autogen_timestamp_deps
+63bc2b69d1c7e76d45d95e3928613b44 src/TypingTrainer/TypingTrainer_autogen/EWIEGA46WW/qrc_resurce.cpp
+4861efd10b30557380c9c1fe237cba1d src/TypingTrainer/TypingTrainer_autogen/timestamp

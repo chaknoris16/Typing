@@ -1,0 +1,38 @@
+{
+	"BUILD_DIR" : "/home/mykhailo/Documents/TypingTrainer/build/src/TypingTrainer/TypingTrainer_autogen",
+	"CMAKE_BINARY_DIR" : "/home/mykhailo/Documents/TypingTrainer/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/mykhailo/Documents/TypingTrainer/build/src/TypingTrainer",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer",
+	"CMAKE_SOURCE_DIR" : "/home/mykhailo/Documents/TypingTrainer",
+	"GENERATOR" : "Unix Makefiles",
+	"INCLUDE_DIR" : "/home/mykhailo/Documents/TypingTrainer/build/src/TypingTrainer/TypingTrainer_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/lyrics.json",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/course.json",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/imageFrame.png",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/imageFrame.svg",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/imageFrame.jpg",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/packo (1).svg",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/right.svg",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/MainIcon.svg",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/ResetPage.svg",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/StartWidget.svg",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/Start.svg",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/reset.svg",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/Frame 1.svg",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/battonStartFrame.svg",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/171013.ico",
+		"/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/img/packo.svg"
+	],
+	"LOCK_FILE" : "/home/mykhailo/Documents/TypingTrainer/build/src/TypingTrainer/CMakeFiles/TypingTrainer_autogen.dir/AutoRcc_resurce_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "resurce" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_resurce.cpp",
+	"RCC_EXECUTABLE" : "/home/mykhailo/Qt/6.7.0/gcc_64/./libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/mykhailo/Documents/TypingTrainer/build/src/TypingTrainer/CMakeFiles/TypingTrainer_autogen.dir/AutoRcc_resurce_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/mykhailo/Documents/TypingTrainer/src/TypingTrainer/resurce.qrc",
+	"VERBOSITY" : 0
+}

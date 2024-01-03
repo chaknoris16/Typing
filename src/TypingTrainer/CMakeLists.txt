@@ -8,8 +8,7 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(BUILD_TEST_LIBRARY ON)
-
+#set(BUILD_TEST_LIBRARY ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
@@ -49,10 +48,11 @@ set(PROJECT_SOURCES
     ResourceCopier.h
 )
 
-if(BUILD_TEST_LIBRARY)
+if(BUILD_TESTS)
     add_library(TypingTrainer_lib ${PROJECT_SOURCES}
         )
     target_link_libraries(TypingTrainer_lib PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
+    enable_testing()
 endif()
 
 
