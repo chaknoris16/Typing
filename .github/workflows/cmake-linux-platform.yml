@@ -19,7 +19,14 @@ jobs:
         version: 6.5.0
         host: linux
             
-
+    - name: Set up GTest
+      run: |
+        sudo apt-get -y install libgtest-dev
+        cd /usr/src/gtest
+        sudo cmake CMakeLists.txt
+        sudo make
+        sudo cp *.a /usr/lib
+        
     - name: Set reusable strings
       id: strings
       shell: bash
