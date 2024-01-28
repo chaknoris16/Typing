@@ -1,9 +1,9 @@
 #ifndef TEST_BDMANAGER_H
 #define TEST_BDMANAGER_H
 #include <gtest/gtest.h>
-#include "IDBManager.h"
-#include "DBTreningQuery.h"
-#include "DBTestingQuery.h"
+#include "../src/IDBManager.h"
+#include "../src/DBTreningQuery.h"
+#include "../src/DBTestingQuery.h"
 #include <QVector>
 class test_BDManager : public ::testing::Test
 {

@@ -10,7 +10,8 @@
 #include <QPushButton>
 #include "ui_mainwindow.h"
 #include <stdexcept>
-#include <jsonconfigparser.h>
+#include "jsonconfigparser.h"
+
 class MainWindow;
 class Virtual_Keyboard : public QWidget
 {

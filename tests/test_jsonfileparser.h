@@ -1,7 +1,7 @@
 #ifndef TEST_JSONFILEPARSER_H
 #define TEST_JSONFILEPARSER_H
 #include <gtest/gtest.h>
-#include "jsonconfigparser.h"
+#include "../src/jsonconfigparser.h"
 #include <QJsonArray>
 class test_jsonFileParser : public ::testing::Test
 {

@@ -1,5 +1,4 @@
 #include "test_jsonfileparser.h"
-#include "jsonconfigparser.h"
 #include <QString>
 TEST_F(test_jsonFileParser, checkCourseIndex) {
     ASSERT_FALSE(this->jsonParser.getCurrentCourseIndex() < 0);
