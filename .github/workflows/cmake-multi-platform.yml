@@ -1,4 +1,4 @@
-name: CMake with Qt on multiple platforms
+name: CMake with Qt on Linux
 
 on:
   push:
@@ -35,7 +35,7 @@ jobs:
         -S ${{ github.workspace }}
 
     - name: Build
-      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config Release
+      run: cmake -DBUILD_TESTS=ON --build ${{ steps.strings.outputs.build-output-dir }} --config Release
 
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
