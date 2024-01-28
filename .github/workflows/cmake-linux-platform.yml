@@ -22,10 +22,11 @@ jobs:
     - name: Set up GTest
       run: |
         sudo apt-get -y install libgtest-dev
+        sudo apt-get -y install cmake
         cd /usr/src/gtest
         sudo cmake CMakeLists.txt
         sudo make
-        sudo cp *.a /usr/lib
+        sudo cp lib/*.a /usr/lib
         
     - name: Set reusable strings
       id: strings
