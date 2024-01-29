@@ -12,10 +12,12 @@ test_jsonfileparser.h
 test_bdmanager.h test_bdmanager.cpp
 ../src/jsonconfigparser.h
 ../src/jsonconfigparser.cpp
+../src/json_text_parser.h
+../src/json_text_parser.cpp
 ../src/IDBManager.h
 ../src/DBTestingQuery.h
 ../src/DBTreningQuery.h
-
+../src/resource.qrc
 )
 
 

@@ -11,6 +11,7 @@
 
 #include "jsonconfigparser.h"
 #include "IJsonTextParser.h"
+#include "json_text_parser.h"
 #include "RandomElementPicker.h"
 #include "IRandomTextProvider.h"
 #include "IColorizeCharacter.h"

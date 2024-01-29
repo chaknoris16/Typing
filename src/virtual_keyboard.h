@@ -45,7 +45,7 @@ public:
 
 private:
     MainWindow* mainWindow;
-    JsonConfigParser* jsonParser = new JsonConfigParser(this);
+    JsonConfigParser* jsonParser = new JsonConfigParser("course.json", this);
     QVector<QPushButton*> keyboardButtons;
     void fillVectorKeyboardButtons(Ui::MainWindow *ui);
     QMap<QPushButton*, QPalette>* originalColors = new QMap<QPushButton*, QPalette>;

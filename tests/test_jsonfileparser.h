@@ -2,10 +2,13 @@
 #define TEST_JSONFILEPARSER_H
 #include <gtest/gtest.h>
 #include "../src/jsonconfigparser.h"
+#include "../src/json_text_parser.h"
+
 #include <QJsonArray>
 class test_jsonFileParser : public ::testing::Test
 {
-
+public:
+    test_jsonFileParser();
 protected:
     void SetUp() override {
     }
@@ -18,7 +21,7 @@ public:
             exercisesArray.append(value);
         }
     }
-    JsonTextParser* textParser = new JsonTextParser("lyrics.json");
+    JsonTextParser textParser;
 };
 
 #endif // TEST_JSONFILEPARSER_H

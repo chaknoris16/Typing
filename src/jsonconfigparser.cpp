@@ -1,10 +1,10 @@
 #include "jsonconfigparser.h"
 
-JsonConfigParser::JsonConfigParser(QObject *parent)
-    : QObject{parent}
+JsonConfigParser::JsonConfigParser(const QString &filePath, QObject *parent)
+    : QObject{parent},
+    _filePath{filePath}
 {
-    //this->settings = new QSettings("MySoft", "Star Runner", this);
-    this->coursesArray = this->extractArraysFromJson("course.json", "courses");;
+    this->coursesArray = this->extractArraysFromJson(_filePath, "courses");;
     this->setLessonsArray(courseIndex);
     this->setExercisesArray(lessonIndex);
 }
@@ -232,7 +232,7 @@ void JsonConfigParser::saveIndexes()
 
     rootObject["courses"] = coursesArray;
 
-    QFile writeFile("course.json");
+    QFile writeFile(_filePath);
     if (!writeFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "Failed to open JSON file for writing.";
         return;
@@ -243,7 +243,4 @@ void JsonConfigParser::saveIndexes()
     writeFile.close();
 }
 
-JsonTextParser::JsonTextParser(const QString& filePath) : filePath(filePath)
-{
-    this->lyricsArray = extractArraysFromJson(this->filePath, "lyrics");
-}
+

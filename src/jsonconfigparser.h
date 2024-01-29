@@ -16,13 +16,14 @@ class JsonConfigParser : public QObject
 {
     Q_OBJECT
 private:
+    const QString& _filePath;
     struct keyboardLayout
     {
         QString keyboardSymbols;
         QString shiftKeyboardSymbols;
     };
 public:
-    explicit JsonConfigParser(QObject *parent = nullptr);
+    explicit JsonConfigParser(const QString& filePath, QObject *parent = nullptr);
     QJsonArray coursesArray;
     QJsonArray lessonsArray;
     QJsonArray exercisesArray;
@@ -60,47 +61,4 @@ signals:
     void reFillExercisesCommbobox(int index);
 };
 
-class JsonTextParser : public JsonConfigParser, public IJsonTextParser
-{
-    Q_OBJECT
-private:
-     QString filePath;
-public slots:
-    void updateFields(int languageIndex) override
-    {
-        this->setExercisesArray(languageIndex);
-    }
-public:
-    JsonTextParser(const QString& filePath);
-
-    const QJsonArray getLuricsArray() override
-    {
-        return this->lyricsArray;
-    }
-
-    const QString getLanguage() override
-    {
-        return this->language;
-    }
-
-    const QJsonArray getTextsArray() override
-    {
-        return this->textsArray;
-    }
-
-private:
-    QString language;
-    QJsonArray lyricsArray;
-    QJsonArray textsArray;
-    void setExercisesArray(int lessonIndex) override
-    {
-        if(this->lyricsArray.isEmpty()) {
-            throw std::invalid_argument("The lyricsArray array is empty.[]");
-        }else {
-            QJsonObject courseObject = lyricsArray[lessonIndex].toObject();
-            this->textsArray = courseObject["lessons"].toArray();
-            this->language = courseObject["name"].toString();
-        }
-    }
-};
 #endif // JSONCONFIGPARSER_H

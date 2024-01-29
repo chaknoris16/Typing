@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.21)
 
 project(TypingTrainer VERSION 0.1 LANGUAGES CXX)
 
+
+option(BUILD_TESTS "Build tests" OFF)
+
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -9,7 +12,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-#option(BUILD_TESTS "Build tests" ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
@@ -22,7 +24,7 @@ set(PROJECT_SOURCES
     src/resultwindow.cpp
     src/resultwindow.h
     src/resultwindow.ui
-    src/resurce.qrc
+    src/resource.qrc
     src/startwindow.cpp
     src/startwindow.h
     src/startwindow.ui
@@ -46,10 +48,13 @@ set(PROJECT_SOURCES
     src/CostomComboBox.h
     src/ComboBoxManager.h
     src/ResourceCopier.h
+    src/json_text_parser.h
+    src/json_text_parser.cpp
 )
 
 add_executable(TypingTrainer
     ${PROJECT_SOURCES}
+
 )
 
 target_link_libraries(TypingTrainer PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
@@ -62,12 +67,14 @@ install(TARGETS TypingTrainer
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
+if (ON)
+ enable_testing()
+ add_subdirectory(tests)
+endif ()
+
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(TypingTrainer)
 endif()
 
 
-if (ON)
- enable_testing()
- add_subdirectory(tests)
-endif ()
+

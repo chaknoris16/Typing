@@ -1,5 +1,12 @@
 #include "test_jsonfileparser.h"
 #include <QString>
+
+test_jsonFileParser::test_jsonFileParser() : jsonParser(":/fails/course.json"), textParser(":/fails/lyrics.json")
+{
+
+}
+
+
 TEST_F(test_jsonFileParser, checkCourseIndex) {
     ASSERT_FALSE(this->jsonParser.getCurrentCourseIndex() < 0);
 }
@@ -41,11 +48,11 @@ TEST_F(test_jsonFileParser, checkCurrenKeyboardLayout) {
 
 
 TEST_F(test_jsonFileParser, jsonTextParser) {
-    for(int i = 0; i < textParser->getLuricsArray().size(); i++){
-        this->textParser->updateFields(i);
-        ASSERT_FALSE(textParser->getLanguage().isEmpty());
-        ASSERT_FALSE(textParser->getTextsArray().isEmpty());
+    for(int i = 0; i < textParser.getLuricsArray().size(); i++){
+        this->textParser.updateFields(i);
+        ASSERT_FALSE(textParser.getLanguage().isEmpty());
+        ASSERT_FALSE(textParser.getTextsArray().isEmpty());
     }
-
-
 }
+
+
