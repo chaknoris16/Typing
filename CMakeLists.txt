@@ -12,10 +12,9 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-<<<<<<< HEAD
-=======
-#option(BUILD_TESTS "Build tests" OFF)
->>>>>>> 0686ef1bcd9b61fd018b0d819d0dba09303c6c3f
+
+option(BUILD_TESTS "Build tests" OFF)
+
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
@@ -71,7 +70,7 @@ install(TARGETS TypingTrainer
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-if (ON)
+if (BUILD_TESTS)
  enable_testing()
  add_subdirectory(tests)
 endif ()
