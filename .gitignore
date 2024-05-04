@@ -72,3 +72,5 @@ CMakeCache.txt
 *.dll
 *.exe
 
+build/
+
