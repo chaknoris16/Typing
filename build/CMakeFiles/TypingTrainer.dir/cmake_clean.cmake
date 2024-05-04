@@ -1,0 +1,43 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/TypingTrainer_autogen.dir/AutogenUsed.txt"
+  "CMakeFiles/TypingTrainer_autogen.dir/ParseCache.txt"
+  "TypingTrainer_autogen"
+  "CMakeFiles/TypingTrainer.dir/TypingTrainer_autogen/UVLADIE3JM/qrc_resource.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/TypingTrainer_autogen/UVLADIE3JM/qrc_resource.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/TypingTrainer_autogen/mocs_compilation.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/TypingTrainer_autogen/mocs_compilation.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/src/incorrectkeyboardlayout.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/src/incorrectkeyboardlayout.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/src/json_text_parser.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/src/json_text_parser.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/src/jsonconfigparser.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/src/jsonconfigparser.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/src/keyboardlayoutlanguagecontroller.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/src/keyboardlayoutlanguagecontroller.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/src/main.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/src/main.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/src/mainwindow.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/src/mainwindow.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/src/resultwindow.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/src/resultwindow.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/src/startwindow.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/src/startwindow.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/src/tableoutput.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/src/tableoutput.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/src/typingtestingpage.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/src/typingtestingpage.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/src/vector_of_exercises.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/src/vector_of_exercises.cpp.obj.d"
+  "CMakeFiles/TypingTrainer.dir/src/virtual_keyboard.cpp.obj"
+  "CMakeFiles/TypingTrainer.dir/src/virtual_keyboard.cpp.obj.d"
+  "TypingTrainer.exe"
+  "TypingTrainer.exe.manifest"
+  "TypingTrainer.lib"
+  "TypingTrainer.pdb"
+  "TypingTrainer_autogen/UVLADIE3JM/qrc_resource.cpp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/TypingTrainer.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

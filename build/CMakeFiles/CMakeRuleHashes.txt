@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+b21945b16e6a2fb6f1e49b2f143f6002 CMakeFiles/TypingTrainer_autogen
+6de72e507cc2888c523e416df8949d5e TypingTrainer_autogen/UVLADIE3JM/qrc_resource.cpp

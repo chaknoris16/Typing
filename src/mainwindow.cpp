@@ -26,6 +26,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , jsonParser(new JsonConfigParser("course.json", this))
 {
     ui->setupUi(this);
     this->keyboardLangControl = new KeyboardLayoutLanguageController(ui->keyFieldInside_2);

@@ -45,7 +45,7 @@ public slots:
 
 public:
     Ui::MainWindow *ui;
-    JsonConfigParser* jsonParser = new JsonConfigParser("course.json", this);
+    JsonConfigParser* jsonParser;
     CustomComboBox *getComboBox_Lessons() const;
     CustomComboBox *getComboBox_Exercises() const;
     void populateComboBoxes();

@@ -1,0 +1,8 @@
+C:/Users/Mykhailo/Documents/TypingTrainer/build/6_7_VC19-Debug/CMakeFiles/TypingTrainer.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/6_7_VC19-Debug/CMakeFiles/edit_cache.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/6_7_VC19-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/6_7_VC19-Debug/CMakeFiles/list_install_components.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/6_7_VC19-Debug/CMakeFiles/install.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/6_7_VC19-Debug/CMakeFiles/install/local.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/6_7_VC19-Debug/CMakeFiles/TypingTrainer_autogen_timestamp_deps.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/6_7_VC19-Debug/CMakeFiles/TypingTrainer_autogen.dir

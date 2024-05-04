@@ -5,9 +5,10 @@
 #include "mainwindow.h"
 class MainWindow;
 
-Virtual_Keyboard::Virtual_Keyboard(MainWindow* mainWindow, QWidget *parent):
-    QWidget(parent),
-    mainWindow(mainWindow)
+Virtual_Keyboard::Virtual_Keyboard(MainWindow* mainWindow, QWidget *parent)
+    : QWidget(parent)
+    , mainWindow(mainWindow)
+    , jsonParser(new JsonConfigParser("course.json", this))
 {
     this->fillVectorKeyboardButtons(mainWindow->ui);
     this->fillMapWhisPair(this->def_MapSymbolKeyboardButton, this->jsonParser->getCurrentKeyboardLayout().keyboardSymbols, this->keyboardButtons);

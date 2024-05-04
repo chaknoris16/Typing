@@ -1,0 +1,37 @@
+{
+	"BUILD_DIR" : "C:/Users/Mykhailo/Documents/TypingTrainer/build/TypingTrainer_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/Mykhailo/Documents/TypingTrainer/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/Mykhailo/Documents/TypingTrainer/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/Mykhailo/Documents/TypingTrainer",
+	"CMAKE_SOURCE_DIR" : "C:/Users/Mykhailo/Documents/TypingTrainer",
+	"INCLUDE_DIR" : "C:/Users/Mykhailo/Documents/TypingTrainer/build/TypingTrainer_autogen/include",
+	"INPUTS" : 
+	[
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/course.json",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/lyrics.json",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/171013.ico",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/Frame 1.svg",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/imageFrame.png",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/battonStartFrame.svg",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/reset.svg",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/imageFrame.svg",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/packo.svg",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/ResetPage.svg",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/StartWidget.svg",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/Start.svg",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/imageFrame.jpg",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/packo (1).svg",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/MainIcon.svg",
+		"C:/Users/Mykhailo/Documents/TypingTrainer/src/img/right.svg"
+	],
+	"LOCK_FILE" : "C:/Users/Mykhailo/Documents/TypingTrainer/build/CMakeFiles/TypingTrainer_autogen.dir/AutoRcc_resource_UVLADIE3JM_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "resource" ],
+	"OUTPUT_CHECKSUM" : "UVLADIE3JM",
+	"OUTPUT_NAME" : "qrc_resource.cpp",
+	"RCC_EXECUTABLE" : "C:/Users/Mykhailo/Yaware/Qt-5.6.3/qtbase/bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "C:/Users/Mykhailo/Documents/TypingTrainer/build/CMakeFiles/TypingTrainer_autogen.dir/AutoRcc_resource_UVLADIE3JM_Used.txt",
+	"SOURCE" : "C:/Users/Mykhailo/Documents/TypingTrainer/src/resource.qrc",
+	"VERBOSITY" : 0
+}

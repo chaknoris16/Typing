@@ -16,7 +16,7 @@ class JsonConfigParser : public QObject
 {
     Q_OBJECT
 private:
-    const QString& _filePath;
+    const QString _filePath;
     struct keyboardLayout
     {
         QString keyboardSymbols;

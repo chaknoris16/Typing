@@ -1,0 +1,7 @@
+C:/Users/Mykhailo/Documents/TypingTrainer/build/CMakeFiles/TypingTrainer.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/CMakeFiles/edit_cache.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/CMakeFiles/rebuild_cache.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/CMakeFiles/list_install_components.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/CMakeFiles/install.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/CMakeFiles/install/local.dir
+C:/Users/Mykhailo/Documents/TypingTrainer/build/CMakeFiles/TypingTrainer_autogen.dir
